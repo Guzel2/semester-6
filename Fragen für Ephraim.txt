@@ -1,10 +1,31 @@
 
 1. Wie viele Seiten ungefähr?
+20 Seiten ist etwas wenig
+-> lieber 30 +/-
+
 2. Wie viel Quellen? Davon wie viele Hauptquellen?
+Ab und zu auch Spiel aber haupsächlich wissenschaftlich
+
+Opus (quellen für interne dokumente?)
+Reasearch gate
+Academia
+
+4-5 Quellen wäre "okay"
+-> Lieber mehr
 
 3. Aufteilung der Note? 50/50?
+Ungefähr
+
 4. Expose Format vorgaben?
+Glaube ja?
+Zeilenabstand 1.5 schriftgröße 12?
+-> Vorhaben
+-> Warum ist es interessant
+-> Methode
+
 5. Wann nächster Termin?
+9.4. 17 Uhr telefonieren
+
 
 Zum Thema:
 
@@ -24,3 +45,32 @@ Thema: Entwicklung neuer Genre und Anpassung an Zielgruppen
 -> Gaming als Nebenaktivtät
 4. Zwei neue Genre: Survivor-Like, Autobattler
 -> Beides Spiele wo man lange nur zu schaut und dannach Entscheidungen trifft
+5. Alte Spiel vergleichen
+-> Viel von technik im Gameplay
+6. Endless runner/hohe schwierigkeit
+-> früher sollte man nicht fertig werden
+
+
+Grobe gliederung nach Ephraim:
+
+Motivation
+
+Fragestellung
+
+Stand der Technik
+
+Lösungsansatz
+
+Umsetzung
+
+Fazit
+
+Ausblick
+
+
+Recherche:
+Emergenz
+Ameisen Simulation Schwarmalgorithmen
+
+
+
