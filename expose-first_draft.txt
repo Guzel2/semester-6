@@ -2,7 +2,7 @@
 Entstehung neuer Genre, Surivor-Like und Autobattler - Wie viel Gameplay braucht ein Spiel?
 
 In den letzten Jahren entstand ein Trend in Videospielen, Gameplay und Mechaniken sind immer weiter in den Hintergrund gerückt und Immersion, Story und Grafik traten mehr in den Fokus. Diese Entwicklung ist insbesondere in AAA Spielen bemerkbar, aber auch in den zwei neusten aufkommenden Genre: Surivivor-Like und Autobattler.
-Daraus stellt sich nun die Frage, wie viele Mechaniken und Gameplay ein Spiel braucht, um Spaß zu machen und wohin sich Video Spiele entwickeln werden.
+Daraus stellt sich nun die Frage, wie viele Mechaniken und Gameplay ein Spiel braucht, um Spaß zu machen und wohin sich Videospiele entwickeln werden.
 
 Um dieser Entwicklung auf den Grund zu gehen versuche ich verschiedene Symptome zu analysieren. Dabei fokussiere ich mich auf wissenschaftlichen Feststellungen, Statistiken und eigene Analyse von Spielen.
 
@@ -21,3 +21,16 @@ Ein erster Ansatz für eine Gliederung folgt:
 3.3. Der trend zur Reduktion der Entscheidungen
 4. Fazit
 5. Ausblick
+
+
+
+
+
+Was muss ins Expose?
+1. Titel/Untertitel (Nicht änderbar, daher gerne offen und weit formulieren)
+2. Einleitung (Warum ist das Thema relevant)
+3. Fragestellung - Ziel der Arbeit (Forschungsinteresse)
+4. Vorgehen/Konzept/Methode (Was will ich machen?)
+5. Gliederung/Inhaltsverzeichnis (Für finalen Text)
+6. Quellen
+Optional 7. Zeitplan/Moodboard/Skizzen/Konzepte
