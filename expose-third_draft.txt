@@ -1,0 +1,42 @@
+
+Entstehung neuer Genre, Surivor-Like und Autobattler - Wie viel Gameplay braucht ein Spiel?
+
+In den letzten Jahren ist ein Trend zu beobachten, bei dem bestimmte Spiele eine Reduktion an Gameplay und Mechaniken aufweisen. Insbesondere bei AAA-Spielen wird diese Lücke durch verstärkte Grafik, Immersion und eine ausgefeilte Storyline gefüllt. Dieser Trend ist auch in AA- und Indie-Spielen erkennbar, besonders bei der Analyse von zwei aufkommenden Genres: Survivor-Like und Autobattler.
+Dies führt zur Frage, wie viele Mechaniken und wie viel Gameplay ein Spiel benötigt, um eine unterhaltsame Erfahrung zu bieten, und wodurch diese Entwicklung ausgelöst wird.
+
+Um dieser Entwicklung auf den Grund zu gehen versuche ich verschiedene Auslöser zu identifizieren. Dabei fokussiere ich mich auf wissenschaftlichen Feststellungen, Statistiken und eigene Analyse von Spielen.
+
+Für meine praktische Umsetzung der Bachelorarbeit plane ich, ein Spielkonzept mehrfach umzusetzen und dabei die Menge des Gameplays sowie die Anzahl der Mechaniken und Interaktionsmöglichkeiten zu variieren. Mein Ziel ist es herauszufinden, wie man trotz einer begrenzten Anzahl an Entscheidungen ein interessantes Spiel gestalten kann. Außerdem werde ich untersuchen, ab welchem Punkt die Spieler aufgrund einer Überfülle an Mechaniken und Entscheidungen überfordert sind.
+
+Die Grundidee des Spielkonzepts besteht darin, eine Insekten-Kolonie zu begleiten und ihre Entwicklung zu verfolgen. Im Extremfall der Simulation würde die Spieler lediglich beobachten, wie die Insekten autonom arbeiten und sich entwickeln, ohne dabei Einfluss ausüben zu können. Der nächste Schritt wäre es stellenweise die Insekten zu kontrollieren, sei es nun über ihre Entwicklung zu bestimmen, beispielsweise ob sie Flügel entwickeln und fliegen können, oder sie mit Duftspuren lenken. Das andere Extrem wäre die vollständige Kontrolle, wobei der Spieler allen Insekten Befehle erteilen und ihre Entwicklung genau steuern könnte.
+Diese Variationen sollen als additives System aufgebaut werden, wodurch man präzise die Kontrolle an verschiedenen Stellschrauben einstellen kann.
+
+
+
+0. Einleitung
+1. Was bedeutet Spiel?
+1.1. Wo ist der Unterschied zu einer Simulation oder einem Film?
+1.2. Entscheidungen bewerten und ihren Einfluss auf ein Spiel
+2. Zielgruppenentwicklung: Gaming für den Mainstream
+2.1. Der Einfluss von Filmen auf Spiele
+2.2. Sludge-Content, Social Media und die Auswirkung auf andere Medien
+3. Aufkommen zweier neuer Genre: Survivor-Like und Autobattler
+3.1. Autobattler: Ein Vergleich mit anderen Strategy-Genre
+3.2. Survivor-Like: Der Unterschied zu Rogue-Like
+3.3. Der trend zur Reduktion der Entscheidungen
+4. Fazit
+5. Ausblick
+
+
+
+
+
+Was muss ins Expose?
+1. Titel/Untertitel (Nicht änderbar, daher gerne offen und weit formulieren)
+2. Einleitung (Warum ist das Thema relevant)
+3. Fragestellung - Ziel der Arbeit (Forschungsinteresse)
+4. Vorgehen/Konzept/Methode (Was will ich machen?)
+
+5. Gliederung/Inhaltsverzeichnis (Für finalen Text)
+6. Quellen
+Optional 7. Zeitplan/Moodboard/Skizzen/Konzepte
