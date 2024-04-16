@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=5 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/scent_manager.gd" id="1_qgrk3"]
+[ext_resource type="PackedScene" uid="uid://xboah7if72qt" path="res://scenes/scent_visual.tscn" id="2_2svqb"]
 [ext_resource type="Script" path="res://scripts/ant_manager.gd" id="2_enl3e"]
 [ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant.tscn" id="3_o5lse"]
 
@@ -8,6 +9,7 @@
 
 [node name="scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+scent_visual_scene = ExtResource("2_2svqb")
 
 [node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("scent_manager")]
 script = ExtResource("2_enl3e")

@@ -4,6 +4,8 @@ extends Node2D
 @export var cell_size : int = 10
 @export var grid_size : int = 100
 
+@export var scent_visual_scene : PackedScene
+
 var scent_list = []
 
 func _ready() -> void:
@@ -18,6 +20,10 @@ func get_scent(pos: Vector2) -> Scent:
 	return scent_list[local_pos.x][local_pos.y]
 
 func get_scent_local(pos: Vector2i) -> Scent:
+	if (pos.x < 0 or pos.x > grid_size) or (pos.x < 0 or pos.x > grid_size):
+		push_warning("Ant out of grid at: ", pos)
+		return null
+	
 	return scent_list[pos.x][pos.y]
 
 func add_scent(pos: Vector2, type: EnumManager.scent_types):
@@ -33,10 +39,17 @@ func add_scent(pos: Vector2, type: EnumManager.scent_types):
 	var new_scent = Scent.new()
 	new_scent.type = type
 	scent_list[local_pos.x][local_pos.y] = new_scent
+	
+	spawn_scent_visual(local_pos)
+
+func spawn_scent_visual(pos: Vector2):
+	var scene = scent_visual_scene.instantiate() as ScentVisual
+	scene.position = pos * cell_size
+	scene.scale *= cell_size
+	add_child(scene)
 
 func global_pos_to_local_pos(pos: Vector2) -> Vector2i:
 	pos /= cell_size
-	
 	return pos
 
 func _process(delta: float) -> void:
