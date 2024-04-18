@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<keyboard version="1">
+    <commands>
+        <key command="CloseFile" shortcut="Ctrl+W" removed="true" />
+        <key command="AddColor" shortcut="Ctrl+Shift+Q">
+            <param name="source" value="fg" />
+        </key>
+    </commands>
+    <tools>
+        <key tool="magic_wand" shortcut="W" removed="true" />
+        <key tool="pencil" shortcut="W" />
+    </tools>
+    <quicktools>
+        <key tool="eyedropper" shortcut="Alt" removed="true" />
+        <key tool="eyedropper" shortcut="Ctrl" />
+        <key tool="move" shortcut="Ctrl" removed="true" />
+        <key tool="move" shortcut="Alt" />
+        <key tool="magic_wand" shortcut="Ctrl+W" />
+        <key tool="line" shortcut="Shift" />
+    </quicktools>
+    <actions>
+        <key action="StraightLineFromLastPoint" context="FreehandTool" shortcut="Shift" removed="true" />
+    </actions>
+    <wheel />
+    <drag />
+</keyboard>
