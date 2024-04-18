@@ -8,6 +8,8 @@ extends Node2D
 
 var scent_list = []
 
+var visualize_scent = true
+
 func _ready() -> void:
 	for x in grid_size:
 		var line = []
@@ -20,7 +22,7 @@ func get_scent(pos: Vector2) -> Scent:
 	return scent_list[local_pos.x][local_pos.y]
 
 func get_scent_local(pos: Vector2i) -> Scent:
-	if (pos.x < 0 or pos.x > grid_size) or (pos.x < 0 or pos.x > grid_size):
+	if (pos.x < 0 or pos.x > grid_size) or (pos.y < 0 or pos.y > grid_size):
 		push_warning("Ant out of grid at: ", pos)
 		return null
 	
@@ -40,7 +42,8 @@ func add_scent(pos: Vector2, type: EnumManager.scent_types):
 	new_scent.type = type
 	scent_list[local_pos.x][local_pos.y] = new_scent
 	
-	spawn_scent_visual(local_pos)
+	if visualize_scent:
+		spawn_scent_visual(local_pos)
 
 func spawn_scent_visual(pos: Vector2):
 	var scene = scent_visual_scene.instantiate() as ScentVisual

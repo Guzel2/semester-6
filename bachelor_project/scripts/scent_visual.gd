@@ -8,7 +8,7 @@ var lifetime = max_lifetime
 func _process(delta: float) -> void:
 	lifetime -= delta
 	
-	modulate.a = lifetime / max_lifetime
+	modulate.a = (lifetime / max_lifetime) / 2
 	
 	if lifetime < 0:
 		queue_free()

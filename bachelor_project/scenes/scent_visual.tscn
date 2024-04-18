@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="1_08cb5"]
 
 [node name="scent_visual" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
 texture = ExtResource("1_08cb5")
 centered = false
 script = ExtResource("1_5gvpm")
