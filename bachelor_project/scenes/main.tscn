@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=7 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/scent_manager.gd" id="1_qgrk3"]
 [ext_resource type="PackedScene" uid="uid://xboah7if72qt" path="res://scenes/scent_visual.tscn" id="2_2svqb"]
 [ext_resource type="Script" path="res://scripts/ant_manager.gd" id="2_enl3e"]
 [ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant.tscn" id="3_o5lse"]
+[ext_resource type="Script" path="res://scripts/food_manager.gd" id="3_y4ur8"]
+[ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food_visual.tscn" id="4_3pryx"]
 
 [node name="main" type="Node2D"]
 
@@ -11,66 +13,15 @@
 script = ExtResource("1_qgrk3")
 scent_visual_scene = ExtResource("2_2svqb")
 
+[node name="food_manager" type="Node2D" parent="."]
+script = ExtResource("3_y4ur8")
+
+[node name="food_visual" parent="food_manager" instance=ExtResource("4_3pryx")]
+
 [node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("scent_manager")]
 script = ExtResource("2_enl3e")
 scent_manager = NodePath("../scent_manager")
 
 [node name="ant" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant2" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant3" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant4" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant5" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant6" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant7" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant8" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant9" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant10" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant11" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant12" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant13" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant14" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant15" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
 position = Vector2(25, 159)
 ant_manager = NodePath("..")

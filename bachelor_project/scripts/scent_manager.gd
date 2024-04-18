@@ -19,6 +19,11 @@ func _ready() -> void:
 
 func get_scent(pos: Vector2) -> Scent:
 	var local_pos = global_pos_to_local_pos(pos)
+	
+	if (local_pos.x < 0 or local_pos.x > grid_size) or (local_pos.y < 0 or local_pos.y > grid_size):
+		push_warning("Ant out of grid at: ", pos)
+		return null
+	
 	return scent_list[local_pos.x][local_pos.y]
 
 func get_scent_local(pos: Vector2i) -> Scent:
@@ -43,12 +48,21 @@ func add_scent(pos: Vector2, type: EnumManager.scent_types):
 	scent_list[local_pos.x][local_pos.y] = new_scent
 	
 	if visualize_scent:
-		spawn_scent_visual(local_pos)
+		spawn_scent_visual(local_pos, type)
 
-func spawn_scent_visual(pos: Vector2):
+func spawn_scent_visual(pos: Vector2, type: EnumManager.scent_types):
 	var scene = scent_visual_scene.instantiate() as ScentVisual
 	scene.position = pos * cell_size
 	scene.scale *= cell_size
+	
+	match type:
+		EnumManager.scent_types.home:
+			scene.modulate = Color.from_hsv(.90, .5, .75)
+		EnumManager.scent_types.food:
+			scene.modulate = Color.from_hsv(.35, .6, .7)
+		EnumManager.scent_types.danger:
+			scene.modulate = Color.from_hsv(.05, .7, .5)
+	
 	add_child(scene)
 
 func global_pos_to_local_pos(pos: Vector2) -> Vector2i:
