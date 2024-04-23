@@ -35,6 +35,9 @@ var exploring_time = 0
 var exploring_adjustment_interval = .5
 var exploring_randomness = 25
 
+var food_scan_timer = 0
+var food_scan_interval = .2
+
 var scan_positions = [
 	Vector2(10, -10),
 	Vector2(20, -10),
@@ -45,6 +48,8 @@ var scan_positions = [
 	Vector2(10, 10),
 	Vector2(20, 10),
 ]
+
+var food_scan_distance = 10
 
 func updated_state():
 	match state:
@@ -68,22 +73,29 @@ func _process(delta: float) -> void:
 	if scent_spawn_timer >= scent_spawn_interval:
 		scent_spawn_timer = 0
 		add_scent()
-		scan_scents()
-	
-	position += dir * delta * speed
+		if state != ant_state.harvesting:
+			scan_scents()
 	
 	match state:
 		ant_state.exploring:
+			position += dir * delta * speed
 			exploring_time += delta
 			if exploring_time >= exploring_adjustment_interval:
 				exploring_time = 0
 				dir = dir.rotated(deg_to_rad(randf_range(-exploring_randomness, exploring_randomness)))
-		
+			
+			food_scan_timer += delta
+			if food_scan_timer >= food_scan_interval:
+				food_scan_timer = 0
+				scan_food()
+			
 		ant_state.harvesting:
-			pass
+			if consume_food(delta) < delta:
+				print("test")
+				state = ant_state.exploring
 			
 		ant_state.returning:
-			pass
+			position += dir * delta * speed
 
 func add_scent():
 	var type
@@ -134,6 +146,18 @@ func scan_scents():
 	
 	new_pos /= total_scents
 	dir = new_pos.rotated(dir.angle())
+
+func scan_food():
+	var scan_pos = position + dir * food_scan_distance
+	var food = ant_manager.get_food(scan_pos)
+	if food:
+		state = ant_state.harvesting
+
+func consume_food(delta) -> float:
+	var scan_pos = position + dir * food_scan_distance
+	var consumed_food = ant_manager.consume_food(scan_pos, delta)
+	food_amount += consumed_food
+	return consumed_food
 
 func change_scent_into_int(scent: Scent) -> int:
 	match state:

@@ -15,12 +15,12 @@ scent_visual_scene = ExtResource("2_2svqb")
 
 [node name="food_manager" type="Node2D" parent="."]
 script = ExtResource("3_y4ur8")
+food_visual_scene = ExtResource("4_3pryx")
 
-[node name="food_visual" parent="food_manager" instance=ExtResource("4_3pryx")]
-
-[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("scent_manager")]
+[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("scent_manager", "food_manager")]
 script = ExtResource("2_enl3e")
 scent_manager = NodePath("../scent_manager")
+food_manager = NodePath("../food_manager")
 
 [node name="ant" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
 position = Vector2(25, 159)
