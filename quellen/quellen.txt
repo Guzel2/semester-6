@@ -14,8 +14,8 @@ https://research.ebsco.com/c/2ivtw2/search/details/hkdb5wxdpz?limiters=FT1%3AY%2
 Vampire survivor: (Design and development of a 2D shoot’em up and roguelite hybrid game)
 https://repositori.uji.es/xmlui/handle/10234/202980
 
-Social Media and Gamification:
-https://link.springer.com/chapter/10.34156/978-3-791-05792-7_22
-
 Why play games:
 https://www.sekg.net/gamer-psychology-people-play-games/
+
+Sid Meier
+https://www.gamedeveloper.com/design/gdc-2012-sid-meier-on-how-to-see-games-as-sets-of-interesting-decisions

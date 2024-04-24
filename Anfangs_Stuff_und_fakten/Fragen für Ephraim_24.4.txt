@@ -1,0 +1,26 @@
+
+1. Ist GDC eine gute quelle?
+
+2. Soll ich code auch abgeben?
+
+5. Wann nächster Termin?
+9.4. 17 Uhr telefonieren
+
+
+Grobe gliederung nach Ephraim:
+
+Motivation
+Fragestellung
+Stand der Technik
+Lösungsansatz
+Umsetzung
+Fazit
+Ausblick
+
+
+Recherche:
+Emergenz
+Ameisen Simulation Schwarmalgorithmen
+
+
+
