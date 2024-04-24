@@ -2,10 +2,27 @@
 1. Ist GDC eine gute quelle?
 
 2. Soll ich code auch abgeben?
+Pdf - Text
+Zip - Spiel -> EXE
+Und auch das Projekt -> Also auch code
+-> Kann mit prüfungsamt schreiebn
 
-5. Wann nächster Termin?
-9.4. 17 Uhr telefonieren
+3.
+Amaisen Idee und motivation als erstes
 
+Insbesondere kann das nen eigenen Abschnitt sein im text
+-> Papers zu Amaisen algortithmen
+-> Wie viel möchte ich selber machen
+
+Link von ephraim:
+https://en.wikipedia.org/wiki/Boids
+https://itp.uni-frankfurt.de/~gros/StudentProjects/Applets_2014_AntsSimulation/ants.htm
+
+3. Wann nächster Termin?
+8.5 14:30
+
+Telefonnummer:
+015730335712
 
 Grobe gliederung nach Ephraim:
 
