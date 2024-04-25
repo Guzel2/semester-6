@@ -9,10 +9,6 @@ Weniger Interaktionsmöglichkeiten
 Weniger Mechaniken
 ››› Weniger Gameplay, "Spiel"
 
-Festgefahren Genre
-››› Alles existiert bereits
-
-
 Wie viel Gameplay braucht ein Spiel?
 
 
@@ -25,12 +21,11 @@ Autobattler
 Insektensimulation
 
 Additives System
-››› Austesten verschiedener Mechanik Kombinationen, wie viele braucht man?
+››› Austesten verschiedener Mechanik Kombinationen
 
 Wo ist die Grenze zwischen Simulation und Spiel?
 
-Wie viele Mechaniken braucht man?
-Wie viele Interaktionsmöglichkeiten braucht man?
+Wie viele Mechaniken/Interaktion braucht man?
 
 
 
@@ -60,3 +55,13 @@ Wie viele Interaktionsmöglichkeiten braucht man?
 5. Fazit
 
 6. Ausblick
+
+Lösungsansätze:
+
+Zielgruppenentwicklung: Gaming für den Mainstream
+
+Gaming als Nebenaktivität: Auswirkung von Sludge Content
+
+Festgefahrene Generes
+>>> Bedarf nach Innovation
+
