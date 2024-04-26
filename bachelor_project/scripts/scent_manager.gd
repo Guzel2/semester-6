@@ -20,14 +20,14 @@ func _ready() -> void:
 func get_scent(pos: Vector2) -> Scent:
 	var local_pos = global_pos_to_local_pos(pos)
 	
-	if (local_pos.x < 0 or local_pos.x > grid_size) or (local_pos.y < 0 or local_pos.y > grid_size):
+	if (local_pos.x < 0 or local_pos.x >= grid_size) or (local_pos.y < 0 or local_pos.y >= grid_size):
 		push_warning("Ant out of grid at: ", pos)
 		return null
 	
 	return scent_list[local_pos.x][local_pos.y]
 
 func get_scent_local(pos: Vector2i) -> Scent:
-	if (pos.x < 0 or pos.x > grid_size) or (pos.y < 0 or pos.y > grid_size):
+	if (pos.x < 0 or pos.x >= grid_size) or (pos.y < 0 or pos.y >= grid_size):
 		push_warning("Ant out of grid at: ", pos)
 		return null
 	
