@@ -25,13 +25,9 @@ func _ready() -> void:
 				line.append(null)
 			food_visual_list.append(line)
 	
-	add_new_food(Vector2i(16, 12))
-	add_new_food(Vector2i(16, 13))
-	add_new_food(Vector2i(16, 14))
-	add_new_food(Vector2i(16, 15))
-	add_new_food(Vector2i(16, 16))
-	add_new_food(Vector2i(16, 17))
-	add_new_food(Vector2i(16, 18))
+	for x in range(30, 35):
+		for y in range(12, 18):
+			add_new_food(Vector2i(x, y))
 
 func get_food(pos: Vector2) -> Food:
 	var local_pos = global_pos_to_local_pos(pos)
@@ -46,6 +42,8 @@ func consume_food(pos: Vector2, value: float) -> float:
 		return 0
 	
 	var food = food_list[local_pos.x][local_pos.y] as Food
+	if !food:
+		return 0
 	var return_value = food.consume_food(value)
 	
 	if visualize_food:

@@ -27,26 +27,35 @@ var food_amount = 0
 var max_food_amount = 10
 var harvesting_amount = 1
 
-var max_stamina = 10.0
+var max_stamina = 20.0
 var return_stamina = max_stamina * .6
 var stamina = max_stamina
 
 var exploring_time = 0
 var exploring_adjustment_interval = .5
-var exploring_randomness = 25
+var exploring_randomness = 15
 
 var food_scan_timer = 0
 var food_scan_interval = .2
 
 var scan_positions = [
+	Vector2(10, -20),
+	Vector2(20, -20),
+	
 	Vector2(10, -10),
 	Vector2(20, -10),
+	Vector2(30, -10),
 	
 	Vector2(15, 0),
 	Vector2(25, 0),
+	Vector2(35, 0),
 	
 	Vector2(10, 10),
 	Vector2(20, 10),
+	Vector2(30, 10),
+	
+	Vector2(10, 20),
+	Vector2(20, 20),
 ]
 
 var food_scan_distance = 10
@@ -69,12 +78,19 @@ func _process(delta: float) -> void:
 		if state != ant_state.returning:
 			state = ant_state.returning
 	
+	if stamina < 0:
+		queue_free()
+	
 	scent_spawn_timer += delta
 	if scent_spawn_timer >= scent_spawn_interval:
 		scent_spawn_timer = 0
 		add_scent()
-		if state != ant_state.harvesting:
-			scan_scents()
+		
+		match state:
+			ant_state.exploring:
+				scan_scents(EnumManager.scent_types.food)
+			ant_state.returning:
+				scan_scents(EnumManager.scent_types.home)
 	
 	match state:
 		ant_state.exploring:
@@ -91,11 +107,17 @@ func _process(delta: float) -> void:
 			
 		ant_state.harvesting:
 			if consume_food(delta) < delta:
-				print("test")
 				state = ant_state.exploring
 			
 		ant_state.returning:
 			position += dir * delta * speed
+			
+			if position.x < 10:
+				state = ant_state.exploring
+				stamina = max_stamina
+				food_amount = 0
+				position.y = clamp(position.y, 50, 250)
+				dir = Vector2(1, 0)
 
 func add_scent():
 	var type
@@ -114,15 +136,17 @@ func add_scent():
 	
 	ant_manager.add_scent(position, type)
 
-func scan_scents():
+func scan_scents(type: EnumManager.scent_types):
+	#maybe rework how this works a bit
+	
 	var found_scents = []
 	
 	for pos in scan_positions:
 		pos = pos.rotated(rotation)
 		pos += position
-		var scent = ant_manager.get_scent(pos)
+		var scent = ant_manager.get_scent(pos, type)
 		if scent:
-			found_scents.append(change_scent_into_int(scent))
+			found_scents.append(1)
 		else:
 			found_scents.append(0)
 	
@@ -158,25 +182,3 @@ func consume_food(delta) -> float:
 	var consumed_food = ant_manager.consume_food(scan_pos, delta)
 	food_amount += consumed_food
 	return consumed_food
-
-func change_scent_into_int(scent: Scent) -> int:
-	match state:
-		ant_state.exploring:
-			if scent.type == EnumManager.scent_types.home:
-				return 0
-			
-			var modifier = 1
-			if scent.type == EnumManager.scent_types.danger:
-				modifier = -1
-			
-			return (scent.intensity + 1) * modifier
-		
-		ant_state.harvesting:
-			return 0
-			
-		ant_state.returning:
-			if scent.type != EnumManager.scent_types.home:
-				return 0
-			return scent.intensity + 1
-	
-	return 0

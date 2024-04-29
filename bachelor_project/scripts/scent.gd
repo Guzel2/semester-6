@@ -6,7 +6,7 @@ var type : EnumManager.scent_types
 var intensity : int = 0
 var max_intensity : int = 3
 
-var max_time : float = 15.0
+var max_time : float = 20.0
 var remaining_time : float = max_time
 
 func process(delta: float):
