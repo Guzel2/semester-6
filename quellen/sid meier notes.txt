@@ -26,7 +26,7 @@ Types of decisions:
 
 
 IMPORTANT: HOW we present the decison
-~~Setting the Scene
+~~~Setting the Scene
 
 - What information does the player have befroe making the decision?
 - What is the learning curve?
@@ -36,3 +36,46 @@ IMPORTANT: HOW we present the decison
 
 
 bis 25:00 Minuten
+
+Feedback of the decision is good
+-> Either comfort player or tell them what would've happend if chosen different
+
+"Does anyone know I'm here?"
+
+Decision Feedback Loop
+-> get a core loop and repeat it
+-> the more you go around the core loop the better?
+
+
+Player Feedback types:
+- Mr. Kick-Butt: Only cares about winning, if win game = fun, if not game fucking sucks
+- Ms. Genre: Loves the genre, if the game isn't 100% like the fav genre complains. "In game x they do somethinmg, copy that"
+- Mr. MinMax: Really needs to understand everything -> tries to reverse engnenerer the game
+- Ms. Paranoid: The Computer is cheating!! RNG is rigged
+- Mr. Histroy: If something isn't 100% histroci accurate complains
+- Mr. Bubble-boy: Remembers the 1 bad thing that happend and gets stuck there
+- Mr. Designer: They wish you made a different game "why is your game not the other game I want to play"
+
+
+~~~
+Making Decisions More Interesting
+
+- Balance decisions
+- More important -> tie more into what the game is about
+- More/less information the player have
+  -> ex. fog of war makes early decisions easier
+- More/Fewer choices
+  -> often combingning  choices makes them interesting+
+  -> often remove redundant choices
+- more flavorful (sound, vfx, etc.)
+- more/less time, how much time has a player
+  -> "Most genre are designed by the amoung of time the player has for a decision"
+  -> ex. slower shooter is a stealth game, faster shooter is action fps
+  -> simple decisions + much downtime = boring
+  -> difficult decision + little downtime = overwhelming
+
+
+"combination of gameworld and decisions is important"
+
+
+
