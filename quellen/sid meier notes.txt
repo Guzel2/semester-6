@@ -1,0 +1,38 @@
+
+Not an interesting decision:
+choice a, b and c
+if player always goes a, then the computer should just do it for them
+
+
+Games should be fun -> intersting decisions make game fun
+
+Can be good when debugging ("Where's the fun?")
+
+
+Characteristics of intersrting decisions:
+- trade-offs (Car with great handling, but less fast, or other car with bad handling but very fast)
+- situational (interacts with the game situation, immersion in the game? One result of a decision is good ina certain situation)
+- personal (expressing of self, turtle strat vs rushdown)
+- Persistence (Effect for a certain amount of time -> make the player know that it's a long term decision) 
+
+"I need more decisions, the player has too little agency"
+
+Types of decisions:
+- Risk vs reward (go fast and risky, or play slow and save)
+- short term vs long term (some cute instant vs smth long term)
+- playstyle and personality (turtle vs rush? example: 7 difficulties in civ)
+- multiple goals -> several strategies working at the same time?
+- customization (player representation)
+
+
+IMPORTANT: HOW we present the decison
+~~Setting the Scene
+
+- What information does the player have befroe making the decision?
+- What is the learning curve?
+  -> this will change how decisions will be made later on
+- Use Genre conventions -> piggy backing (red barrels go bumm)
+- Histrociatl coinnection? Sci-f? Zombies? Setting?
+
+
+bis 25:00 Minuten
