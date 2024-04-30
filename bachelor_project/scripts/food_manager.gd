@@ -25,8 +25,12 @@ func _ready() -> void:
 				line.append(null)
 			food_visual_list.append(line)
 	
-	for x in range(30, 35):
-		for y in range(12, 18):
+	for x in range(35, 40):
+		for y in range(20, 24):
+			add_new_food(Vector2i(x, y))
+	
+	for x in range(35, 40):
+		for y in range(6, 12):
 			add_new_food(Vector2i(x, y))
 
 func get_food(pos: Vector2) -> Food:

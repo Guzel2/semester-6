@@ -3,6 +3,11 @@ extends AntBase
 
 @export var ant_manager : AntManager
 
+@export var simulation_speed : float = 1.0
+
+var home_position : Vector2 = Vector2(15, 150)
+var home_size : float = 30
+
 var state : ant_state = ant_state.exploring:
 	get:
 		return state
@@ -22,6 +27,9 @@ var speed = 60
 
 var scent_spawn_timer = 0
 var scent_spawn_interval = .2
+
+var home_scan_timer = 0
+var home_scan_interval = .2
 
 var food_amount = 0
 var max_food_amount = 10
@@ -72,6 +80,8 @@ func updated_state():
 			dir = -dir
 
 func _process(delta: float) -> void:
+	delta *= simulation_speed
+	
 	stamina -= delta
 	
 	if stamina < return_stamina:
@@ -112,12 +122,17 @@ func _process(delta: float) -> void:
 		ant_state.returning:
 			position += dir * delta * speed
 			
-			if position.x < 10:
-				state = ant_state.exploring
-				stamina = max_stamina
-				food_amount = 0
-				position.y = clamp(position.y, 50, 250)
-				dir = Vector2(1, 0)
+			home_scan_timer += delta
+			if home_scan_timer > home_scan_interval:
+				home_scan_timer -= home_scan_interval
+				
+				var length = (position - home_position).length()
+				if length < home_size:
+					state = ant_state.exploring
+					stamina = max_stamina
+					ant_manager.add_food_amount(food_amount)
+					food_amount = 0
+					dir = Vector2(1, 0)
 
 func add_scent():
 	var type

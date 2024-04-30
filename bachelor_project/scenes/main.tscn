@@ -11,14 +11,17 @@
 
 [node name="home_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+simulation_speed = 2.0
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+simulation_speed = 2.0
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="danger_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+simulation_speed = 2.0
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_manager" type="Node2D" parent="."]
@@ -31,19 +34,5 @@ home_scent_manager = NodePath("../home_scent_manager")
 food_scent_manager = NodePath("../food_scent_manager")
 danger_scent_manager = NodePath("../danger_scent_manager")
 food_manager = NodePath("../food_manager")
-
-[node name="ant" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant2" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant3" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
-
-[node name="ant4" parent="ant_manager" node_paths=PackedStringArray("ant_manager") instance=ExtResource("3_o5lse")]
-position = Vector2(25, 159)
-ant_manager = NodePath("..")
+ant_scene = ExtResource("3_o5lse")
+simulation_speed = 2.0
