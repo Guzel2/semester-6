@@ -1,0 +1,20 @@
+
+April:
+- Expose
+- Quellen finden
+- 1 Absatz schreiben
+- Grundlagen des Prototyp
+- Plakat für Bachelor Konzept
+
+Mai:
+- 70% der schriftlichen Arbeit fertig haben
+- Core system
+- UI machen
+- Art größtenteils fertig
+
+Juni:
+- Schriftliche Arbeit 95% fertig bis zweite Woche
+- Prototyp fertig machen
+- Quality assurance/bug fixes
+- Dokumentation für Prototyp
+- Fazit
