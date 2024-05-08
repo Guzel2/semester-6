@@ -43,6 +43,9 @@ func _process(delta):
 func update_simulation_speed():
 	var ants = get_children()
 	for ant in ants:
+		if ant == home_visual:
+			continue
+		
 		ant.simulation_speed = simulation_speed
 	
 	if home_scent_manager:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=9 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/scent_manager.gd" id="1_qgrk3"]
 [ext_resource type="Script" path="res://scripts/ant_manager.gd" id="2_enl3e"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food_visual.tscn" id="4_3pryx"]
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="8_w7nha"]
-[ext_resource type="Script" path="res://scripts/UI.gd" id="9_76efp"]
 
 [node name="main" type="Node2D"]
 
@@ -45,26 +44,13 @@ simulation_speed = 4.0
 modulate = Color(0.902, 0.5, 0.75, 1)
 texture = ExtResource("7_a0hl0")
 
-[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("UI")]
+[node name="camera" type="Camera2D" parent="."]
 process_callback = 0
+position_smoothing_enabled = true
 script = ExtResource("8_w7nha")
-UI = NodePath("UI")
 
-[node name="UI" type="Node2D" parent="camera" node_paths=PackedStringArray("ant_manager")]
-script = ExtResource("9_76efp")
-ant_manager = NodePath("../../ant_manager")
-
-[node name="simulation_speed" type="HSlider" parent="camera/UI"]
-offset_left = 90.0
-offset_top = 109.0
-offset_right = 244.0
-offset_bottom = 146.0
-tooltip_text = "Simulation Speed"
-mouse_default_cursor_shape = 10
-min_value = 0.5
-max_value = 14.0
-step = 0.5
-value = 1.0
-scrollable = false
-
-[connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
+[node name="HSlider" type="HSlider" parent="camera"]
+offset_left = -11.0
+offset_top = -12.0
+offset_right = 13.0
+offset_bottom = 13.0
