@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=8 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/scent_manager.gd" id="1_qgrk3"]
 [ext_resource type="Script" path="res://scripts/ant_manager.gd" id="2_enl3e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant.tscn" id="3_o5lse"]
 [ext_resource type="Script" path="res://scripts/food_manager.gd" id="3_y4ur8"]
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food_visual.tscn" id="4_3pryx"]
+[ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
 
 [node name="main" type="Node2D"]
 
@@ -28,11 +29,20 @@ scent_visual_scene = ExtResource("2_jfod4")
 script = ExtResource("3_y4ur8")
 food_visual_scene = ExtResource("4_3pryx")
 
-[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager")]
+[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "home_visual")]
 script = ExtResource("2_enl3e")
 home_scent_manager = NodePath("../home_scent_manager")
 food_scent_manager = NodePath("../food_scent_manager")
 danger_scent_manager = NodePath("../danger_scent_manager")
 food_manager = NodePath("../food_manager")
 ant_scene = ExtResource("3_o5lse")
-simulation_speed = 2.0
+home_visual = NodePath("home")
+simulation_speed = 4.0
+
+[node name="home" type="Sprite2D" parent="ant_manager"]
+modulate = Color(0.902, 0.5, 0.75, 1)
+texture = ExtResource("7_a0hl0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)

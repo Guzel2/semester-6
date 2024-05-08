@@ -7,8 +7,11 @@ extends AntBase
 @export var food_manager : FoodManager
 
 @export var ant_scene : PackedScene
-@export var home_position : Vector2 = Vector2(15, 150)
+@export var home_position : Vector2 = Vector2(500, 250)
 @export var home_size : float = 40
+
+#temp solution
+@export var home_visual : Sprite2D
 
 @export var simulation_speed = 1.0:
 	get:
@@ -18,14 +21,14 @@ extends AntBase
 		update_simulation_speed()
 
 @export var ant_food_requirement = 10
-var food_amount = 0
+var food_amount = 60
 
 var ant_spawn_interval = 4.0
 var ant_spawn_time = .0
 
 func _ready():
-	for x in 5:
-		spawn_ant()
+	home_visual.position = home_position
+	home_visual.scale *= home_size
 
 func _process(delta):
 	delta *= simulation_speed

@@ -77,7 +77,12 @@ func updated_state():
 			pass
 			
 		ant_state.returning:
-			dir = -dir
+			if !scan_360_scents(EnumManager.scent_types.home):
+				dir = -dir
+
+func _ready() -> void:
+	if !scan_360_scents(EnumManager.scent_types.food):
+		set_random_dir()
 
 func _process(delta: float) -> void:
 	delta *= simulation_speed
@@ -132,7 +137,11 @@ func _process(delta: float) -> void:
 					stamina = max_stamina
 					ant_manager.add_food_amount(food_amount)
 					food_amount = 0
-					dir = Vector2(1, 0)
+					if !scan_360_scents(EnumManager.scent_types.food):
+						set_random_dir()
+
+func set_random_dir():
+	dir = Vector2(1, 0).rotated(randf() * 2 * PI)
 
 func add_scent():
 	var type
@@ -152,39 +161,46 @@ func add_scent():
 	ant_manager.add_scent(position, type)
 
 func scan_scents(type: EnumManager.scent_types):
-	#maybe rework how this works a bit
-	
-	var found_scents = []
-	
-	for pos in scan_positions:
-		pos = pos.rotated(rotation)
-		pos += position
-		var scent = ant_manager.get_scent(pos, type)
-		if scent:
-			found_scents.append(1)
-		else:
-			found_scents.append(0)
-	
 	var new_pos = Vector2(0, 0)
 	var total_scents = 0
 	
-	for i in found_scents.size():
-		var modifier = found_scents[i]
-		if modifier == 0:
-			continue
+	for pos in scan_positions:
+		var global_pos = pos.rotated(rotation)
+		global_pos += position
+		var scent = ant_manager.get_scent(global_pos, type)
 		
-		if modifier < 0:
-			#do this for now
-			continue
-		
-		new_pos += scan_positions[i] * modifier
-		total_scents += modifier
+		if scent:
+			new_pos += pos
+			total_scents += 1
 	
 	if total_scents <= 0:
 		return
 	
 	new_pos /= total_scents
 	dir = new_pos.rotated(dir.angle())
+
+func scan_360_scents(type: EnumManager.scent_types) -> bool:
+	var scan_count = 16
+	for x in scan_count:
+		var scan_dir = Vector2(25, 0).rotated(x * (PI / (scan_count / 2)))
+		var scan_pos = scan_dir + position
+		var scent = ant_manager.get_scent(scan_pos, type)
+		
+		if scent:
+			dir = scan_dir
+			return true
+	
+	#idk if I should do this? kinda makes ants nmove better
+	for x in scan_count:
+		var scan_dir = Vector2(35, 0).rotated(x * (PI / (scan_count / 2)))
+		var scan_pos = scan_dir + position
+		var scent = ant_manager.get_scent(scan_pos, type)
+		
+		if scent:
+			dir = scan_dir
+			return true
+	
+	return false
 
 func scan_food():
 	var scan_pos = position + dir * food_scan_distance
