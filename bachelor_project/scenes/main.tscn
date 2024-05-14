@@ -39,7 +39,6 @@ danger_scent_manager = NodePath("../danger_scent_manager")
 food_manager = NodePath("../food_manager")
 ant_scene = ExtResource("3_o5lse")
 home_visual = NodePath("home")
-simulation_speed = 4.0
 
 [node name="home" type="Sprite2D" parent="ant_manager"]
 modulate = Color(0.902, 0.5, 0.75, 1)
