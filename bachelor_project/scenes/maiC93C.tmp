@@ -15,7 +15,6 @@
 [node name="home_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
 simulation_speed = 2.0
-visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_scent_manager" type="Node2D" parent="."]
@@ -26,7 +25,6 @@ scent_visual_scene = ExtResource("2_jfod4")
 [node name="danger_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
 simulation_speed = 2.0
-visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_manager" type="Node2D" parent="."]

@@ -40,6 +40,10 @@ func _ready() -> void:
 func get_food(pos: Vector2) -> Food:
 	var local_pos = global_pos_to_local_pos(pos)
 	
+	if (local_pos.x < 0 or local_pos.x > grid_size) or (local_pos.y < 0 or local_pos.y > grid_size):
+		push_warning("Ant out of grid at: ", pos)
+		return
+	
 	return food_list[local_pos.x][local_pos.y]
 
 func consume_food(pos: Vector2, value: float) -> float:

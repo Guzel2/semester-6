@@ -98,3 +98,8 @@ func get_food(pos: Vector2) -> Food:
 
 func consume_food(pos: Vector2, value: float) -> float:
 	return food_manager.consume_food(pos, value)
+
+func show_scent():
+	home_scent_manager.show_scent()
+	food_scent_manager.show_scent()
+	danger_scent_manager.show_scent()

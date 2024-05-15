@@ -23,6 +23,5 @@ func remove_scent():
 	pass
 
 func increase_scent():
-	remaining_time = max_time
 	if intensity < max_intensity:
 		intensity += 1

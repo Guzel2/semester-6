@@ -11,8 +11,10 @@ var friction = .9
 var dir = Vector2(0, 0)
 
 var track_mouse = false
-var mouse_start_pos = Vector2(0, 0)
-var mouse_offset = Vector2(0, 0)
+var last_mouse_pos = Vector2(0, 0)
+
+func _ready():
+	last_mouse_pos = get_local_mouse_position()
 
 func _input(event):
 	if event.is_action_pressed("scroll_down"):
@@ -23,18 +25,18 @@ func _input(event):
 	
 	if event.is_action_pressed("middle_mouse_button"):
 		track_mouse = true
-		mouse_start_pos = get_local_mouse_position()
 	if event.is_action_released("middle_mouse_button"):
 		track_mouse = false
-	
-	var mouse_event = event as InputEventMouseMotion
-	if mouse_event:
-		if track_mouse:
-			position -= mouse_event.velocity * .1
 
 func _physics_process(delta):
 	movement(delta)
 	
+	var mouse_pos = get_local_mouse_position()
+	var mouse_dir = last_mouse_pos - mouse_pos
+	last_mouse_pos = mouse_pos
+	
+	if track_mouse:
+		position += mouse_dir * delta * move_speed * 2 
 
 func movement(delta):
 	var temp_dir = Vector2(0, 0)

@@ -5,12 +5,11 @@ extends Node2D
 @export var grid_size : int = 100
 
 @export var simulation_speed : float = 1.0
+@export var visualize_scent = true
 
 @export var scent_visual_scene : PackedScene
 
 var scent_list = []
-
-var visualize_scent = true
 
 func _ready() -> void:
 	for x in grid_size:
@@ -75,6 +74,22 @@ func spawn_scent_visual(pos: Vector2, type: EnumManager.scent_types):
 	
 	add_child(scene)
 
+func spawn_temp_scent_visual(pos: Vector2, type: EnumManager.scent_types):
+	var scene = scent_visual_scene.instantiate() as ScentVisual
+	scene.position = pos * cell_size
+	scene.scale *= cell_size
+	scene.simulation_speed = 15
+	
+	match type:
+		EnumManager.scent_types.home:
+			scene.modulate = Color.from_hsv(.90, .5, .75)
+		EnumManager.scent_types.food:
+			scene.modulate = Color.from_hsv(.35, .6, .7)
+		EnumManager.scent_types.danger:
+			scene.modulate = Color.from_hsv(.05, .7, .5)
+	
+	add_child(scene)
+
 func global_pos_to_local_pos(pos: Vector2) -> Vector2i:
 	pos /= cell_size
 	return pos
@@ -100,3 +115,13 @@ func process_scent(x: int, y: int, delta: float):
 func remove_scent(x: int, y: int, scent: Scent):
 	scent.remove_scent()
 	scent_list[x][y] = null
+
+func show_scent():
+	for x in grid_size:
+		for y in grid_size:
+			var scent = scent_list[x][y] as Scent
+			
+			if !scent:
+				continue
+			
+			spawn_temp_scent_visual(Vector2(x, y), scent.type)
