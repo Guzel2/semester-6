@@ -14,17 +14,21 @@
 
 [node name="home_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+grid_size = 200
 simulation_speed = 2.0
 visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+grid_size = 200
 simulation_speed = 2.0
+visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="danger_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
+grid_size = 200
 simulation_speed = 2.0
 visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
@@ -47,6 +51,7 @@ modulate = Color(0.902, 0.5, 0.75, 1)
 texture = ExtResource("7_a0hl0")
 
 [node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("UI")]
+position = Vector2(249, 150)
 process_callback = 0
 script = ExtResource("8_w7nha")
 UI = NodePath("UI")

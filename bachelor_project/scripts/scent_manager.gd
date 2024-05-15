@@ -11,6 +11,8 @@ extends Node2D
 
 var scent_list = []
 
+var scents_to_process = []
+
 func _ready() -> void:
 	for x in grid_size:
 		var line = []
@@ -54,6 +56,7 @@ func add_scent(pos: Vector2, type: EnumManager.scent_types):
 	var new_scent = Scent.new()
 	new_scent.type = type
 	scent_list[local_pos.x][local_pos.y] = new_scent
+	scents_to_process.append(Vector2i(local_pos.x, local_pos.y))
 	
 	if visualize_scent:
 		spawn_scent_visual(local_pos, type)
@@ -97,9 +100,12 @@ func global_pos_to_local_pos(pos: Vector2) -> Vector2i:
 func _process(delta: float) -> void:
 	delta *= simulation_speed
 	
-	for x in grid_size:
-		for y in grid_size:
-			process_scent(x, y, delta)
+	for scent in scents_to_process:
+		process_scent(scent.x, scent.y, delta)
+	
+	#for x in grid_size:
+	#	for y in grid_size:
+	#		process_scent(x, y, delta)
 
 func process_scent(x: int, y: int, delta: float):
 	var scent = scent_list[x][y] as Scent
@@ -115,6 +121,12 @@ func process_scent(x: int, y: int, delta: float):
 func remove_scent(x: int, y: int, scent: Scent):
 	scent.remove_scent()
 	scent_list[x][y] = null
+	var index = 0
+	for vector in scents_to_process:
+		if vector.x != x || vector.y != y:
+			index += 1
+			continue
+		scents_to_process.remove_at(index)
 
 func show_scent():
 	for x in grid_size:
