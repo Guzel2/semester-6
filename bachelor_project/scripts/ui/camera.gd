@@ -1,8 +1,6 @@
 class_name Camera
 extends Camera2D
 
-@export var UI : Node2D
-
 var scroll_multiplier = 1.25
 
 var move_speed = 30
@@ -18,10 +16,12 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("scroll_down"):
-		change_zoom(1.0 / scroll_multiplier)
+		if zoom.x > .35:
+			change_zoom(1.0 / scroll_multiplier)
 	
 	if event.is_action_pressed("scroll_up"):
-		change_zoom(scroll_multiplier)
+		if zoom.x < 3:
+			change_zoom(scroll_multiplier)
 	
 	if event.is_action_pressed("middle_mouse_button"):
 		track_mouse = true
@@ -36,7 +36,7 @@ func _physics_process(delta):
 	last_mouse_pos = mouse_pos
 	
 	if track_mouse:
-		position += mouse_dir * delta * move_speed * 2 
+		position += mouse_dir * delta * move_speed * 2
 
 func movement(delta):
 	var temp_dir = Vector2(0, 0)
@@ -68,7 +68,6 @@ func movement(delta):
 
 func change_zoom(multiplier: float):
 	zoom *= multiplier
-	UI.scale /= multiplier
 	
 	#adjust camera position according to mouse
 	#var mouse_pos = get_global_mouse_position()

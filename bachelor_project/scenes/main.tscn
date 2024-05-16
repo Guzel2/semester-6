@@ -1,14 +1,56 @@
-[gd_scene load_steps=10 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=18 format=3 uid="uid://puvpfcxmikuf"]
 
-[ext_resource type="Script" path="res://scripts/scent_manager.gd" id="1_qgrk3"]
-[ext_resource type="Script" path="res://scripts/ant_manager.gd" id="2_enl3e"]
+[ext_resource type="Script" path="res://scripts/scent/scent_manager.gd" id="1_qgrk3"]
+[ext_resource type="Script" path="res://scripts/ant/ant_manager.gd" id="2_enl3e"]
 [ext_resource type="PackedScene" uid="uid://xboah7if72qt" path="res://scenes/scent_visual.tscn" id="2_jfod4"]
 [ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant.tscn" id="3_o5lse"]
-[ext_resource type="Script" path="res://scripts/food_manager.gd" id="3_y4ur8"]
+[ext_resource type="Script" path="res://scripts/food/food_manager.gd" id="3_y4ur8"]
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food_visual.tscn" id="4_3pryx"]
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="8_w7nha"]
-[ext_resource type="Script" path="res://scripts/UI.gd" id="9_76efp"]
+[ext_resource type="Script" path="res://scripts/ui/camera.gd" id="8_w7nha"]
+[ext_resource type="Script" path="res://scripts/ui/UI.gd" id="9_76efp"]
+[ext_resource type="Script" path="res://scripts/environment/background.gd" id="12_267md"]
+[ext_resource type="Shader" path="res://shaders/environment/screen_space_lines.gdshader" id="13_d3k8a"]
+[ext_resource type="Shader" path="res://shaders/environment/background.gdshader" id="17_fdmoj"]
+
+[sub_resource type="Gradient" id="Gradient_xcmbs"]
+interpolation_mode = 1
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8)
+colors = PackedColorArray(0.65, 0.557808, 0.5005, 1, 0.71, 0.6532, 0.5396, 1, 0.75, 0.71625, 0.615, 1, 0.771172, 0.79, 0.6873, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_et3a2"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_xcmbs")
+noise = SubResource("FastNoiseLite_q4iky")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ggu6"]
+shader = ExtResource("17_fdmoj")
+shader_parameter/offset = Vector2(0.68, 1.485)
+shader_parameter/zoom = 0.705
+shader_parameter/visual_texture = SubResource("NoiseTexture2D_et3a2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7acsm"]
+shader = ExtResource("13_d3k8a")
+shader_parameter/color_count = 12
+shader_parameter/shade_count = 8
+shader_parameter/rotation = 0.629
+shader_parameter/rotation_offset = 5.345
+shader_parameter/thickness = 0.205
+shader_parameter/frequency = 7.4801
+shader_parameter/max_blacknesss = 0.0
+shader_parameter/paper_stength = 0.0
+shader_parameter/line_strength = 0.0764
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
 
 [node name="main" type="Node2D"]
 
@@ -50,21 +92,34 @@ home_visual = NodePath("home")
 modulate = Color(0.902, 0.5, 0.75, 1)
 texture = ExtResource("7_a0hl0")
 
-[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("UI")]
+[node name="camera" type="Camera2D" parent="."]
 position = Vector2(249, 150)
 process_callback = 0
 script = ExtResource("8_w7nha")
-UI = NodePath("UI")
 
-[node name="UI" type="Node2D" parent="camera" node_paths=PackedStringArray("ant_manager")]
+[node name="background" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("camera", "color_rect")]
+layer = -1
+script = ExtResource("12_267md")
+camera = NodePath("..")
+color_rect = NodePath("color_rect")
+
+[node name="color_rect" type="ColorRect" parent="camera/background"]
+material = SubResource("ShaderMaterial_4ggu6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("ant_manager")]
 script = ExtResource("9_76efp")
 ant_manager = NodePath("../../ant_manager")
 
 [node name="simulation_speed" type="HSlider" parent="camera/UI"]
-offset_left = 90.0
-offset_top = 109.0
-offset_right = 244.0
-offset_bottom = 146.0
+offset_left = 339.0
+offset_top = 259.0
+offset_right = 493.0
+offset_bottom = 296.0
 tooltip_text = "Simulation Speed"
 mouse_default_cursor_shape = 10
 max_value = 14.0
@@ -73,19 +128,32 @@ value = 1.0
 scrollable = false
 
 [node name="spawn_ant" type="Button" parent="camera/UI"]
-offset_left = 139.0
-offset_top = 82.0
-offset_right = 243.0
-offset_bottom = 113.0
+offset_left = 388.0
+offset_top = 232.0
+offset_right = 492.0
+offset_bottom = 263.0
 text = "Spawn Ant"
 
 [node name="show_scent" type="Button" parent="camera/UI"]
-offset_left = 139.0
-offset_top = 48.0
-offset_right = 243.0
-offset_bottom = 79.0
+offset_left = 388.0
+offset_top = 198.0
+offset_right = 492.0
+offset_bottom = 229.0
 text = "Show Scent"
 
+[node name="post_processing" type="Node" parent="camera"]
+
+[node name="line_shadows" type="CanvasLayer" parent="camera/post_processing"]
+layer = 0
+
+[node name="color_rect" type="ColorRect" parent="camera/post_processing/line_shadows"]
+material = SubResource("ShaderMaterial_7acsm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
-[connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_button_pressed"]
+[connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]
 [connection signal="pressed" from="camera/UI/show_scent" to="camera/UI" method="_on_show_scent_pressed"]

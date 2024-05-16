@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk16lawoyxbc8"]
 
-[ext_resource type="Script" path="res://scripts/ant.gd" id="1_xdji4"]
+[ext_resource type="Script" path="res://scripts/ant/ant.gd" id="1_xdji4"]
 [ext_resource type="Texture2D" uid="uid://b17a6a6qtl1x0" path="res://sprites/ant.png" id="2_4vnpa"]
 
 [node name="ant" type="Node2D"]

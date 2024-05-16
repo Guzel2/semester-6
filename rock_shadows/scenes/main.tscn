@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://don1v0wkfdi4m"]
+[gd_scene load_steps=6 format=3 uid="uid://don1v0wkfdi4m"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_gw0kw"]
 [ext_resource type="Texture2D" uid="uid://cn55u7ucpko1x" path="res://sprites/height_map.png" id="2_4w3v7"]
 [ext_resource type="Shader" path="res://scenes/heightmap_shadows.gdshader" id="2_oma21"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mibqb"]
+noise_type = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8i0lk"]
 shader = ExtResource("2_oma21")
@@ -11,6 +14,7 @@ shader_parameter/height_map = ExtResource("2_4w3v7")
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_gw0kw")
+noise = SubResource("FastNoiseLite_mibqb")
 
 [node name="HeightMap2" type="Sprite2D" parent="."]
 texture = ExtResource("2_4w3v7")
