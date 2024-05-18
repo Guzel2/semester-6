@@ -35,13 +35,14 @@ noise = SubResource("FastNoiseLite_q4iky")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ggu6"]
 shader = ExtResource("17_fdmoj")
-shader_parameter/sun_dir = Vector3(0.2, -1.585, -1)
-shader_parameter/offset = Vector2(0.68, 1.485)
-shader_parameter/zoom = 0.705
+shader_parameter/shadow_intensity = 1.5
 shader_parameter/color_0 = Color(0.65098, 0.556863, 0.501961, 1)
 shader_parameter/color_1 = Color(0.709804, 0.654902, 0.541176, 1)
 shader_parameter/color_2 = Color(0.74902, 0.717647, 0.615686, 1)
 shader_parameter/color_3 = Color(0.772549, 0.788235, 0.686275, 1)
+shader_parameter/sun_dir = Vector3(-1.6, 0.17, -2.835)
+shader_parameter/offset = Vector2(0.68, 1.485)
+shader_parameter/zoom = 1.0
 shader_parameter/visual_texture = SubResource("NoiseTexture2D_et3a2")
 shader_parameter/normal_map = SubResource("NoiseTexture2D_xsr5w")
 
