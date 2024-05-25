@@ -1,9 +1,9 @@
 class_name Ant
 extends AntBase
 
-@export var ant_manager : AntManager
-
 @export var simulation_speed : float = 1.0
+
+@export var ant_manager : AntManager
 
 var home_position : Vector2 = Vector2(15, 150)
 var home_size : float = 30

@@ -1,10 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk16lawoyxbc8"]
+[gd_scene load_steps=6 format=3 uid="uid://dk16lawoyxbc8"]
 
 [ext_resource type="Script" path="res://scripts/ant/ant.gd" id="1_xdji4"]
 [ext_resource type="Texture2D" uid="uid://b17a6a6qtl1x0" path="res://sprites/ant.png" id="2_4vnpa"]
+[ext_resource type="Shader" path="res://shaders/ants/ant_shadow.gdshader" id="3_mwsow"]
+[ext_resource type="Script" path="res://scripts/ant/ant_shadow.gd" id="4_v0agm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3d35"]
+shader = ExtResource("3_mwsow")
+shader_parameter/shadow_intensity = 1.0
+shader_parameter/sun_dir = Vector3(2.92, -3.385, -1)
+shader_parameter/scale = 1.0
+shader_parameter/editor = true
 
 [node name="ant" type="Node2D"]
 script = ExtResource("1_xdji4")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_4vnpa")
+
+[node name="shadow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k3d35")
+scale = Vector2(2, 2)
+texture = ExtResource("2_4vnpa")
+script = ExtResource("4_v0agm")

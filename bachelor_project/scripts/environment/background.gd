@@ -14,10 +14,13 @@ func _process(delta: float) -> void:
 	#color_rect.material.set_shader_parameter("offset", (camera.position + (Vector2(500, 300) / 2) / (Vector2(500, 300) / camera.zoom)))
 	
 	var mouse_pos = get_local_mouse_position() / 4
-	sun_dir.x = mouse_pos.x
-	sun_dir.y = mouse_pos.y
+	mouse_pos = Vector3(mouse_pos.x, mouse_pos.y, -100)
 	
-	color_rect.material.set_shader_parameter("sun_dir", sun_dir.normalized())
+	if mouse_pos != sun_dir:
+		sun_dir.x = mouse_pos.x
+		sun_dir.y = mouse_pos.y
+		
+		color_rect.material.set_shader_parameter("sun_dir", sun_dir.normalized())
 
 func get_local_mouse_position() -> Vector2:
 	return camera.get_local_mouse_position()
