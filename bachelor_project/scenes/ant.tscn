@@ -8,8 +8,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k3d35"]
 shader = ExtResource("3_mwsow")
 shader_parameter/shadow_intensity = 1.0
-shader_parameter/sun_dir = Vector3(2.92, -3.385, -1)
-shader_parameter/scale = 1.0
+shader_parameter/sun_dir = Vector3(0, 0, -1)
+shader_parameter/scale = 1.36
+shader_parameter/rotation = -2.973
 shader_parameter/editor = true
 
 [node name="ant" type="Node2D"]
