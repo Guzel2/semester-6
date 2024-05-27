@@ -33,9 +33,30 @@ vec2 get_sun_offset(vec2 uv)
 	return uv;
 }
 
+vec2 rotate(vec2 uv, float rot, vec2 texture_multiplier)
+{
+	float cos_theta = cos(rot);
+	float sin_theta = sin(rot);
+	
+	vec2 centered_uv = uv - vec2(.5);
+	
+	centered_uv *= texture_multiplier;
+	
+	vec2 rotated_uv;
+	rotated_uv.x = centered_uv.x * cos_theta - centered_uv.y * sin_theta;
+	rotated_uv.y = centered_uv.x * sin_theta + centered_uv.y * cos_theta;
+	
+	rotated_uv /= texture_multiplier;
+	
+	rotated_uv += vec2(.5);
+	
+	return rotated_uv;
+}
+
 void fragment()
 {
-	vec3 sun_norm = normalize(sun_dir);
+	vec2 texture_multiplier = 1.0 / TEXTURE_PIXEL_SIZE;
+	texture_multiplier = normalize(texture_multiplier);
 	
 	vec2 uv = center_uv(UV);
 	
@@ -45,22 +66,7 @@ void fragment()
 	
 	vec4 color = vec4(.0);
 	
-	float cos_theta = cos(rotation);
-	float sin_theta = sin(rotation);
-	
-	vec2 centered_uv = uv - vec2(.5);
-	
-	vec2 texture_multiplier = 1.0 / TEXTURE_PIXEL_SIZE;
-	texture_multiplier = normalize(texture_multiplier);
-	centered_uv *= texture_multiplier;
-	
-	vec2 rotated_uv;
-	rotated_uv.x = centered_uv.x * cos_theta - centered_uv.y * sin_theta;
-	rotated_uv.y = centered_uv.x * sin_theta + centered_uv.y * cos_theta;
-
-	rotated_uv /= texture_multiplier;
-	rotated_uv += vec2(.5);
-	
+	vec2 rotated_uv = rotate(uv, rotation, texture_multiplier);
 	
 	if (rotated_uv.x + rotated_uv.y > 1.0)
 	{

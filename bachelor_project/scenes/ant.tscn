@@ -6,11 +6,12 @@
 [ext_resource type="Script" path="res://scripts/ant/ant_shadow.gd" id="4_v0agm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k3d35"]
+resource_local_to_scene = true
 shader = ExtResource("3_mwsow")
 shader_parameter/shadow_intensity = 1.0
 shader_parameter/sun_dir = Vector3(0, 0, -1)
-shader_parameter/scale = 1.36
-shader_parameter/rotation = -2.973
+shader_parameter/scale = 1.72
+shader_parameter/rotation = 0.0
 shader_parameter/editor = true
 
 [node name="ant" type="Node2D"]
@@ -19,8 +20,9 @@ script = ExtResource("1_xdji4")
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_4vnpa")
 
-[node name="shadow" type="Sprite2D" parent="."]
+[node name="shadow" type="Sprite2D" parent="." node_paths=PackedStringArray("ant")]
 material = SubResource("ShaderMaterial_k3d35")
 scale = Vector2(2, 2)
 texture = ExtResource("2_4vnpa")
 script = ExtResource("4_v0agm")
+ant = NodePath("..")

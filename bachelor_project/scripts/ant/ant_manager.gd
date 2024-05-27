@@ -5,6 +5,7 @@ extends AntBase
 @export var food_scent_manager : ScentManager
 @export var danger_scent_manager : ScentManager
 @export var food_manager : FoodManager
+@export var shadow_manager : ShadowManager
 
 @export var ant_scene : PackedScene
 @export var home_position : Vector2 = Vector2(500, 250)
@@ -54,6 +55,8 @@ func update_simulation_speed():
 		food_scent_manager.simulation_speed = simulation_speed
 	if danger_scent_manager:
 		danger_scent_manager.simulation_speed = simulation_speed
+	
+	shadow_manager.simulation_speed = simulation_speed
 
 func add_food_amount(amount: float):
 	food_amount += amount

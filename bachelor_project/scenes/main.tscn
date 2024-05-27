@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=21 format=3 uid="uid://puvpfcxmikuf"]
 
+[ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
 [ext_resource type="Script" path="res://scripts/scent/scent_manager.gd" id="1_qgrk3"]
 [ext_resource type="Script" path="res://scripts/ant/ant_manager.gd" id="2_enl3e"]
 [ext_resource type="PackedScene" uid="uid://xboah7if72qt" path="res://scenes/scent_visual.tscn" id="2_jfod4"]
@@ -9,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
 [ext_resource type="Script" path="res://scripts/ui/camera.gd" id="8_w7nha"]
 [ext_resource type="Script" path="res://scripts/ui/UI.gd" id="9_76efp"]
+[ext_resource type="Script" path="res://scripts/environment/atmospheric_light.gd" id="10_m86fv"]
 [ext_resource type="Script" path="res://scripts/environment/background.gd" id="12_267md"]
 [ext_resource type="Shader" path="res://shaders/environment/screen_space_lines.gdshader" id="13_d3k8a"]
+[ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="15_3rkr0"]
 [ext_resource type="Shader" path="res://shaders/environment/background.gdshader" id="17_fdmoj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
@@ -35,6 +38,7 @@ noise = SubResource("FastNoiseLite_q4iky")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ggu6"]
 shader = ExtResource("17_fdmoj")
+shader_parameter/sun_color = Color(1, 0.966667, 0.8, 1)
 shader_parameter/shadow_intensity = 1.5
 shader_parameter/color_0 = Color(0.65098, 0.556863, 0.501961, 1)
 shader_parameter/color_1 = Color(0.709804, 0.654902, 0.541176, 1)
@@ -48,12 +52,12 @@ shader_parameter/normal_map = SubResource("NoiseTexture2D_xsr5w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7acsm"]
 shader = ExtResource("13_d3k8a")
-shader_parameter/color_count = 12
+shader_parameter/color_count = 14
 shader_parameter/shade_count = 8
-shader_parameter/rotation = 0.629
+shader_parameter/rotation = 0.719
 shader_parameter/rotation_offset = 5.345
-shader_parameter/thickness = 0.205
-shader_parameter/frequency = 7.4801
+shader_parameter/thickness = 0.2724
+shader_parameter/frequency = 4.7835
 shader_parameter/max_blacknesss = 0.0
 shader_parameter/paper_stength = 0.0
 shader_parameter/line_strength = 0.0764
@@ -62,6 +66,10 @@ shader_parameter/contrast = 1.0
 shader_parameter/saturation = 1.0
 
 [node name="main" type="Node2D"]
+
+[node name="shadow_manager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("1_hgbmg")
+camera = NodePath("../camera")
 
 [node name="home_scent_manager" type="Node2D" parent="."]
 script = ExtResource("1_qgrk3")
@@ -88,12 +96,13 @@ scent_visual_scene = ExtResource("2_jfod4")
 script = ExtResource("3_y4ur8")
 food_visual_scene = ExtResource("4_3pryx")
 
-[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "home_visual")]
+[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "home_visual")]
 script = ExtResource("2_enl3e")
 home_scent_manager = NodePath("../home_scent_manager")
 food_scent_manager = NodePath("../food_scent_manager")
 danger_scent_manager = NodePath("../danger_scent_manager")
 food_manager = NodePath("../food_manager")
+shadow_manager = NodePath("../shadow_manager")
 ant_scene = ExtResource("3_o5lse")
 home_visual = NodePath("home")
 
@@ -102,14 +111,30 @@ modulate = Color(0.902, 0.5, 0.75, 1)
 texture = ExtResource("7_a0hl0")
 
 [node name="camera" type="Camera2D" parent="."]
-position = Vector2(249, 150)
+position = Vector2(264, 149)
 process_callback = 0
 script = ExtResource("8_w7nha")
 
-[node name="background" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("ant_manager", "camera", "color_rect")]
+[node name="atmospheric_light" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("shadow_manager", "color_rect")]
+script = ExtResource("10_m86fv")
+morning_color = Color(1, 0.611765, 0.780392, 0.196078)
+day_color = Color(1, 0.933333, 0.6, 0.196078)
+evening_color = Color(0.901961, 0.568627, 0.85098, 0.196078)
+shadow_manager = NodePath("../../shadow_manager")
+color_rect = NodePath("color_rect")
+
+[node name="color_rect" type="ColorRect" parent="camera/atmospheric_light"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.313726)
+
+[node name="background" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("shadow_manager", "camera", "color_rect")]
 layer = -1
 script = ExtResource("12_267md")
-ant_manager = NodePath("../../ant_manager")
+shadow_manager = NodePath("../../shadow_manager")
 camera = NodePath("..")
 color_rect = NodePath("color_rect")
 
@@ -122,6 +147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="UI" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("ant_manager")]
+visible = false
 script = ExtResource("9_76efp")
 ant_manager = NodePath("../../ant_manager")
 
@@ -155,7 +181,6 @@ text = "Show Scent"
 
 [node name="line_shadows" type="CanvasLayer" parent="camera/post_processing"]
 layer = 0
-visible = false
 
 [node name="color_rect" type="ColorRect" parent="camera/post_processing/line_shadows"]
 material = SubResource("ShaderMaterial_7acsm")
@@ -164,6 +189,40 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="shop_menu" type="CanvasLayer" parent="camera"]
+
+[node name="start_next_day" type="Button" parent="camera/shop_menu"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -54.0
+offset_right = -14.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+theme = ExtResource("15_3rkr0")
+text = "Start next Day"
+
+[node name="test" type="Button" parent="camera/shop_menu"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -110.0
+offset_right = -14.0
+offset_bottom = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+theme = ExtResource("15_3rkr0")
+text = "test"
 
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
 [connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]

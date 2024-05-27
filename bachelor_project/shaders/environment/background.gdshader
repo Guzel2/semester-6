@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
-uniform float shadow_intensity: hint_range(.0, 5.0, .01) = 1.0;
+uniform vec3 sun_color : source_color;
+uniform float shadow_intensity: hint_range(.0, 5.0, .01) = 1.5;
 
 uniform vec3 color_0 : source_color;
 uniform vec3 color_1 : source_color;
@@ -85,7 +86,7 @@ void fragment() {
 		color = color_3;
 	}
 	
-	color -= calculate_shadows(position);
+	color -= sun_color * calculate_shadows(position);
 	
 	COLOR.rgb = color;
 }
