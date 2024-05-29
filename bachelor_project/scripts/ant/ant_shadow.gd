@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 	var rot = Vector2(-sun_dir.x, sun_dir.y).rotated(global_rotation).rotated(PI / 4).angle()
 	
 	material.set_shader_parameter("rotation", rot)
-	material.set_shader_parameter("scale", 3.25 + sun_dir.z * 2)
+	material.set_shader_parameter("scale", 3.1 + sun_dir.z * 2)

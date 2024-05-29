@@ -77,5 +77,5 @@ void fragment()
 	}
 	
 	COLOR = color;
-	COLOR.a *= .2;
+	COLOR.a *= .4;
 }

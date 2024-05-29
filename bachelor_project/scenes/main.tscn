@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=25 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
 [ext_resource type="Script" path="res://scripts/scent/scent_manager.gd" id="1_qgrk3"]
@@ -14,7 +14,11 @@
 [ext_resource type="Script" path="res://scripts/environment/background.gd" id="12_267md"]
 [ext_resource type="Shader" path="res://shaders/environment/screen_space_lines.gdshader" id="13_d3k8a"]
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="15_3rkr0"]
+[ext_resource type="Script" path="res://scripts/shop/shop_menu.gd" id="15_nfa05"]
 [ext_resource type="Shader" path="res://shaders/environment/background.gdshader" id="17_fdmoj"]
+[ext_resource type="Script" path="res://scripts/shop/buyable_holder.gd" id="17_hcexv"]
+[ext_resource type="PackedScene" uid="uid://b2kev6dq3iv2g" path="res://scenes/shop/buyable.tscn" id="18_31k12"]
+[ext_resource type="Script" path="res://scripts/shop/bought_holder.gd" id="19_87cv6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
 fractal_octaves = 2
@@ -66,6 +70,8 @@ shader_parameter/contrast = 1.0
 shader_parameter/saturation = 1.0
 
 [node name="main" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [34.0]
+metadata/_edit_vertical_guides_ = [256.0]
 
 [node name="shadow_manager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_hgbmg")
@@ -191,6 +197,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera"]
+script = ExtResource("15_nfa05")
 
 [node name="start_next_day" type="Button" parent="camera/shop_menu"]
 anchors_preset = 3
@@ -208,22 +215,25 @@ focus_mode = 0
 theme = ExtResource("15_3rkr0")
 text = "Start next Day"
 
-[node name="test" type="Button" parent="camera/shop_menu"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -166.0
-offset_top = -110.0
-offset_right = -14.0
-offset_bottom = -67.0
-grow_horizontal = 0
-grow_vertical = 0
-focus_mode = 0
+[node name="buyable_holder" type="HFlowContainer" parent="camera/shop_menu" node_paths=PackedStringArray("bought_holder")]
+offset_left = 37.0
+offset_top = 34.0
+offset_right = 220.0
+offset_bottom = 255.0
+tooltip_text = "Test"
 theme = ExtResource("15_3rkr0")
-text = "test"
+script = ExtResource("17_hcexv")
+buyable_scene = ExtResource("18_31k12")
+bought_holder = NodePath("../bought_holder")
+
+[node name="bought_holder" type="HFlowContainer" parent="camera/shop_menu"]
+offset_left = 274.0
+offset_top = 34.0
+offset_right = 432.0
+offset_bottom = 243.0
+script = ExtResource("19_87cv6")
 
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
 [connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]
 [connection signal="pressed" from="camera/UI/show_scent" to="camera/UI" method="_on_show_scent_pressed"]
+[connection signal="pressed" from="camera/shop_menu/start_next_day" to="camera/shop_menu/buyable_holder" method="_on_start_next_day_pressed"]
