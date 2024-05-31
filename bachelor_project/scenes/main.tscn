@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=27 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
 [ext_resource type="Script" path="res://scripts/scent/scent_manager.gd" id="1_qgrk3"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food_visual.tscn" id="4_3pryx"]
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
 [ext_resource type="Script" path="res://scripts/ui/camera.gd" id="8_w7nha"]
+[ext_resource type="Texture2D" uid="uid://n1rt8i0fowil" path="res://sprites/obstacles/stick.png" id="9_07fh7"]
 [ext_resource type="Script" path="res://scripts/ui/UI.gd" id="9_76efp"]
+[ext_resource type="Script" path="res://scripts/obstacle.gd" id="9_ombb2"]
 [ext_resource type="Script" path="res://scripts/environment/atmospheric_light.gd" id="10_m86fv"]
 [ext_resource type="Script" path="res://scripts/environment/background.gd" id="12_267md"]
 [ext_resource type="Shader" path="res://shaders/environment/screen_space_lines.gdshader" id="13_d3k8a"]
@@ -17,7 +19,7 @@
 [ext_resource type="Script" path="res://scripts/shop/shop_menu.gd" id="15_nfa05"]
 [ext_resource type="Shader" path="res://shaders/environment/background.gdshader" id="17_fdmoj"]
 [ext_resource type="Script" path="res://scripts/shop/buyable_holder.gd" id="17_hcexv"]
-[ext_resource type="PackedScene" uid="uid://b2kev6dq3iv2g" path="res://scenes/shop/buyable.tscn" id="18_31k12"]
+[ext_resource type="PackedScene" uid="uid://b2kev6dq3iv2g" path="res://scenes/shop/item.tscn" id="18_31k12"]
 [ext_resource type="Script" path="res://scripts/shop/bought_holder.gd" id="19_87cv6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
@@ -115,6 +117,19 @@ home_visual = NodePath("home")
 [node name="home" type="Sprite2D" parent="ant_manager"]
 modulate = Color(0.902, 0.5, 0.75, 1)
 texture = ExtResource("7_a0hl0")
+
+[node name="obstacle_manager" type="Node2D" parent="."]
+
+[node name="obstacle" type="Area2D" parent="obstacle_manager"]
+script = ExtResource("9_ombb2")
+
+[node name="sprite" type="Sprite2D" parent="obstacle_manager/obstacle"]
+position = Vector2(587, 296)
+texture = ExtResource("9_07fh7")
+
+[node name="shape" type="CollisionPolygon2D" parent="obstacle_manager/obstacle"]
+position = Vector2(587, 296)
+polygon = PackedVector2Array(-8, 4, -52, -1, -55, -9, -1, -9, 34, -19, 44, -9, 20, 0, 46, 19, 45, 24, 15, 16)
 
 [node name="camera" type="Camera2D" parent="."]
 position = Vector2(264, 149)
@@ -226,13 +241,15 @@ script = ExtResource("17_hcexv")
 buyable_scene = ExtResource("18_31k12")
 bought_holder = NodePath("../bought_holder")
 
-[node name="bought_holder" type="HFlowContainer" parent="camera/shop_menu"]
+[node name="bought_holder" type="HFlowContainer" parent="camera/shop_menu" node_paths=PackedStringArray("buyable_holder")]
 offset_left = 274.0
 offset_top = 34.0
-offset_right = 432.0
-offset_bottom = 243.0
+offset_right = 411.0
+offset_bottom = 236.0
 script = ExtResource("19_87cv6")
+buyable_holder = NodePath("../buyable_holder")
 
+[connection signal="body_entered" from="obstacle_manager/obstacle" to="obstacle_manager/obstacle" method="_on_body_entered"]
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
 [connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]
 [connection signal="pressed" from="camera/UI/show_scent" to="camera/UI" method="_on_show_scent_pressed"]

@@ -1,4 +1,4 @@
-class_name Buyable
+class_name Item
 extends Button
 
 var follow_mouse = false
@@ -16,6 +16,15 @@ var holder : Container
 
 @export var max_move_distance = 10
 
+enum item_state
+{
+	buyable,
+	bought,
+	equipt,
+}
+
+var state : item_state = item_state.buyable
+
 func _on_button_down() -> void:
 	start_following_mouse()
 	start_pos = position
@@ -25,7 +34,7 @@ func _on_button_up() -> void:
 
 func _on_pressed() -> void:
 	if position.distance_to(start_pos) < max_move_distance:
-		reparent_to_item_holder()
+		reparent_to_next_holder()
 
 func start_following_mouse():
 	follow_mouse = true
@@ -36,16 +45,39 @@ func stop_following_mouse():
 	follow_mouse = false
 	
 	if position.x > holder.size.x:
-		reparent_to_item_holder()
+		reparent_to_next_holder()
+	elif position.x < 0:
+		reparent_to_previous_holder()
 	else:
 		holder.queue_sort()
 
-func reparent_to_item_holder():
-	var buyable_holder = holder as BuyableHolder
-	if buyable_holder:
-		var new_holder = buyable_holder.bought_holder
-		holder = new_holder
-		reparent(new_holder)
+func reparent_to_next_holder():
+	match state:
+		item_state.buyable:
+			var buyable_holder = holder as BuyableHolder
+			if buyable_holder:
+				var new_holder = buyable_holder.bought_holder
+				holder = new_holder
+				reparent(new_holder)
+				
+				state = item_state.bought
+		
+		item_state.bought:
+			pass
+
+func reparent_to_previous_holder():
+	match state:
+		item_state.buyable:
+			pass
+		
+		item_state.bought:
+			var bought_holder = holder as BoughtHolder
+			if bought_holder:
+				var new_holder = bought_holder.buyable_holder
+				holder = new_holder
+				reparent(new_holder)
+				
+				state = item_state.buyable
 
 func move_from_to(_start_pos : Vector2, _end_pos : Vector2):
 	start_pos = _start_pos

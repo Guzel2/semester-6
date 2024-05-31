@@ -37,6 +37,7 @@ func _ready():
 			print(solution)
 			print("~~~~~~~~~~")
 	
+	return
 	for x in rule_count:
 		rule_solutions[x] = 0
 	
@@ -92,8 +93,8 @@ func compare_rule(rule: int, numbers : Array) -> bool:
 		7: #0 + 1 + 2 > 9
 			if numbers[0] + numbers[1] + numbers[2] > 9:
 				return true
-		8: #0 + 1 + 2 < 12
-			if numbers[0] + numbers[1] + numbers[2] < 12:
+		8: #0 + 1 + 2 < 12 gaming
+			if numbers[0] + numbers[1] + numbers[2] < 11:
 				return true
 		9: #1 is even
 			if numbers[1] % 2 == 0:
@@ -101,8 +102,8 @@ func compare_rule(rule: int, numbers : Array) -> bool:
 		10: #0 = 1 + 2
 			if numbers[0] == numbers[1] + numbers[2]:
 				return true
-		11: #1 is not 3
-			if numbers[1] != 3:
+		11: #1 is not 3 gaming
+			if numbers[0] != 3 and numbers[1] != 3 and numbers[2] != 3:
 				return true
 		12: #1 + 2 is odd
 			if (numbers[1] + numbers[2]) % 2 == 1:

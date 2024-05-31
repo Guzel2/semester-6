@@ -12,13 +12,13 @@ func _ready() -> void:
 func _on_pre_sort_children() -> void:
 	previous_positions.clear()
 	for buyable in get_children():
-		buyable = buyable as Buyable
+		buyable = buyable as Item
 		
 		if buyable:
 			previous_positions[buyable] = buyable.position
 
 func _on_sort_children():
 	for buyable in get_children():
-		buyable = buyable as Buyable
+		buyable = buyable as Item
 		
 		buyable.move_from_to(previous_positions[buyable], buyable.position)

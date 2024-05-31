@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
-[ext_resource type="Script" path="res://scripts/shop/buyable.gd" id="2_vmnfo"]
+[ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
 
-[node name="buyable" type="Button"]
+[node name="item" type="Button"]
 offset_right = 38.0
 offset_bottom = 29.0
 tooltip_text = "Hallo"
 focus_mode = 0
 theme = ExtResource("1_iseek")
 text = "test"
-script = ExtResource("2_vmnfo")
+script = ExtResource("2_b3nit")
 max_move_distance = 5
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]

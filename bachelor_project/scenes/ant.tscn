@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk16lawoyxbc8"]
+[gd_scene load_steps=7 format=3 uid="uid://dk16lawoyxbc8"]
 
 [ext_resource type="Script" path="res://scripts/ant/ant.gd" id="1_xdji4"]
 [ext_resource type="Texture2D" uid="uid://b17a6a6qtl1x0" path="res://sprites/ant.png" id="2_4vnpa"]
@@ -14,6 +14,8 @@ shader_parameter/scale = 1.72
 shader_parameter/rotation = 0.0
 shader_parameter/editor = true
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhvuh"]
+
 [node name="ant" type="Node2D"]
 script = ExtResource("1_xdji4")
 
@@ -26,3 +28,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_4vnpa")
 script = ExtResource("4_v0agm")
 ant = NodePath("..")
+
+[node name="collision" type="CharacterBody2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="collision"]
+shape = SubResource("CircleShape2D_fhvuh")
