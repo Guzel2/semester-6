@@ -14,13 +14,13 @@ var dir = Vector2(0, 0)
 var track_mouse = false
 var last_mouse_pos = Vector2(0, 0)
 
-var mouse_in_ui = false
+var lock_scroll = false
 
 func _ready():
 	last_mouse_pos = get_local_mouse_position()
 
 func _input(event):
-	if mouse_in_ui:
+	if lock_scroll:
 		return
 	
 	if event.is_action_pressed("scroll_down"):
@@ -86,10 +86,6 @@ func transition_to_shop(enter : bool):
 	user_interface.visible = !enter
 	shop_menu.visible = enter
 
+func lock_scroll_wheel(lock : bool):
+	lock_scroll = lock
 
-func _on_obstacles_ui_holder_mouse_entered():
-	print("test")
-	pass
-
-func _on_obstacles_ui_holder_mouse_exited():
-	pass

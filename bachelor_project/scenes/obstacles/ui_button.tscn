@@ -60,20 +60,21 @@ theme = ExtResource("1_13b6s")
 icon_alignment = 1
 script = ExtResource("2_mrm58")
 max_move_distance = 15
+rotation_step_size = 15
 icon_sprite = NodePath("icon")
 preview_sprite = NodePath("preview")
 
 [node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(18, 18)
 sprite_frames = SubResource("SpriteFrames_yfpv8")
 animation = &"rock_0"
-offset = Vector2(18, 18)
 
 [node name="preview" type="AnimatedSprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(18, 18)
 sprite_frames = SubResource("SpriteFrames_708ye")
 animation = &"rock_0"
-offset = Vector2(18, 18)
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

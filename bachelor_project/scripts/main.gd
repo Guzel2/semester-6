@@ -1,7 +1,6 @@
 class_name Main
 extends Node2D
 
-
 @export var simulation_speed = 1.0:
 	get:
 		return simulation_speed
@@ -9,7 +8,6 @@ extends Node2D
 		previous_simulation_speed = simulation_speed
 		simulation_speed = value
 		update_simulation_speed()
-
 
 @export var shadow_manager : ShadowManager
 @export var home_scent_manager : ScentManager
