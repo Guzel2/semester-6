@@ -4,6 +4,7 @@ extends AntBase
 @export var simulation_speed : float = 1.0
 
 @export var ant_manager : AntManager
+@export var obstacle_timer : Timer
 
 var home_position : Vector2 = Vector2(15, 150)
 var home_size : float = 30
@@ -67,6 +68,10 @@ var scan_positions = [
 ]
 
 var food_scan_distance = 10
+
+var last_collider : ObstacleArea
+var collision_timer = 0
+var collision_interval = .2
 
 func updated_state():
 	match state:
@@ -139,6 +144,12 @@ func _process(delta: float) -> void:
 					food_amount = 0
 					if !scan_360_scents(EnumManager.scent_types.food):
 						set_random_dir()
+	
+	if collision_timer > 0:
+		collision_timer -= delta * simulation_speed
+		
+		if collision_timer <= 0:
+			check_collision()
 
 func set_random_dir():
 	dir = Vector2(1, 0).rotated(randf() * 2 * PI)
@@ -213,3 +224,21 @@ func consume_food(delta) -> float:
 	var consumed_food = ant_manager.consume_food(scan_pos, delta)
 	food_amount += consumed_food
 	return consumed_food
+
+func detect_obstacle(obstacle : ObstacleArea):
+	if last_collider:
+		check_collision()
+	
+	last_collider = obstacle
+	collision_timer = collision_interval
+	
+	var dir_to_obstacle = position - obstacle.center_point
+	
+	var angle = dir.angle_to(dir_to_obstacle)
+	
+	dir = dir.rotated(angle / 3)
+
+func check_collision():
+	var old_collider = last_collider
+	last_collider = null
+	old_collider.check_collisions(self)

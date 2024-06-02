@@ -48,15 +48,6 @@ func update_simulation_speed():
 			continue
 		
 		ant.simulation_speed = simulation_speed
-	
-	if home_scent_manager:
-		home_scent_manager.simulation_speed = simulation_speed
-	if food_scent_manager:
-		food_scent_manager.simulation_speed = simulation_speed
-	if danger_scent_manager:
-		danger_scent_manager.simulation_speed = simulation_speed
-	
-	shadow_manager.simulation_speed = simulation_speed
 
 func add_food_amount(amount: float):
 	food_amount += amount

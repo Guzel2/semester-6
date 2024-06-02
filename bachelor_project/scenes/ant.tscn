@@ -16,8 +16,9 @@ shader_parameter/editor = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhvuh"]
 
-[node name="ant" type="Node2D"]
+[node name="ant" type="CharacterBody2D" node_paths=PackedStringArray("obstacle_timer")]
 script = ExtResource("1_xdji4")
+obstacle_timer = NodePath("")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_4vnpa")
@@ -29,7 +30,5 @@ texture = ExtResource("2_4vnpa")
 script = ExtResource("4_v0agm")
 ant = NodePath("..")
 
-[node name="collision" type="CharacterBody2D" parent="."]
-
-[node name="shape" type="CollisionShape2D" parent="collision"]
+[node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fhvuh")

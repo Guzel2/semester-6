@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n1rt8i0fowil"
-path="res://.godot/imported/stick.png-3e90c9b10bfb8c242306128e8951a101.ctex"
+uid="uid://cpdkjoskbofoi"
+path="res://.godot/imported/rock_0.png-713fa97cb934a94aec3150322a903d14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/obstacles/stick.png"
-dest_files=["res://.godot/imported/stick.png-3e90c9b10bfb8c242306128e8951a101.ctex"]
+source_file="res://sprites/obstacles/rock_0.png"
+dest_files=["res://.godot/imported/rock_0.png-713fa97cb934a94aec3150322a903d14.ctex"]
 
 [params]
 

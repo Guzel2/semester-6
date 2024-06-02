@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwa2ys7pxyloq"]
+
+[ext_resource type="Texture2D" uid="uid://cxciqokbsnk3j" path="res://sprites/obstacles/stick_1.png" id="1_jredt"]
+[ext_resource type="PackedScene" uid="uid://dhxydcbigbib5" path="res://scenes/obstacles/obstacle.tscn" id="2_7ayu4"]
+
+[node name="stick" type="Sprite2D"]
+texture = ExtResource("1_jredt")
+
+[node name="obstacle" parent="." instance=ExtResource("2_7ayu4")]
+polygon = PackedVector2Array(-6, -29, -57, -40, -69, -26, -33, 7)
+
+[node name="obstacle2" parent="." node_paths=PackedStringArray("area", "collision_polygon") instance=ExtResource("2_7ayu4")]
+polygon = PackedVector2Array(-6, -29, 51, -29, 50, -11, -21, -9)
+area = NodePath("../obstacle/area")
+collision_polygon = NodePath("../obstacle/area/shape")
+
+[node name="obstacle0" parent="." node_paths=PackedStringArray("area", "collision_polygon") instance=ExtResource("2_7ayu4")]
+polygon = PackedVector2Array(-33, 7, -14, 23, 15, 26, 41, 41, 63, 36, 27, 11, -19, -11)
+area = NodePath("../obstacle/area")
+collision_polygon = NodePath("../obstacle/area/shape")

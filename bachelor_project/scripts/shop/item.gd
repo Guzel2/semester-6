@@ -20,7 +20,7 @@ enum item_state
 {
 	buyable,
 	bought,
-	equipt,
+	eqpt,
 }
 
 var state : item_state = item_state.buyable

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhxydcbigbib5"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/obstacle.gd" id="1_vw0u3"]
+[ext_resource type="Script" path="res://scripts/obstacles/obstacle_area.gd" id="2_jrhou"]
+
+[node name="obstacle" type="Polygon2D" node_paths=PackedStringArray("area", "collision_polygon")]
+color = Color(1, 1, 1, 0.392157)
+polygon = PackedVector2Array(17, 1, 10, -3, -7, -7, -17, 2, -3, 9)
+script = ExtResource("1_vw0u3")
+area = NodePath("area")
+collision_polygon = NodePath("area/shape")
+
+[node name="area" type="Area2D" parent="." node_paths=PackedStringArray("polygon")]
+script = ExtResource("2_jrhou")
+polygon = NodePath("..")
+
+[node name="shape" type="CollisionPolygon2D" parent="area"]
+position = Vector2(-2, -2)
+polygon = PackedVector2Array(1, 1, 3, 1, 3, 3, 1, 3)
+
+[connection signal="body_entered" from="area" to="area" method="_on_body_entered"]

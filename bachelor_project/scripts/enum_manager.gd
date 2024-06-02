@@ -7,3 +7,10 @@ enum scent_types
 	food,
 	danger,
 }
+
+enum item_types
+{
+	home,
+	food,
+	danger,
+}

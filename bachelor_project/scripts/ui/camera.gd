@@ -1,6 +1,9 @@
 class_name Camera
 extends Camera2D
 
+@export var user_interface : UserInterface
+@export var shop_menu : ShopMenu
+
 var scroll_multiplier = 1.25
 
 var move_speed = 30
@@ -73,3 +76,7 @@ func change_zoom(multiplier: float):
 	#var mouse_pos = get_global_mouse_position()
 	#var dir_from_mouse = position - mouse_pos
 	#position = mouse_pos + dir_from_mouse * (1.0 / multiplier)
+
+func transition_to_shop():
+	user_interface.visible = false
+	shop_menu.visible = true
