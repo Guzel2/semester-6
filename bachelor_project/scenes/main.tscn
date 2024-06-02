@@ -139,10 +139,12 @@ position = Vector2(352, 378)
 [node name="stick3" parent="obstacle_manager" instance=ExtResource("11_t7yj6")]
 position = Vector2(595, 56)
 
-[node name="camera" type="Camera2D" parent="."]
+[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("user_interface", "shop_menu")]
 position = Vector2(264, 149)
 process_callback = 0
 script = ExtResource("8_w7nha")
+user_interface = NodePath("UI")
+shop_menu = NodePath("shop_menu")
 
 [node name="atmospheric_light" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("shadow_manager", "color_rect")]
 script = ExtResource("10_m86fv")
@@ -258,7 +260,8 @@ offset_bottom = 236.0
 script = ExtResource("19_87cv6")
 buyable_holder = NodePath("../buyable_holder")
 
+[connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
 [connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]
 [connection signal="pressed" from="camera/UI/show_scent" to="camera/UI" method="_on_show_scent_pressed"]
-[connection signal="pressed" from="camera/shop_menu/start_next_day" to="camera/shop_menu/buyable_holder" method="_on_start_next_day_pressed"]
+[connection signal="pressed" from="camera/shop_menu/start_next_day" to="." method="_on_start_next_day_pressed"]

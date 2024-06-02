@@ -77,6 +77,6 @@ func change_zoom(multiplier: float):
 	#var dir_from_mouse = position - mouse_pos
 	#position = mouse_pos + dir_from_mouse * (1.0 / multiplier)
 
-func transition_to_shop():
-	user_interface.visible = false
-	shop_menu.visible = true
+func transition_to_shop(enter : bool):
+	user_interface.visible = !enter
+	shop_menu.visible = enter

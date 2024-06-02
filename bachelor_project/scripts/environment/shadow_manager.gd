@@ -14,6 +14,8 @@ var day_duration = 30.0
 
 var simulation_speed = 1.0
 
+signal end_of_day
+
 func _process(delta: float) -> void:
 	timer += delta * simulation_speed
 	t = timer / day_duration
@@ -25,10 +27,14 @@ func _process(delta: float) -> void:
 	sun_dir = Vector3(quadratic_0.x, quadratic_0.y, -1).normalized()
 	
 	if timer > day_duration:
-		timer -= day_duration
+		emit_signal("end_of_day")
+		set_process(false)
+
+func start_day():
+	set_process(true)
+	timer = 0
 
 func get_sun_dir_from_mouse():
-	
 	var mouse_pos = camera.get_local_mouse_position() / 4
 	mouse_pos = Vector2(mouse_pos.x, mouse_pos.y)
 	

@@ -6,6 +6,7 @@ extends Node2D
 	get:
 		return simulation_speed
 	set(value):
+		previous_simulation_speed = simulation_speed
 		simulation_speed = value
 		update_simulation_speed()
 
@@ -18,15 +19,26 @@ extends Node2D
 @export var ant_manager : AntManager
 @export var camera : Camera
 
+var previous_simulation_speed = 0
+
 func update_simulation_speed():
-	ant_manager.simulation_speed = simulation_speed
+	shadow_manager.simulation_speed = simulation_speed
 	home_scent_manager.simulation_speed = simulation_speed
 	food_scent_manager.simulation_speed = simulation_speed
 	danger_scent_manager.simulation_speed = simulation_speed
-	shadow_manager.simulation_speed = simulation_speed
+	ant_manager.simulation_speed = simulation_speed
 
 func start_day():
-	pass
+	simulation_speed = previous_simulation_speed
+	camera.transition_to_shop(false)
+	shadow_manager.start_day()
 
 func end_day():
-	pass
+	camera.transition_to_shop(true)
+	simulation_speed = 0
+
+func _on_shadow_manager_end_of_day():
+	end_day()
+
+func _on_start_next_day_pressed():
+	start_day()
