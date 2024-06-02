@@ -1,0 +1,70 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://xsa27kd56ymp"]
+
+[ext_resource type="FontFile" uid="uid://bcgwxt8cr5lv" path="res://assets/Roboto-Medium.ttf" id="1_ouy3w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hnq2"]
+bg_color = Color(0, 0, 0, 0.235294)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bs5kk"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0c52o"]
+bg_color = Color(0, 0, 0, 0.235294)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipvi7"]
+bg_color = Color(0, 0, 0, 0.235294)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pop0i"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_univh"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epvam"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkh6t"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tujxt"]
+draw_center = false
+border_width_left = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4lqy"]
+draw_center = false
+border_width_left = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[resource]
+Button/fonts/font = ExtResource("1_ouy3w")
+Button/styles/focus = SubResource("StyleBoxFlat_5hnq2")
+Button/styles/hover = SubResource("StyleBoxFlat_bs5kk")
+Button/styles/normal = SubResource("StyleBoxFlat_0c52o")
+Button/styles/pressed = SubResource("StyleBoxFlat_ipvi7")
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_pop0i")
+VBoxContainer/constants/separation = 0
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_univh")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_epvam")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_mkh6t")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_tujxt")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_k4lqy")

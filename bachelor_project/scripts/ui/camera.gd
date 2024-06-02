@@ -14,10 +14,15 @@ var dir = Vector2(0, 0)
 var track_mouse = false
 var last_mouse_pos = Vector2(0, 0)
 
+var mouse_in_ui = false
+
 func _ready():
 	last_mouse_pos = get_local_mouse_position()
 
 func _input(event):
+	if mouse_in_ui:
+		return
+	
 	if event.is_action_pressed("scroll_down"):
 		if zoom.x > .35:
 			change_zoom(1.0 / scroll_multiplier)
@@ -80,3 +85,11 @@ func change_zoom(multiplier: float):
 func transition_to_shop(enter : bool):
 	user_interface.visible = !enter
 	shop_menu.visible = enter
+
+
+func _on_obstacles_ui_holder_mouse_entered():
+	print("test")
+	pass
+
+func _on_obstacles_ui_holder_mouse_exited():
+	pass
