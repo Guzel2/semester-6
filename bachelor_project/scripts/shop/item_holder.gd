@@ -22,3 +22,23 @@ func _on_sort_children():
 		buyable = buyable as Item
 		
 		buyable.move_from_to(previous_positions[buyable], buyable.position)
+
+
+func add_connections(item : Item):
+	var show_callable = Callable(self, "show_move_indicator")
+	item.connect('button_down', show_callable)
+	var hide_callable = Callable(self, "hide_move_indicator")
+	item.connect('button_up', hide_callable)
+
+func remove_connections(item : Item):
+	var show_callable = Callable(self, "show_move_indicator")
+	item.disconnect('button_down', show_callable)
+	var hide_callable = Callable(self, "hide_move_indicator")
+	item.disconnect('button_up', hide_callable)
+
+func show_move_indicator():
+	pass
+
+func hide_move_indicator():
+	pass
+

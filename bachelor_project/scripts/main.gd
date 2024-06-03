@@ -17,7 +17,10 @@ extends Node2D
 @export var ant_manager : AntManager
 @export var camera : Camera
 
-var previous_simulation_speed = 0
+var previous_simulation_speed = 1
+
+func _ready():
+	end_day()
 
 func update_simulation_speed():
 	shadow_manager.simulation_speed = simulation_speed

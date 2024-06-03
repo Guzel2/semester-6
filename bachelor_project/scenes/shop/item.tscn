@@ -1,17 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=7 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
+[ext_resource type="Texture2D" uid="uid://xo2uxd08hbs5" path="res://sprites/obstacles/icons/rock_0.png" id="3_i66jv"]
+[ext_resource type="Texture2D" uid="uid://dyumyfuglil" path="res://sprites/obstacles/icons/stick_0.png" id="4_ixskr"]
+[ext_resource type="Texture2D" uid="uid://ckfguswxyiy7x" path="res://sprites/obstacles/icons/stick_1.png" id="5_85ui0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rexwn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i66jv")
+}],
+"loop": true,
+"name": &"rock_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ixskr")
+}],
+"loop": true,
+"name": &"stick_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_85ui0")
+}],
+"loop": true,
+"name": &"stick_1",
+"speed": 5.0
+}]
 
 [node name="item" type="Button"]
+custom_minimum_size = Vector2(54, 54)
 offset_right = 38.0
 offset_bottom = 29.0
 tooltip_text = "Hallo"
 focus_mode = 0
 theme = ExtResource("1_iseek")
-text = "test"
 script = ExtResource("2_b3nit")
 max_move_distance = 5
+metadata/_edit_vertical_guides_ = [27.0]
+metadata/_edit_horizontal_guides_ = [27.0]
+
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 27)
+sprite_frames = SubResource("SpriteFrames_rexwn")
+animation = &"rock_0"
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

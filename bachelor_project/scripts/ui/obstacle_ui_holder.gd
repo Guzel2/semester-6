@@ -9,7 +9,7 @@ extends VBoxContainer
 var previous_positions = {}
 
 func _ready():
-	for x in 50:
+	for x in 4:
 		add_obstacle()
 
 func _on_pre_sort_children() -> void:

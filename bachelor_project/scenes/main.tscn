@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=34 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_by8xl"]
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://scripts/ui/obstacle_ui_holder.gd" id="18_ub34t"]
 [ext_resource type="Script" path="res://scripts/shop/bought_holder.gd" id="19_87cv6"]
 [ext_resource type="PackedScene" uid="uid://do4b2ycjlnihh" path="res://scenes/obstacles/ui_button.tscn" id="20_feufy"]
+[ext_resource type="Shader" path="res://shaders/shop/background_blur.gdshader" id="23_ep0hd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
 fractal_octaves = 2
@@ -76,6 +77,10 @@ shader_parameter/brightness = 1.0
 shader_parameter/contrast = 1.0
 shader_parameter/saturation = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rpb0q"]
+shader = ExtResource("23_ep0hd")
+shader_parameter/lod = 1.108
+
 [node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
@@ -85,8 +90,8 @@ danger_scent_manager = NodePath("danger_scent_manager")
 food_manager = NodePath("food_manager")
 ant_manager = NodePath("ant_manager")
 camera = NodePath("camera")
-metadata/_edit_horizontal_guides_ = [34.0]
-metadata/_edit_vertical_guides_ = [256.0]
+metadata/_edit_horizontal_guides_ = [50.0]
+metadata/_edit_vertical_guides_ = [229.0]
 
 [node name="shadow_manager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_hgbmg")
@@ -142,7 +147,7 @@ position = Vector2(584, 329)
 position = Vector2(352, 378)
 
 [node name="stick3" parent="obstacle_manager" instance=ExtResource("11_t7yj6")]
-position = Vector2(595, 56)
+position = Vector2(495, 86)
 
 [node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("user_interface", "shop_menu")]
 position = Vector2(264, 149)
@@ -183,6 +188,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="UI" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("main", "ant_manager")]
+visible = false
 script = ExtResource("9_76efp")
 main = NodePath("../..")
 ant_manager = NodePath("../../ant_manager")
@@ -237,9 +243,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="shop_menu" type="CanvasLayer" parent="camera"]
-visible = false
+[node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator")]
 script = ExtResource("15_nfa05")
+buy_indicator = NodePath("buy_indicator")
+sell_indicator = NodePath("sell_indicator")
+
+[node name="background" type="ColorRect" parent="camera/shop_menu"]
+material = SubResource("ShaderMaterial_rpb0q")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5, 0.5, 0.5, 0.705882)
 
 [node name="start_next_day" type="Button" parent="camera/shop_menu"]
 anchors_preset = 3
@@ -247,8 +263,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -166.0
-offset_top = -54.0
+offset_left = -264.0
+offset_top = -44.0
 offset_right = -14.0
 offset_bottom = -11.0
 grow_horizontal = 0
@@ -257,24 +273,73 @@ focus_mode = 0
 theme = ExtResource("15_3rkr0")
 text = "Start next Day"
 
-[node name="buyable_holder" type="HFlowContainer" parent="camera/shop_menu" node_paths=PackedStringArray("bought_holder")]
-offset_left = 37.0
-offset_top = 34.0
-offset_right = 220.0
-offset_bottom = 255.0
+[node name="buyable_panel" type="PanelContainer" parent="camera/shop_menu"]
+offset_left = 25.0
+offset_top = 50.0
+offset_right = 207.0
+offset_bottom = 232.0
+theme = ExtResource("15_3rkr0")
+
+[node name="buyable_holder" type="HFlowContainer" parent="camera/shop_menu/buyable_panel" node_paths=PackedStringArray("bought_holder", "shop_menu")]
+layout_mode = 2
 tooltip_text = "Test"
 theme = ExtResource("15_3rkr0")
 script = ExtResource("17_hcexv")
 buyable_scene = ExtResource("18_31k12")
-bought_holder = NodePath("../bought_holder")
+bought_holder = NodePath("../../bought_panel/bought_holder")
+shop_menu = NodePath("../..")
 
-[node name="bought_holder" type="HFlowContainer" parent="camera/shop_menu" node_paths=PackedStringArray("buyable_holder")]
-offset_left = 274.0
-offset_top = 34.0
-offset_right = 411.0
-offset_bottom = 236.0
+[node name="bought_panel" type="PanelContainer" parent="camera/shop_menu"]
+offset_left = 252.0
+offset_top = 50.0
+offset_right = 370.0
+offset_bottom = 232.0
+theme = ExtResource("15_3rkr0")
+
+[node name="bought_holder" type="HFlowContainer" parent="camera/shop_menu/bought_panel" node_paths=PackedStringArray("buyable_holder", "shop_menu")]
+layout_mode = 2
+theme = ExtResource("15_3rkr0")
 script = ExtResource("19_87cv6")
-buyable_holder = NodePath("../buyable_holder")
+buyable_holder = NodePath("../../buyable_panel/buyable_holder")
+shop_menu = NodePath("../..")
+
+[node name="buy_indicator" type="ColorRect" parent="camera/shop_menu"]
+visible = false
+clip_contents = true
+offset_left = 229.0
+offset_right = 528.0
+offset_bottom = 297.0
+color = Color(1, 0.823529, 0.658824, 0.317647)
+
+[node name="sell" type="Label" parent="camera/shop_menu/buy_indicator"]
+offset_left = 79.0
+offset_top = -139.0
+offset_right = 509.0
+offset_bottom = 298.0
+rotation = 0.523598
+theme = ExtResource("15_3rkr0")
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 0.392157)
+text = "BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   BUY   "
+autowrap_mode = 3
+
+[node name="sell_indicator" type="ColorRect" parent="camera/shop_menu"]
+visible = false
+clip_contents = true
+offset_right = 229.0
+offset_bottom = 297.0
+color = Color(1, 0.66, 0.722333, 0.317647)
+
+[node name="sell" type="Label" parent="camera/shop_menu/sell_indicator"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -110.0
+offset_right = 435.0
+offset_bottom = 261.0
+rotation = 0.523598
+theme = ExtResource("15_3rkr0")
+theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
+text = "SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   "
+autowrap_mode = 3
 
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]

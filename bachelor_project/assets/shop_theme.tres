@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://brhb5gm3ljtno"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://brhb5gm3ljtno"]
 
 [ext_resource type="FontFile" uid="uid://bcgwxt8cr5lv" path="res://assets/Roboto-Medium.ttf" id="1_ubsty"]
 
@@ -34,6 +34,17 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4o2xr"]
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
 [resource]
 Button/colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
 Button/colors/font_focus_color = Color(0.85, 0.85, 0.85, 1)
@@ -48,4 +59,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_0kfja")
 Button/styles/normal = SubResource("StyleBoxFlat_pwr6i")
 Button/styles/pressed = SubResource("StyleBoxFlat_8nmwm")
 HFlowContainer/constants/h_separation = 10
-HFlowContainer/constants/v_separation = 8
+HFlowContainer/constants/v_separation = 10
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_ubsty")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4o2xr")

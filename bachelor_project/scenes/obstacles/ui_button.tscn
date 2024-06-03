@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://do4b2ycjlnihh"]
+[gd_scene load_steps=11 format=3 uid="uid://do4b2ycjlnihh"]
 
 [ext_resource type="Theme" uid="uid://xsa27kd56ymp" path="res://assets/obstacles.tres" id="1_13b6s"]
 [ext_resource type="Texture2D" uid="uid://xo2uxd08hbs5" path="res://sprites/obstacles/icons/rock_0.png" id="2_hik1w"]
 [ext_resource type="Script" path="res://scripts/obstacles/obstacle_button.gd" id="2_mrm58"]
 [ext_resource type="Texture2D" uid="uid://dyumyfuglil" path="res://sprites/obstacles/icons/stick_0.png" id="3_r8qms"]
+[ext_resource type="Texture2D" uid="uid://ckfguswxyiy7x" path="res://sprites/obstacles/icons/stick_1.png" id="5_fonj3"]
 [ext_resource type="Texture2D" uid="uid://cpdkjoskbofoi" path="res://sprites/obstacles/rock_0.png" id="5_lgnyc"]
 [ext_resource type="Texture2D" uid="uid://n1rt8i0fowil" path="res://sprites/obstacles/stick_0.png" id="6_fs1mx"]
 [ext_resource type="Texture2D" uid="uid://cxciqokbsnk3j" path="res://sprites/obstacles/stick_1.png" id="7_wy3es"]
@@ -24,6 +25,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"stick_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fonj3")
+}],
+"loop": true,
+"name": &"stick_1",
 "speed": 5.0
 }]
 

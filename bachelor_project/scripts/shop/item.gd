@@ -56,11 +56,14 @@ func reparent_to_next_holder():
 		item_state.buyable:
 			var buyable_holder = holder as BuyableHolder
 			if buyable_holder:
+				buyable_holder.remove_connections(self)
 				var new_holder = buyable_holder.bought_holder
 				holder = new_holder
 				reparent(new_holder)
 				
 				state = item_state.bought
+				
+				holder.add_connections(self)
 		
 		item_state.bought:
 			pass
@@ -88,6 +91,8 @@ func move_from_to(_start_pos : Vector2, _end_pos : Vector2):
 func _process(delta: float) -> void:
 	if follow_mouse:
 		position = get_global_mouse_position() - offset
+		
+		
 	
 	if moving:
 		move_time += delta
