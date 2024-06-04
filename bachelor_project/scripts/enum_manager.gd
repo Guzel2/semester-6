@@ -14,3 +14,5 @@ enum item_list
 	stick_0,
 	stick_1,
 }
+
+static var obstacle_count = 3

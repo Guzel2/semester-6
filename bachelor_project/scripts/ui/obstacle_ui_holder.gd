@@ -8,13 +8,6 @@ extends VBoxContainer
 
 var previous_positions = {}
 
-func _ready():
-	for x in 4:
-		add_obstacle()
-
-func start_day():
-	pass
-
 func _on_pre_sort_children() -> void:
 	previous_positions.clear()
 	for obstacle in get_children():
@@ -29,12 +22,15 @@ func _on_sort_children():
 		
 		obstacle.move_from_to(previous_positions[obstacle], obstacle.position)
 
-func add_obstacle():
+func add_obstacle(item : EnumManager.item_list):
 	var obstacle = obstacle_scene.instantiate() as ObstacleButton
 	obstacle.holder = self
-	obstacle.item = EnumManager.item_list.rock_0
+	obstacle.item = item
 	add_child(obstacle)
 
 func lock_scroll_wheel(lock : bool):
 	camera.lock_scroll_wheel(lock)
 
+func _on_bought_holder_remaining_obstacles(items : Array):
+	for item in items:
+		add_obstacle(item)

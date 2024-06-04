@@ -19,6 +19,9 @@ extends Node2D
 
 var previous_simulation_speed = 1
 
+signal start_off_day
+signal end_off_day
+
 func _ready():
 	end_day()
 
@@ -33,10 +36,14 @@ func start_day():
 	simulation_speed = previous_simulation_speed
 	camera.transition_to_shop(false)
 	shadow_manager.start_day()
+	
+	emit_signal("start_off_day")
 
 func end_day():
 	camera.transition_to_shop(true)
 	simulation_speed = 0
+	
+	emit_signal("end_off_day")
 
 func _on_shadow_manager_end_of_day():
 	end_day()

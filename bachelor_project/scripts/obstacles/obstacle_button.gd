@@ -8,7 +8,7 @@ var local_offset : Vector2
 var start_pos : Vector2
 var end_pos : Vector2
 
-@export var moving_time = .5
+var moving_time = .5
 var move_time = .0
 
 var moving = false

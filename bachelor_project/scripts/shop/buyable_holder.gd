@@ -26,12 +26,15 @@ func set_potential_items():
 	
 	for item in EnumManager.item_list:
 		potential_items.append(item)
-	
-	print(potential_items)
-	
 
 func show_move_indicator():
 	shop_menu.show_buy_indicator()
 
 func hide_move_indicator():
 	shop_menu.hide_buy_indicator()
+
+func start_day():
+	pass
+
+func end_day():
+	pass

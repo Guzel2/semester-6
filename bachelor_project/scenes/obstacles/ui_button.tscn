@@ -68,7 +68,6 @@ custom_minimum_size = Vector2(36, 36)
 theme = ExtResource("1_13b6s")
 icon_alignment = 1
 script = ExtResource("2_mrm58")
-moving_time = null
 max_move_distance = 15
 rotation_step_size = 15
 icon_sprite = NodePath("icon")
