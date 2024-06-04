@@ -1,7 +1,13 @@
 class_name ItemHolder
 extends HFlowContainer
 
+@export var shop_menu : ShopMenu
+
 var previous_positions = {}
+
+var can_buy:
+	get:
+		return shop_menu.money > 0
 
 func _ready() -> void:
 	var pre_sort_callable = Callable(self, '_on_pre_sort_children')

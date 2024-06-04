@@ -12,6 +12,9 @@ func _ready():
 	for x in 4:
 		add_obstacle()
 
+func start_day():
+	pass
+
 func _on_pre_sort_children() -> void:
 	previous_positions.clear()
 	for obstacle in get_children():
@@ -29,6 +32,7 @@ func _on_sort_children():
 func add_obstacle():
 	var obstacle = obstacle_scene.instantiate() as ObstacleButton
 	obstacle.holder = self
+	obstacle.item = EnumManager.item_list.rock_0
 	add_child(obstacle)
 
 func lock_scroll_wheel(lock : bool):

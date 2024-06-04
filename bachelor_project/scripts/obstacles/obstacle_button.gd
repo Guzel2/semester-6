@@ -23,6 +23,14 @@ var holder : ObstacleUIHolder
 
 var icon_mode = true
 
+var item : EnumManager.item_list = EnumManager.item_list.rock_0
+var item_string : String
+
+func _ready():
+	item_string = EnumManager.item_list.keys()[item]
+	icon_sprite.animation = item_string
+	preview_sprite.animation = item_string
+
 func _on_button_down() -> void:
 	start_following_mouse()
 	start_pos = position
@@ -99,7 +107,6 @@ func change_icon_mode(change : bool):
 	preview_sprite.rotation_degrees = 0
 
 func spawn_obstacle():
-	
 	var pos = holder.obstacle_manager.get_local_mouse_position() - local_offset + preview_sprite.position
 	
 	holder.obstacle_manager.add_obstacle(preview_sprite.animation, preview_sprite.rotation, pos)

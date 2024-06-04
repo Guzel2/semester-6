@@ -8,9 +8,9 @@ enum scent_types
 	danger,
 }
 
-enum item_types
+enum item_list
 {
-	home,
-	food,
-	danger,
+	rock_0,
+	stick_0,
+	stick_1,
 }

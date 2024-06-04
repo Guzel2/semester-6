@@ -33,7 +33,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="item" type="Button"]
+[node name="item" type="Button" node_paths=PackedStringArray("sprite")]
 custom_minimum_size = Vector2(54, 54)
 offset_right = 38.0
 offset_bottom = 29.0
@@ -41,6 +41,7 @@ tooltip_text = "Hallo"
 focus_mode = 0
 theme = ExtResource("1_iseek")
 script = ExtResource("2_b3nit")
+sprite = NodePath("icon")
 max_move_distance = 5
 metadata/_edit_vertical_guides_ = [27.0]
 metadata/_edit_horizontal_guides_ = [27.0]

@@ -4,6 +4,24 @@ extends CanvasLayer
 @export var buy_indicator : ColorRect
 @export var sell_indicator : ColorRect
 
+@export var animation_player : AnimationPlayer
+@export var money_display : MoneyDisplay
+
+var max_money = 5
+var money = max_money:
+	get:
+		return money
+	set(value):
+		money = value
+		money_display.update_money(money)
+
+func transition_to_shop(enter : bool):
+	if enter:
+		money = max_money
+		animation_player.play("fade_in")
+	else:
+		animation_player.play("fade_out")
+
 func show_buy_indicator():
 	buy_indicator.visible = true
 
@@ -15,3 +33,9 @@ func show_sell_indicator():
 
 func hide_sell_indicator():
 	sell_indicator.visible = false
+
+func buy_item():
+	money -= 1
+
+func sell_item():
+	pass

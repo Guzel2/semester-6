@@ -84,7 +84,7 @@ func change_zoom(multiplier: float):
 
 func transition_to_shop(enter : bool):
 	user_interface.visible = !enter
-	shop_menu.visible = enter
+	shop_menu.transition_to_shop(enter)
 
 func lock_scroll_wheel(lock : bool):
 	lock_scroll = lock
