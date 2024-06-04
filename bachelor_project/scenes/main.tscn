@@ -437,8 +437,8 @@ layout_mode = 2
 tooltip_text = "Test"
 theme = ExtResource("15_3rkr0")
 script = ExtResource("17_hcexv")
-buyable_scene = ExtResource("18_31k12")
 bought_holder = NodePath("../../bought_panel/bought_holder")
+item_scene = ExtResource("18_31k12")
 shop_menu = NodePath("../../..")
 
 [node name="bought_panel" type="PanelContainer" parent="camera/shop_menu/interactables"]
@@ -454,6 +454,7 @@ layout_mode = 2
 theme = ExtResource("15_3rkr0")
 script = ExtResource("19_87cv6")
 buyable_holder = NodePath("../../buyable_panel/buyable_holder")
+item_scene = ExtResource("18_31k12")
 shop_menu = NodePath("../../..")
 
 [node name="money_display" type="Label" parent="camera/shop_menu/interactables"]
@@ -505,6 +506,8 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
 text = "SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   SELL   "
 autowrap_mode = 3
 
+[connection signal="end_off_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_off_day"]
+[connection signal="end_off_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_end_off_day"]
 [connection signal="start_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_off_day"]
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
@@ -512,6 +515,7 @@ autowrap_mode = 3
 [connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]
 [connection signal="pressed" from="camera/UI/show_scent" to="camera/UI" method="_on_show_scent_pressed"]
 [connection signal="pre_sort_children" from="camera/UI/obstacle_ui_holder" to="camera/UI/obstacle_ui_holder" method="_on_pre_sort_children"]
+[connection signal="remaining_obstacles" from="camera/UI/obstacle_ui_holder" to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_obstacle_ui_holder_remaining_obstacles"]
 [connection signal="sort_children" from="camera/UI/obstacle_ui_holder" to="camera/UI/obstacle_ui_holder" method="_on_sort_children"]
 [connection signal="pressed" from="camera/shop_menu/interactables/start_next_day" to="." method="_on_start_next_day_pressed"]
 [connection signal="remaining_obstacles" from="camera/shop_menu/interactables/bought_panel/bought_holder" to="camera/UI/obstacle_ui_holder" method="_on_bought_holder_remaining_obstacles"]

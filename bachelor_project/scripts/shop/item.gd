@@ -57,6 +57,7 @@ func stop_following_mouse():
 	if position.x > holder.size.x:
 		reparent_to_next_holder()
 	elif position.x < 0:
+		print(state)
 		reparent_to_previous_holder()
 	else:
 		holder.queue_sort()

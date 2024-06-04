@@ -31,3 +31,6 @@ func _on_main_start_off_day():
 func _on_main_end_off_day():
 	end_day()
 
+func _on_obstacle_ui_holder_remaining_obstacles(items):
+	for item in items:
+		add_item(item, Item.item_state.bought)

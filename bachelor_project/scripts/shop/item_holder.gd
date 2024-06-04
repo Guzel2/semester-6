@@ -1,6 +1,8 @@
 class_name ItemHolder
 extends HFlowContainer
 
+@export var item_scene : PackedScene
+
 @export var shop_menu : ShopMenu
 
 var previous_positions = {}
@@ -29,6 +31,15 @@ func _on_sort_children():
 		
 		buyable.move_from_to(previous_positions[buyable], buyable.position)
 
+func add_item(item, state : Item.item_state):
+	var scene = item_scene.instantiate() as Item
+	scene.holder = self
+	scene.item = item
+	scene.state = state
+	
+	add_child(scene)
+	
+	add_connections(scene)
 
 func add_connections(item : Item):
 	var show_callable = Callable(self, "show_move_indicator")
