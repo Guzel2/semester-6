@@ -47,11 +47,13 @@ func _on_pressed() -> void:
 		reparent_to_next_holder()
 
 func start_following_mouse():
+	z_index = 1
 	follow_mouse = true
 	
 	offset = get_global_mouse_position() - position
 
 func stop_following_mouse():
+	z_index = 0
 	follow_mouse = false
 	
 	if position.x > holder.size.x:

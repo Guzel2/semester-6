@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bygd0mcev1usg"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_mib43"]
+[ext_resource type="Texture2D" uid="uid://ddfkoya5ux2hi" path="res://icon.svg" id="1_n7pb8"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_nmqju"]
+[ext_resource type="Shader" path="res://shader/change_visualizer.gdshader" id="3_sqa8m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fswuc"]
+shader = ExtResource("3_sqa8m")
+shader_parameter/last_texture = ExtResource("1_n7pb8")
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("change_indicator")]
+script = ExtResource("1_mib43")
+change_indicator = NodePath("Camera2D/canvas/change_indicator")
+sample_points = 50
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_nmqju")
+
+[node name="canvas" type="CanvasLayer" parent="Camera2D"]
+
+[node name="change_indicator" type="ColorRect" parent="Camera2D/canvas"]
+material = SubResource("ShaderMaterial_fswuc")
+offset_left = 196.0
+offset_top = 141.0
+offset_right = 429.0
+offset_bottom = 406.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(146, 31)
+scale = Vector2(3.14063, 1)
+texture = ExtResource("1_n7pb8")
+
+[node name="Icon5" type="Sprite2D" parent="."]
+position = Vector2(462.5, -481.5)
+scale = Vector2(2.08594, 2.21094)
+texture = ExtResource("1_n7pb8")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(566, 285)
+scale = Vector2(1.09375, 1.8125)
+texture = ExtResource("1_n7pb8")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(-837, -453)
+scale = Vector2(1.58594, 1.72656)
+texture = ExtResource("1_n7pb8")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(-463.5, 240.5)
+scale = Vector2(2.67969, 2.67969)
+texture = ExtResource("1_n7pb8")
