@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=8 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
@@ -33,15 +33,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="item" type="Button" node_paths=PackedStringArray("sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lx57"]
+radius = 15.0
+
+[node name="item" type="Button" node_paths=PackedStringArray("sprite", "area")]
 custom_minimum_size = Vector2(54, 54)
-offset_right = 38.0
-offset_bottom = 29.0
+offset_right = 54.0
+offset_bottom = 54.0
 tooltip_text = "Hallo"
 focus_mode = 0
 theme = ExtResource("1_iseek")
 script = ExtResource("2_b3nit")
 sprite = NodePath("icon")
+area = NodePath("overlap_area")
 max_move_distance = 5
 metadata/_edit_vertical_guides_ = [27.0]
 metadata/_edit_horizontal_guides_ = [27.0]
@@ -50,6 +54,14 @@ metadata/_edit_horizontal_guides_ = [27.0]
 position = Vector2(27, 27)
 sprite_frames = SubResource("SpriteFrames_rexwn")
 animation = &"rock_0"
+
+[node name="overlap_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="overlap_area"]
+position = Vector2(27, 27)
+shape = SubResource("CircleShape2D_0lx57")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

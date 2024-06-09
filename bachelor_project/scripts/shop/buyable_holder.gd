@@ -1,8 +1,6 @@
 class_name BuyableHolder
 extends ItemHolder
 
-@export var bought_holder : ItemHolder
-
 var potential_items = []
 
 func _ready():

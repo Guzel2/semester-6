@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dk16lawoyxbc8"]
 
 [ext_resource type="Script" path="res://scripts/ant/ant.gd" id="1_xdji4"]
-[ext_resource type="Texture2D" uid="uid://b17a6a6qtl1x0" path="res://sprites/ant.png" id="2_4vnpa"]
+[ext_resource type="Texture2D" uid="uid://b17a6a6qtl1x0" path="res://sprites/ant_stuff/ant.png" id="2_dohnk"]
 [ext_resource type="Shader" path="res://shaders/ants/ant_shadow.gdshader" id="3_mwsow"]
 [ext_resource type="Script" path="res://scripts/ant/ant_shadow.gd" id="4_v0agm"]
 
@@ -16,17 +16,16 @@ shader_parameter/editor = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhvuh"]
 
-[node name="ant" type="CharacterBody2D" node_paths=PackedStringArray("obstacle_timer")]
+[node name="ant" type="CharacterBody2D"]
 script = ExtResource("1_xdji4")
-obstacle_timer = NodePath("")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_4vnpa")
+texture = ExtResource("2_dohnk")
 
 [node name="shadow" type="Sprite2D" parent="." node_paths=PackedStringArray("ant")]
 material = SubResource("ShaderMaterial_k3d35")
 scale = Vector2(2, 2)
-texture = ExtResource("2_4vnpa")
+texture = ExtResource("2_dohnk")
 script = ExtResource("4_v0agm")
 ant = NodePath("..")
 

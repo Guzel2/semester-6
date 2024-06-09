@@ -4,12 +4,20 @@ extends HFlowContainer
 @export var item_scene : PackedScene
 
 @export var shop_menu : ShopMenu
+@export var buyable_holder : BuyableHolder
+@export var bought_holder : BoughtHolder
+@export var equipt_holder : EquiptHolder
 
 var previous_positions = {}
 
 var can_buy:
 	get:
 		return shop_menu.money > 0
+
+var can_equip:
+	get:
+		print(name, "  ", get_child_count())
+		return get_child_count() < 6
 
 func _ready() -> void:
 	var pre_sort_callable = Callable(self, '_on_pre_sort_children')

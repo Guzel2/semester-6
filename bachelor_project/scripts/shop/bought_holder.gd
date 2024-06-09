@@ -1,8 +1,6 @@
 class_name BoughtHolder
 extends ItemHolder
 
-@export var buyable_holder : BuyableHolder
-
 signal remaining_obstacles(items : Array)
 
 func show_move_indicator():

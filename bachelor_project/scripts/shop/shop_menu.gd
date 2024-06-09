@@ -1,8 +1,8 @@
 class_name ShopMenu
 extends CanvasLayer
 
-@export var buy_indicator : ColorRect
-@export var sell_indicator : ColorRect
+@export var buy_indicator : Node2D
+@export var sell_indicator : Node2D
 
 @export var animation_player : AnimationPlayer
 @export var money_display : MoneyDisplay
