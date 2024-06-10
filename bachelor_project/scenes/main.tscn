@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/scent/scent_manager.gd" id="1_qgrk3"]
 [ext_resource type="Script" path="res://scripts/ant/ant_manager.gd" id="2_enl3e"]
 [ext_resource type="PackedScene" uid="uid://xboah7if72qt" path="res://scenes/scent_visual.tscn" id="2_jfod4"]
-[ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant.tscn" id="3_o5lse"]
+[ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant_stuff/ant.tscn" id="3_o5lse"]
 [ext_resource type="Script" path="res://scripts/food/food_manager.gd" id="3_y4ur8"]
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food_visual.tscn" id="4_3pryx"]
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
@@ -891,6 +891,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
+visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -1714,10 +1715,14 @@ offset_right = 240.0
 offset_bottom = 297.0
 color = Color(1, 0.682353, 0.658824, 1)
 
+[connection signal="end_off_day" from="." to="ant_manager" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_end_off_day"]
+[connection signal="end_off_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_end_off_day"]
+[connection signal="start_off_day" from="." to="ant_manager" method="_on_main_start_off_day"]
 [connection signal="start_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_off_day"]
+[connection signal="start_off_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_start_off_day"]
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
 [connection signal="value_changed" from="camera/UI/simulation_speed" to="camera/UI" method="_on_simulation_speed_value_changed"]
 [connection signal="pressed" from="camera/UI/spawn_ant" to="camera/UI" method="_on_spawn_ant_pressed"]
@@ -1726,4 +1731,6 @@ color = Color(1, 0.682353, 0.658824, 1)
 [connection signal="remaining_obstacles" from="camera/UI/obstacle_ui_holder" to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_obstacle_ui_holder_remaining_obstacles"]
 [connection signal="sort_children" from="camera/UI/obstacle_ui_holder" to="camera/UI/obstacle_ui_holder" method="_on_sort_children"]
 [connection signal="pressed" from="camera/shop_menu/interactables/start_next_day" to="." method="_on_start_next_day_pressed"]
+[connection signal="pressed" from="camera/shop_menu/interactables/reroll_shop" to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_reroll_shop_pressed"]
 [connection signal="remaining_obstacles" from="camera/shop_menu/interactables/bought_panel/bought_holder" to="camera/UI/obstacle_ui_holder" method="_on_bought_holder_remaining_obstacles"]
+[connection signal="equipt_items" from="camera/shop_menu/interactables/equipt_panel/equipt_holder" to="ant_manager" method="_on_equipt_holder_equipt_items"]

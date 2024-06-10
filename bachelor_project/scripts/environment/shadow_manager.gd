@@ -10,7 +10,7 @@ var sun_positions = [Vector2(-1, 0), Vector2(0, -.6), Vector2(1, 0)]
 
 var timer = 0.0
 var t = 0.0
-var day_duration = 30.0
+var day_duration = 60.0
 
 var simulation_speed = 1.0
 

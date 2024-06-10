@@ -28,3 +28,9 @@ func refill_shop():
 
 func _on_main_end_off_day():
 	refill_shop()
+
+func _on_reroll_shop_pressed() -> void:
+	for child in get_children():
+		child.queue_free()
+	
+	refill_shop()

@@ -20,6 +20,13 @@ func _ready() -> void:
 			line.append(null)
 		scent_list.append(line)
 
+func reset_scents():
+	scent_list.clear()
+	
+	for x in grid_size:
+		for y in grid_size:
+			scent_list[x][y] = null
+
 func get_scent(pos: Vector2) -> Scent:
 	var local_pos = global_pos_to_local_pos(pos)
 	
@@ -137,3 +144,4 @@ func show_scent():
 				continue
 			
 			spawn_temp_scent_visual(Vector2(x, y), scent.type)
+

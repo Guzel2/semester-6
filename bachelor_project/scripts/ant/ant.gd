@@ -6,6 +6,8 @@ extends AntBase
 @export var ant_manager : AntManager
 @export var obstacle_timer : Timer
 
+@export var accessory_scene : PackedScene
+
 var home_position : Vector2 = Vector2(15, 150)
 var home_size : float = 30
 
@@ -47,25 +49,39 @@ var exploring_randomness = 15
 var food_scan_timer = 0
 var food_scan_interval = .2
 
-var scan_positions = [
-	Vector2(10, -20),
-	Vector2(20, -20),
-	
-	Vector2(10, -10),
-	Vector2(20, -10),
-	Vector2(30, -10),
-	
+var scan_positions = []
+
+var potential_scan_positions = [
 	Vector2(15, 0),
-	Vector2(25, 0),
-	Vector2(35, 0),
-	
+	Vector2(10, -10),
 	Vector2(10, 10),
+	
+	Vector2(25, 0),
+	Vector2(20, -10),
 	Vector2(20, 10),
+	
+	Vector2(5, 20),
+	Vector2(5, -20),
+	
+	Vector2(35, 0),
+	Vector2(30, -10),
 	Vector2(30, 10),
 	
-	Vector2(10, 20),
-	Vector2(20, 20),
+	Vector2(15, -20),
+	Vector2(15, 20),
+	
+	Vector2(45, 0),
+	Vector2(40, -10),
+	Vector2(40, 10),
+	
+	Vector2(25, -20),
+	Vector2(25, 20),
+	
+	Vector2(35, -20),
+	Vector2(35, 20),
 ]
+
+var scan_position_count = 3
 
 var food_scan_distance = 10
 
@@ -88,6 +104,10 @@ func updated_state():
 func _ready() -> void:
 	if !scan_360_scents(EnumManager.scent_types.food):
 		set_random_dir()
+	
+	scan_positions = potential_scan_positions.slice(0, scan_position_count)
+	
+	print(scan_position_count)
 
 func _process(delta: float) -> void:
 	delta *= simulation_speed
@@ -150,6 +170,37 @@ func _process(delta: float) -> void:
 		
 		if collision_timer <= 0:
 			check_collision()
+
+func set_items(items : Array):
+	for item in items:
+		item = item as Item
+		
+		if !item:
+			continue
+		
+		if item.item < EnumManager.obstacle_count:
+			continue
+		
+		var accessory = accessory_scene.instantiate()
+		accessory.animation = item.item_string
+		
+		accessory.modulate.a = .4 + (float(item.level + 1) / EnumManager.max_item_level) * .6
+		
+		for level in (item.level + 1):
+			apply_item_effect(item.item)
+		
+		add_child(accessory)
+
+func apply_item_effect(item : int):
+	match item:
+		EnumManager.item_list.antenna:
+			scan_position_count += 2
+		
+		EnumManager.item_list.eyes:
+			pass
+		
+		EnumManager.item_list.scent_gland:
+			scent_spawn_interval *= .95
 
 func set_random_dir():
 	dir = Vector2(1, 0).rotated(randf() * 2 * PI)

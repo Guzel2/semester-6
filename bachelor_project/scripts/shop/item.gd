@@ -34,7 +34,7 @@ var state : item_state = item_state.buyable
 var item : EnumManager.item_list = EnumManager.item_list.rock_0
 var item_string : String
 var level : int = 0
-@export var max_level : int = 3
+@export var max_level : int = EnumManager.max_item_level
 
 var can_level_up:
 	get:

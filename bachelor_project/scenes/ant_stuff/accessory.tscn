@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfkqofj4rx7g5"]
+
+[ext_resource type="Texture2D" uid="uid://bx4k75kf58fu2" path="res://sprites/ant_stuff/antenna.png" id="1_nkro7"]
+[ext_resource type="Texture2D" uid="uid://dwcyj8qhspnny" path="res://sprites/ant_stuff/eyes.png" id="2_xgvdh"]
+[ext_resource type="Texture2D" uid="uid://lvh6gbugg2y2" path="res://sprites/ant_stuff/scent_gland.png" id="3_bm1ia"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rswl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nkro7")
+}],
+"loop": true,
+"name": &"antenna",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xgvdh")
+}],
+"loop": true,
+"name": &"eyes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bm1ia")
+}],
+"loop": true,
+"name": &"scent_gland",
+"speed": 5.0
+}]
+
+[node name="accessory" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_1rswl")
+animation = &"scent_gland"

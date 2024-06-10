@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk16lawoyxbc8"]
+[gd_scene load_steps=8 format=3 uid="uid://dk16lawoyxbc8"]
 
 [ext_resource type="Script" path="res://scripts/ant/ant.gd" id="1_xdji4"]
 [ext_resource type="Texture2D" uid="uid://b17a6a6qtl1x0" path="res://sprites/ant_stuff/ant.png" id="2_dohnk"]
 [ext_resource type="Shader" path="res://shaders/ants/ant_shadow.gdshader" id="3_mwsow"]
 [ext_resource type="Script" path="res://scripts/ant/ant_shadow.gd" id="4_v0agm"]
+[ext_resource type="PackedScene" uid="uid://bfkqofj4rx7g5" path="res://scenes/ant_stuff/accessory.tscn" id="5_birbh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k3d35"]
 resource_local_to_scene = true
@@ -18,6 +19,7 @@ shader_parameter/editor = true
 
 [node name="ant" type="CharacterBody2D"]
 script = ExtResource("1_xdji4")
+accessory_scene = ExtResource("5_birbh")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_dohnk")
@@ -30,4 +32,5 @@ script = ExtResource("4_v0agm")
 ant = NodePath("..")
 
 [node name="shape" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_fhvuh")

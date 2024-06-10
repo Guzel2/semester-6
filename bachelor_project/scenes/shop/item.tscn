@@ -1,19 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=11 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
 [ext_resource type="Texture2D" uid="uid://xo2uxd08hbs5" path="res://sprites/obstacles/icons/rock_0.png" id="3_i66jv"]
+[ext_resource type="Texture2D" uid="uid://dwcyj8qhspnny" path="res://sprites/ant_stuff/eyes.png" id="3_kvfmw"]
+[ext_resource type="Texture2D" uid="uid://ciokny6xlw7g5" path="res://sprites/ant_stuff/icons/antenna.png" id="3_w71m6"]
 [ext_resource type="Texture2D" uid="uid://dyumyfuglil" path="res://sprites/obstacles/icons/stick_0.png" id="4_ixskr"]
 [ext_resource type="Texture2D" uid="uid://ckfguswxyiy7x" path="res://sprites/obstacles/icons/stick_1.png" id="5_85ui0"]
+[ext_resource type="Texture2D" uid="uid://bqguvxysicveb" path="res://sprites/ant_stuff/icons/scent_gland.png" id="6_k5gf3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rexwn"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w71m6")
+}],
+"loop": true,
+"name": &"antenna",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kvfmw")
+}],
+"loop": true,
+"name": &"eyes",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_i66jv")
 }],
 "loop": true,
 "name": &"rock_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_k5gf3")
+}],
+"loop": true,
+"name": &"scent_gland",
 "speed": 5.0
 }, {
 "frames": [{
@@ -53,7 +80,7 @@ metadata/_edit_horizontal_guides_ = [27.0]
 [node name="icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(27, 27)
 sprite_frames = SubResource("SpriteFrames_rexwn")
-animation = &"rock_0"
+animation = &"antenna"
 
 [node name="overlap_area" type="Area2D" parent="."]
 collision_layer = 2

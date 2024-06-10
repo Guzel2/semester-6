@@ -27,6 +27,10 @@ var food_amount = 60
 var ant_spawn_interval = 4.0
 var ant_spawn_time = .0
 
+var items = []
+
+var ant_count = 0
+
 func _ready():
 	home_visual.position = home_position
 	home_visual.scale *= home_size
@@ -63,6 +67,8 @@ func spawn_ant():
 	
 	ant.simulation_speed = simulation_speed
 	
+	ant.set_items(items)
+	
 	add_child(ant)
 
 func get_scent(pos: Vector2, type: EnumManager.scent_types) -> Scent:
@@ -97,3 +103,27 @@ func show_scent():
 	home_scent_manager.show_scent()
 	food_scent_manager.show_scent()
 	danger_scent_manager.show_scent()
+
+func _on_equipt_holder_equipt_items(new_items: Array) -> void:
+	items = new_items
+
+func start_day():
+	await get_tree().create_timer(2).timeout
+	
+	for ant in ant_count:
+		spawn_ant()
+
+func end_day():
+	ant_count = 0
+	for ant in get_children():
+		if ant == home_visual:
+			continue
+		
+		ant_count += 1
+		ant.queue_free()
+
+func _on_main_start_off_day():
+	start_day()
+
+func _on_main_end_off_day():
+	end_day()
