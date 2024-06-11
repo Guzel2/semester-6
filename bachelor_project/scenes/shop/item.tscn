@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=12 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
 [ext_resource type="Texture2D" uid="uid://xo2uxd08hbs5" path="res://sprites/obstacles/icons/rock_0.png" id="3_i66jv"]
-[ext_resource type="Texture2D" uid="uid://dwcyj8qhspnny" path="res://sprites/ant_stuff/eyes.png" id="3_kvfmw"]
 [ext_resource type="Texture2D" uid="uid://ciokny6xlw7g5" path="res://sprites/ant_stuff/icons/antenna.png" id="3_w71m6"]
+[ext_resource type="Texture2D" uid="uid://dd0vghv8mclrf" path="res://sprites/ant_stuff/icons/eyes.png" id="4_0jxr5"]
 [ext_resource type="Texture2D" uid="uid://dyumyfuglil" path="res://sprites/obstacles/icons/stick_0.png" id="4_ixskr"]
 [ext_resource type="Texture2D" uid="uid://ckfguswxyiy7x" path="res://sprites/obstacles/icons/stick_1.png" id="5_85ui0"]
 [ext_resource type="Texture2D" uid="uid://bqguvxysicveb" path="res://sprites/ant_stuff/icons/scent_gland.png" id="6_k5gf3"]
+[ext_resource type="Texture2D" uid="uid://bbtd15leie2um" path="res://sprites/UI/lock.png" id="9_w1hlv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rexwn"]
 animations = [{
@@ -21,7 +22,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_kvfmw")
+"texture": ExtResource("4_0jxr5")
 }],
 "loop": true,
 "name": &"eyes",
@@ -63,15 +64,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0lx57"]
 radius = 15.0
 
-[node name="item" type="Button" node_paths=PackedStringArray("sprite", "area")]
+[node name="item" type="Button" node_paths=PackedStringArray("sprite", "lock_sprite", "area")]
 custom_minimum_size = Vector2(54, 54)
 offset_right = 54.0
 offset_bottom = 54.0
-tooltip_text = "Hallo"
+tooltip_text = "Test"
 focus_mode = 0
 theme = ExtResource("1_iseek")
 script = ExtResource("2_b3nit")
 sprite = NodePath("icon")
+lock_sprite = NodePath("lock")
 area = NodePath("overlap_area")
 max_move_distance = 5
 metadata/_edit_vertical_guides_ = [27.0]
@@ -80,7 +82,7 @@ metadata/_edit_horizontal_guides_ = [27.0]
 [node name="icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(27, 27)
 sprite_frames = SubResource("SpriteFrames_rexwn")
-animation = &"antenna"
+animation = &"eyes"
 
 [node name="overlap_area" type="Area2D" parent="."]
 collision_layer = 2
@@ -90,6 +92,12 @@ collision_mask = 2
 position = Vector2(27, 27)
 shape = SubResource("CircleShape2D_0lx57")
 
+[node name="lock" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("9_w1hlv")
+centered = false
+
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -2,6 +2,7 @@ class_name Item
 extends Button
 
 @export var sprite : AnimatedSprite2D
+@export var lock_sprite : Sprite2D
 @export var area : Area2D
 
 @export var shop_max_x = 222
@@ -18,7 +19,14 @@ var end_pos : Vector2
 @export var moving_time = .5
 var move_time = .0
 
-var moving = false
+var moving = false:
+	get:
+		return moving
+	set(value):
+		moving = value
+		
+		if !moving:
+			emit_signal("stopped_moving")
 
 var holder : ItemHolder
 
@@ -40,9 +48,15 @@ var can_level_up:
 	get:
 		return level < max_level
 
+var locked = false
+
+signal stopped_moving
+
 func _ready():
 	item_string = EnumManager.item_list.keys()[item]
 	sprite.animation = item_string
+	
+	tooltip_text = item_string
 
 func _on_button_down() -> void:
 	start_following_mouse()
@@ -284,3 +298,17 @@ func _process(delta: float) -> void:
 		if t >= 1:
 			position = end_pos
 			moving = false
+
+func _on_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		event = event as InputEventMouseButton
+		
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			lock_item(!locked)
+
+func lock_item(lock : bool):
+	locked = lock
+	
+	lock_sprite.visible = locked
+	
+	disabled = lock

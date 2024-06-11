@@ -97,7 +97,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6t1i8"]
 resource_name = "fade_in"
-length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -105,7 +104,7 @@ tracks/0/path = NodePath("rectangle_shader:material:shader_parameter/pixel_count
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.116629, 1),
 "update": 0,
 "values": [256.0, 1.0]
@@ -117,7 +116,7 @@ tracks/1/path = NodePath("background:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.8, 0.8, 0.8, 0), Color(0.8, 0.8, 0.8, 1)]
@@ -141,7 +140,7 @@ tracks/3/path = NodePath("interactables:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.8),
+"times": PackedFloat32Array(0.2, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -149,7 +148,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_blu0u"]
 resource_name = "fade_out"
-length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -157,7 +155,7 @@ tracks/0/path = NodePath("rectangle_shader:material:shader_parameter/pixel_count
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(3.86375, 1),
 "update": 0,
 "values": [1.0, 256.0]
@@ -169,7 +167,7 @@ tracks/1/path = NodePath("background:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.8, 0.8, 0.8, 0.705882), Color(0.8, 0.8, 0.8, 0)]
@@ -181,7 +179,7 @@ tracks/2/path = NodePath(".:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -193,7 +191,7 @@ tracks/3/path = NodePath("interactables:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -835,7 +833,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="UI" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("main", "ant_manager")]
-visible = false
 script = ExtResource("9_76efp")
 main = NodePath("../..")
 ant_manager = NodePath("../../ant_manager")
@@ -909,7 +906,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 1)
+color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="rectangle_shader" type="ColorRect" parent="camera/shop_menu"]
 material = SubResource("ShaderMaterial_01rhl")
@@ -920,6 +917,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="interactables" type="Control" parent="camera/shop_menu"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

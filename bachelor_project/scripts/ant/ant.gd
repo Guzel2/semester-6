@@ -49,6 +49,56 @@ var exploring_randomness = 15
 var food_scan_timer = 0
 var food_scan_interval = .2
 
+var food_scan_positions = []
+
+var food_potential_scan_positions = [
+	Vector2(5, 0),
+	Vector2(0, -10),
+	Vector2(0, 10),
+	
+	Vector2(15, 0),
+	Vector2(10, -10),
+	Vector2(10, 10),
+	
+	Vector2(5, 20),
+	Vector2(5, -20),
+	
+	Vector2(25, 0),
+	Vector2(20, -10),
+	Vector2(20, 10),
+	
+	Vector2(0, 30),
+	Vector2(0, -30),
+	
+	Vector2(15, -20),
+	Vector2(15, 20),
+	
+	Vector2(35, 0),
+	Vector2(30, -10),
+	Vector2(30, 10),
+	
+	Vector2(-5, 40),
+	Vector2(-5, -40),
+	
+	Vector2(10, 30),
+	Vector2(10, -30),
+	
+	Vector2(15, -20),
+	Vector2(15, 20),
+	
+	Vector2(5, 40),
+	Vector2(5, -40),
+	
+	Vector2(20, 30),
+	Vector2(20, -30),
+	
+	Vector2(15, 40),
+	Vector2(15, -40),
+]
+
+var food_scan_position_count = 6
+var food_scan_distance = 20
+
 var scan_positions = []
 
 var potential_scan_positions = [
@@ -83,8 +133,6 @@ var potential_scan_positions = [
 
 var scan_position_count = 3
 
-var food_scan_distance = 10
-
 var last_collider : ObstacleArea
 var collision_timer = 0
 var collision_interval = .2
@@ -106,8 +154,7 @@ func _ready() -> void:
 		set_random_dir()
 	
 	scan_positions = potential_scan_positions.slice(0, scan_position_count)
-	
-	print(scan_position_count)
+	food_scan_positions = food_potential_scan_positions.slice(0, food_scan_position_count)
 
 func _process(delta: float) -> void:
 	delta *= simulation_speed
@@ -197,7 +244,7 @@ func apply_item_effect(item : int):
 			scan_position_count += 2
 		
 		EnumManager.item_list.eyes:
-			pass
+			food_scan_position_count += 3
 		
 		EnumManager.item_list.scent_gland:
 			scent_spawn_interval *= .95
@@ -265,10 +312,38 @@ func scan_360_scents(type: EnumManager.scent_types) -> bool:
 	return false
 
 func scan_food():
-	var scan_pos = position + dir * food_scan_distance
-	var food = ant_manager.get_food(scan_pos)
-	if food:
+	var found_foods = []
+	
+	for pos in food_scan_positions:
+		var global_pos = pos.rotated(rotation)
+		global_pos += position
+		var food = ant_manager.get_food(global_pos)
+		
+		if food:
+			found_foods.append(pos)
+	
+	if found_foods.is_empty():
+		return
+	
+	var new_dir = found_foods[0].rotated(dir.angle())
+	
+	if found_foods.size() > 1:
+		found_foods.shuffle()
+		
+		found_foods.sort_custom(sort_length)
+		
+		new_dir = found_foods[0].rotated(dir.angle())
+	
+	dir = new_dir
+	
+	if new_dir.length() < food_scan_distance:
 		state = ant_state.harvesting
+
+func sort_length(a : Vector2, b : Vector2):
+	if a.length() < b.length():
+		return true
+	return false
+
 
 func consume_food(delta) -> float:
 	var scan_pos = position + dir * food_scan_distance

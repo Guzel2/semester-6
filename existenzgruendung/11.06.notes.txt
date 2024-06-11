@@ -1,0 +1,19 @@
+Finanzplanen:
+
+GuV = Gewinn und Verlust Rechnung
+
+Cashflow = Geldfluss, wenn man zu wenig hat ist doof
+
+intern:
+- wirtschaftliche potential
+- motivation
+
+extern:
+- plausibilitätt
+- basis für reporting
+
+
+zentrale Inhalt:
+- GuV - Umsätze vs Ausgaben (Geschäftsmodell)
+- Mini-Cashflor: EBITDA und Liquiditätsentwicklung
+

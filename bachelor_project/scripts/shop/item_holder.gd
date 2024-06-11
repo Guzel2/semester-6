@@ -16,8 +16,9 @@ var can_buy:
 
 var can_equip:
 	get:
-		print(name, "  ", get_child_count())
 		return get_child_count() < 6
+
+var skip_sorting = false
 
 func _ready() -> void:
 	var pre_sort_callable = Callable(self, '_on_pre_sort_children')
@@ -26,6 +27,11 @@ func _ready() -> void:
 	connect('sort_children', sort_callable)
 
 func _on_pre_sort_children() -> void:
+	if skip_sorting:
+		return
+	
+	print("pre_sort")
+	
 	previous_positions.clear()
 	for buyable in get_children():
 		buyable = buyable as Item
@@ -34,10 +40,28 @@ func _on_pre_sort_children() -> void:
 			previous_positions[buyable] = buyable.position
 
 func _on_sort_children():
+	if skip_sorting:
+		return
+		
+		for buyable in get_children():
+			buyable = buyable as Item
+			
+			if buyable:
+				buyable.position = Vector2(100, 0)
+		
+		await get_tree().create_timer(.05).timeout
+		skip_sorting = false
+		queue_sort()
+		
+		return
+	
+	print("sort")
+	
 	for buyable in get_children():
 		buyable = buyable as Item
 		
 		buyable.move_from_to(previous_positions[buyable], buyable.position)
+
 
 func add_item(item, state : Item.item_state):
 	var scene = item_scene.instantiate() as Item
@@ -46,7 +70,6 @@ func add_item(item, state : Item.item_state):
 	scene.state = state
 	
 	add_child(scene)
-	
 	add_connections(scene)
 
 func add_connections(item : Item):
