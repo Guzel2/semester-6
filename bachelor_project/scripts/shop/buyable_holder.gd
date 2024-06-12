@@ -1,6 +1,8 @@
 class_name BuyableHolder
 extends ItemHolder
 
+@export var reroll_move_time = .3
+
 var potential_items = []
 
 signal no_children_left
@@ -42,24 +44,34 @@ func refill_shop():
 	var old_child_count = get_child_count()
 	var new_child_count = 9 - old_child_count
 	
-	var wait_for_other = false
+	var original_move_time = -1
 	
-	for item in get_children():
-		item = item as Item
+	if get_child_count() > 0:
+		var wait_for_other = false
 		
-		if item.position != item.start_pos:
-			wait_for_other = true
-			break
-	
-	if wait_for_other:
-		if old_child_count > 0:
-			var item = get_child(0) as Item
+		var first_item = get_child(0) as Item
+		
+		original_move_time = first_item.moving_time
+		
+		for item in get_children():
+			item = item as Item
 			
-			if item:
-				await item.stopped_moving
+			item.moving_time = reroll_move_time
+			
+			if item.position != item.start_pos:
+				wait_for_other = true
+		
+		if wait_for_other:
+			await first_item.stopped_moving
 	
 	for x in new_child_count:
 		add_item(EnumManager.item_list[potential_items.pick_random()], Item.item_state.buyable)
+	
+	if original_move_time > 0:
+		for item in get_children():
+			item = item as Item
+			
+			item.moving_time = original_move_time
 	
 	#call_deferred("late_sort")
 
