@@ -25,7 +25,7 @@ func hide_move_indicator():
 func reroll_shop():
 	clear_shop()
 	
-	refill_shop()
+	call_deferred("refill_shop")
 
 func clear_shop():
 	for item in get_children():
@@ -42,20 +42,26 @@ func refill_shop():
 	var old_child_count = get_child_count()
 	var new_child_count = 9 - old_child_count
 	
-	if old_child_count > 0:
-		var item = get_child(0) as Item
-		
-		if item:
-			await item.stopped_moving
+	var wait_for_other = false
 	
-	skip_sorting = true
+	for item in get_children():
+		item = item as Item
+		
+		if item.position != item.start_pos:
+			wait_for_other = true
+			break
+	
+	if wait_for_other:
+		if old_child_count > 0:
+			var item = get_child(0) as Item
+			
+			if item:
+				await item.stopped_moving
 	
 	for x in new_child_count:
 		add_item(EnumManager.item_list[potential_items.pick_random()], Item.item_state.buyable)
-		
-		#make it so it only sorts once and not every time a new item gets added
 	
-	call_deferred("late_sort")
+	#call_deferred("late_sort")
 
 func _on_main_end_off_day():
 	reroll_shop()
@@ -64,7 +70,18 @@ func _on_reroll_shop_pressed() -> void:
 	reroll_shop()
 
 func late_sort():
-	
-	skip_sorting = false
+	call_deferred("force_sort")
+
+func force_sort():
+	for item in get_children():
+		item = item as Item
+		
+		if !item:
+			continue
+		
+		if item.locked:
+			continue
+		
+		item.position = Vector2(0, 0)
 	
 	queue_sort()

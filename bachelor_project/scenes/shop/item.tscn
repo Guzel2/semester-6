@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=15 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
@@ -64,6 +64,43 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0lx57"]
 radius = 15.0
 
+[sub_resource type="Animation" id="Animation_p5yiu"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s0nyy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gvwgh"]
+_data = {
+"RESET": SubResource("Animation_s0nyy"),
+"spawn": SubResource("Animation_p5yiu")
+}
+
 [node name="item" type="Button" node_paths=PackedStringArray("sprite", "lock_sprite", "area")]
 custom_minimum_size = Vector2(54, 54)
 offset_right = 54.0
@@ -96,6 +133,12 @@ shape = SubResource("CircleShape2D_0lx57")
 visible = false
 texture = ExtResource("9_w1hlv")
 centered = false
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gvwgh")
+}
+autoplay = "spawn"
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
