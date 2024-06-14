@@ -26,7 +26,7 @@ var dir: Vector2 = Vector2(1, 0):
 		dir = value.normalized()
 		rotation = dir.angle()
 
-var speed = 60
+var speed = 60.0
 
 var scent_spawn_timer = 0
 var scent_spawn_interval = .2
@@ -36,7 +36,7 @@ var home_scan_interval = .2
 
 var food_amount = 0
 var max_food_amount = 10
-var harvesting_amount = 1
+var harvesting_amount = 1.0
 
 var max_stamina = 20.0
 var return_stamina = max_stamina * .6
@@ -248,6 +248,15 @@ func apply_item_effect(item : int):
 		
 		EnumManager.item_list.scent_gland:
 			scent_spawn_interval *= .95
+		
+		EnumManager.item_list.gaster:
+			max_food_amount *= 1.1
+		
+		EnumManager.item_list.mandibles:
+			harvesting_amount *= 1.05
+		
+		EnumManager.item_list.legs:
+			speed *= 1.1
 
 func set_random_dir():
 	dir = Vector2(1, 0).rotated(randf() * 2 * PI)

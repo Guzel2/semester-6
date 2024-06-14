@@ -19,6 +19,7 @@ shader_parameter/editor = true
 
 [node name="ant" type="CharacterBody2D"]
 script = ExtResource("1_xdji4")
+simulation_speed = null
 accessory_scene = ExtResource("5_birbh")
 
 [node name="sprite" type="Sprite2D" parent="."]

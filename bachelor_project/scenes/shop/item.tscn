@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=18 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dd0vghv8mclrf" path="res://sprites/ant_stuff/icons/eyes.png" id="4_0jxr5"]
 [ext_resource type="Texture2D" uid="uid://dyumyfuglil" path="res://sprites/obstacles/icons/stick_0.png" id="4_ixskr"]
 [ext_resource type="Texture2D" uid="uid://ckfguswxyiy7x" path="res://sprites/obstacles/icons/stick_1.png" id="5_85ui0"]
+[ext_resource type="Texture2D" uid="uid://d3qyc1d6vl6xb" path="res://sprites/ant_stuff/icons/gaster.png" id="5_g5o1f"]
 [ext_resource type="Texture2D" uid="uid://bqguvxysicveb" path="res://sprites/ant_stuff/icons/scent_gland.png" id="6_k5gf3"]
+[ext_resource type="Texture2D" uid="uid://dstm7akj1048u" path="res://sprites/ant_stuff/icons/mandibles.png" id="6_kmkti"]
+[ext_resource type="Texture2D" uid="uid://dn72wbstduyjj" path="res://sprites/ant_stuff/icons/legs.png" id="6_mlqro"]
 [ext_resource type="Texture2D" uid="uid://bbtd15leie2um" path="res://sprites/UI/lock.png" id="9_w1hlv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rexwn"]
@@ -26,6 +29,30 @@ animations = [{
 }],
 "loop": true,
 "name": &"eyes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_g5o1f")
+}],
+"loop": true,
+"name": &"gaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mlqro")
+}],
+"loop": true,
+"name": &"legs",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kmkti")
+}],
+"loop": true,
+"name": &"mandibles",
 "speed": 5.0
 }, {
 "frames": [{
@@ -144,7 +171,7 @@ metadata/_edit_horizontal_guides_ = [27.0]
 [node name="icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(27, 27)
 sprite_frames = SubResource("SpriteFrames_rexwn")
-animation = &"eyes"
+animation = &"legs"
 
 [node name="overlap_area" type="Area2D" parent="."]
 collision_layer = 2

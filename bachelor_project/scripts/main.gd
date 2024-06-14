@@ -34,7 +34,6 @@ func update_simulation_speed():
 
 func start_day():
 	simulation_speed = previous_simulation_speed
-	camera.transition_to_shop(false)
 	shadow_manager.start_day()
 	
 	emit_signal("start_off_day")
@@ -48,5 +47,10 @@ func end_day():
 func _on_shadow_manager_end_of_day():
 	end_day()
 
-func _on_start_next_day_pressed():
-	start_day()
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fade_out":
+		start_day()
+
+func _on_start_next_day_pressed() -> void:
+	shadow_manager.timer = 0
+	shadow_manager._process(.01)

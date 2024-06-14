@@ -89,3 +89,5 @@ func transition_to_shop(enter : bool):
 func lock_scroll_wheel(lock : bool):
 	lock_scroll = lock
 
+func _on_start_next_day_pressed() -> void:
+	transition_to_shop(false)

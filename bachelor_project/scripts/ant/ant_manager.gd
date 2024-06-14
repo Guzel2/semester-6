@@ -108,7 +108,7 @@ func _on_equipt_holder_equipt_items(new_items: Array) -> void:
 	items = new_items
 
 func start_day():
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	
 	for ant in ant_count:
 		spawn_ant()

@@ -16,7 +16,10 @@ enum item_list
 	
 	antenna,
 	eyes,
-	scent_gland
+	scent_gland,
+	gaster,
+	mandibles,
+	legs,
 }
 
 static var obstacle_count = 3

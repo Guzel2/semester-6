@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfkqofj4rx7g5"]
+[gd_scene load_steps=8 format=3 uid="uid://bfkqofj4rx7g5"]
 
 [ext_resource type="Texture2D" uid="uid://bx4k75kf58fu2" path="res://sprites/ant_stuff/antenna.png" id="1_nkro7"]
 [ext_resource type="Texture2D" uid="uid://dwcyj8qhspnny" path="res://sprites/ant_stuff/eyes.png" id="2_xgvdh"]
+[ext_resource type="Texture2D" uid="uid://ddwyf6uw6ohow" path="res://sprites/ant_stuff/gaster.png" id="3_5dvuk"]
 [ext_resource type="Texture2D" uid="uid://lvh6gbugg2y2" path="res://sprites/ant_stuff/scent_gland.png" id="3_bm1ia"]
+[ext_resource type="Texture2D" uid="uid://bdb4olxxihp80" path="res://sprites/ant_stuff/legs.png" id="4_5dh3t"]
+[ext_resource type="Texture2D" uid="uid://cd1gvvwv6hhcn" path="res://sprites/ant_stuff/mandibles.png" id="4_84a6c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1rswl"]
 animations = [{
@@ -24,6 +27,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_5dvuk")
+}],
+"loop": true,
+"name": &"gaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5dh3t")
+}],
+"loop": true,
+"name": &"legs",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_84a6c")
+}],
+"loop": true,
+"name": &"mandibles",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_bm1ia")
 }],
 "loop": true,
@@ -33,4 +60,4 @@ animations = [{
 
 [node name="accessory" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_1rswl")
-animation = &"scent_gland"
+animation = &"legs"
