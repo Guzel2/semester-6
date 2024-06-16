@@ -120,84 +120,6 @@ func stop_following_mouse():
 				if !check_overlapping_areas():
 					holder.queue_sort()
 
-func reparent_to_next_holder():
-	match state:
-		item_state.buyable:
-			if !holder.can_buy:
-				holder.queue_sort()
-				return
-			
-			var buyable_holder = holder as BuyableHolder
-			if !buyable_holder:
-				return
-			
-			if !buyable_holder.bought_holder.can_equip:
-				return
-			
-			buyable_holder.shop_menu.buy_item()
-			buyable_holder.remove_connections(self)
-			var new_holder = buyable_holder.bought_holder
-			holder = new_holder
-			reparent(new_holder)
-			
-			state = item_state.bought
-			
-			holder.add_connections(self)
-		
-		item_state.bought:
-			var bought_holder = holder as BoughtHolder
-			if !bought_holder:
-				return
-			
-			if !bought_holder.equipt_holder.can_equip:
-				return
-			
-			bought_holder.remove_connections(self)
-			var new_holder = bought_holder.equipt_holder
-			holder = new_holder
-			reparent(new_holder)
-			
-			state = item_state.equipt
-			
-			holder.add_connections(self)
-
-func reparent_to_previous_holder():
-	match state:
-		item_state.buyable:
-			pass
-		
-		item_state.bought:
-			var bought_holder = holder as BoughtHolder
-			if !bought_holder:
-				return
-				
-			var new_holder = bought_holder.buyable_holder
-			holder = new_holder
-			reparent(new_holder)
-			
-			state = item_state.buyable
-			
-			queue_free()
-		
-		item_state.equipt:
-			if !holder.can_buy:
-				holder.queue_sort()
-				return
-			
-			var equipt_holder = holder as EquiptHolder
-			if !equipt_holder:
-				return
-			
-			if !equipt_holder.bought_holder.can_equip:
-				return
-			
-			equipt_holder.remove_connections(self)
-			var new_holder = equipt_holder.bought_holder
-			holder = new_holder
-			reparent(new_holder)
-			
-			holder.add_connections(self)
-
 func sell_item():
 	holder.ant_manager.ant_count += 1
 	
@@ -266,7 +188,16 @@ func add_to_bought_holder() -> bool:
 
 func add_to_equipt_holder() -> bool:
 	if !holder.equipt_holder.can_equip:
-		return false
+		if state == item_state.bought:
+			return false
+		
+		return add_to_bought_holder()
+	
+	if item < EnumManager.obstacle_count:
+		if state == item_state.bought:
+			return false
+		
+		return add_to_bought_holder()
 	
 	holder.remove_connections(self)
 	var new_holder = holder.equipt_holder

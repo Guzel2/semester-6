@@ -1048,6 +1048,7 @@ script = ExtResource("22_his4a")
 suffix = "$"
 
 [node name="ant_display" type="Label" parent="camera/shop_menu/interactables"]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 11.0
 offset_right = 102.0

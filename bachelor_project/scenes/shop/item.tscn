@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2kev6dq3iv2g"]
+[gd_scene load_steps=20 format=3 uid="uid://b2kev6dq3iv2g"]
 
 [ext_resource type="Theme" uid="uid://brhb5gm3ljtno" path="res://assets/shop_theme.tres" id="1_iseek"]
 [ext_resource type="Script" path="res://scripts/shop/item.gd" id="2_b3nit"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dstm7akj1048u" path="res://sprites/ant_stuff/icons/mandibles.png" id="6_kmkti"]
 [ext_resource type="Texture2D" uid="uid://dn72wbstduyjj" path="res://sprites/ant_stuff/icons/legs.png" id="6_mlqro"]
 [ext_resource type="Texture2D" uid="uid://bbtd15leie2um" path="res://sprites/UI/lock.png" id="9_w1hlv"]
+[ext_resource type="Texture2D" uid="uid://dcdrdbpo1hebx" path="res://sprites/obstacles/icons/rock_1.png" id="9_wooo3"]
+[ext_resource type="Texture2D" uid="uid://bhgjxwqgg4hyp" path="res://sprites/obstacles/icons/rock_2.png" id="10_kxowu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rexwn"]
 animations = [{
@@ -61,6 +63,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"rock_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_wooo3")
+}],
+"loop": true,
+"name": &"rock_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_kxowu")
+}],
+"loop": true,
+"name": &"rock_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -171,7 +189,7 @@ metadata/_edit_horizontal_guides_ = [27.0]
 [node name="icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(27, 27)
 sprite_frames = SubResource("SpriteFrames_rexwn")
-animation = &"legs"
+animation = &"rock_2"
 
 [node name="overlap_area" type="Area2D" parent="."]
 collision_layer = 2

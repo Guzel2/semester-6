@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://do4b2ycjlnihh"]
+[gd_scene load_steps=15 format=3 uid="uid://do4b2ycjlnihh"]
 
 [ext_resource type="Theme" uid="uid://xsa27kd56ymp" path="res://assets/obstacles.tres" id="1_13b6s"]
 [ext_resource type="Texture2D" uid="uid://xo2uxd08hbs5" path="res://sprites/obstacles/icons/rock_0.png" id="2_hik1w"]
@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://ckfguswxyiy7x" path="res://sprites/obstacles/icons/stick_1.png" id="5_fonj3"]
 [ext_resource type="Texture2D" uid="uid://cpdkjoskbofoi" path="res://sprites/obstacles/rock_0.png" id="5_lgnyc"]
 [ext_resource type="Texture2D" uid="uid://n1rt8i0fowil" path="res://sprites/obstacles/stick_0.png" id="6_fs1mx"]
+[ext_resource type="Texture2D" uid="uid://dcdrdbpo1hebx" path="res://sprites/obstacles/icons/rock_1.png" id="7_e37yx"]
 [ext_resource type="Texture2D" uid="uid://cxciqokbsnk3j" path="res://sprites/obstacles/stick_1.png" id="7_wy3es"]
+[ext_resource type="Texture2D" uid="uid://bhgjxwqgg4hyp" path="res://sprites/obstacles/icons/rock_2.png" id="8_dsvgy"]
+[ext_resource type="Texture2D" uid="uid://cxnn3f8snt0b5" path="res://sprites/obstacles/rock_1.png" id="9_ll5jp"]
+[ext_resource type="Texture2D" uid="uid://dkhmkpgafj3cx" path="res://sprites/obstacles/rock_2.png" id="10_rewyq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yfpv8"]
 animations = [{
@@ -17,6 +21,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"rock_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_e37yx")
+}],
+"loop": true,
+"name": &"rock_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_dsvgy")
+}],
+"loop": true,
+"name": &"rock_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -44,6 +64,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"rock_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ll5jp")
+}],
+"loop": true,
+"name": &"rock_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_rewyq")
+}],
+"loop": true,
+"name": &"rock_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -76,14 +112,14 @@ preview_sprite = NodePath("preview")
 [node name="icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(18, 18)
 sprite_frames = SubResource("SpriteFrames_yfpv8")
-animation = &"rock_0"
+animation = &"rock_1"
 
 [node name="preview" type="AnimatedSprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.588235)
 position = Vector2(18, 18)
 sprite_frames = SubResource("SpriteFrames_708ye")
-animation = &"rock_0"
+animation = &"rock_1"
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

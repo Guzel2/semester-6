@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgug2l1p4mtjv"]
+
+[ext_resource type="Texture2D" uid="uid://dkhmkpgafj3cx" path="res://sprites/obstacles/rock_2.png" id="1_pvmpp"]
+[ext_resource type="PackedScene" uid="uid://dhxydcbigbib5" path="res://scenes/obstacles/obstacle.tscn" id="2_1u1xy"]
+
+[node name="stick" type="Sprite2D"]
+texture = ExtResource("1_pvmpp")
+
+[node name="obstacle" parent="." instance=ExtResource("2_1u1xy")]
+color = Color(1, 1, 1, 0.196078)
+polygon = PackedVector2Array(18, -31, -20, -50, -32, -41, -31, -24, -18, 5, 21, 29, 40, 11)

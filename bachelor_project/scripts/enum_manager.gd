@@ -11,6 +11,8 @@ enum scent_types
 enum item_list
 {
 	rock_0,
+	rock_1,
+	rock_2,
 	stick_0,
 	stick_1,
 	
@@ -22,5 +24,5 @@ enum item_list
 	legs,
 }
 
-static var obstacle_count = 3
+static var obstacle_count = 5
 static var max_item_level = 3
