@@ -1,8 +1,8 @@
 class_name ScentManager
 extends Node2D
 
-@export var cell_size : int = 10
-@export var grid_size : int = 100
+var cell_size : int = 15
+var grid_size : int = 200
 
 @export var simulation_speed : float = 1.0
 @export var visualize_scent = true
@@ -14,6 +14,9 @@ var scent_list = []
 var scents_to_process = []
 
 func _ready() -> void:
+	if name == "danger_scent_manager":
+		set_process(false)
+	
 	for x in grid_size:
 		var line = []
 		for y in grid_size:
@@ -21,8 +24,6 @@ func _ready() -> void:
 		scent_list.append(line)
 
 func reset_scents():
-	scent_list.clear()
-	
 	for x in grid_size:
 		for y in grid_size:
 			scent_list[x][y] = null
@@ -145,3 +146,5 @@ func show_scent():
 			
 			spawn_temp_scent_visual(Vector2(x, y), scent.type)
 
+func _on_main_end_off_day() -> void:
+	reset_scents()

@@ -199,6 +199,8 @@ func reparent_to_previous_holder():
 			holder.add_connections(self)
 
 func sell_item():
+	holder.ant_manager.ant_count += 1
+	
 	queue_free()
 
 func check_overlapping_areas() -> bool:

@@ -37,6 +37,8 @@ func _ready() -> void:
 		for y in range(40, 50):
 			add_new_food(Vector2i(x, y))
 
+
+
 func get_food(pos: Vector2) -> Food:
 	var local_pos = global_pos_to_local_pos(pos)
 	

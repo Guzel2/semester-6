@@ -131,7 +131,7 @@ var potential_scan_positions = [
 	Vector2(35, 20),
 ]
 
-var scan_position_count = 3
+var scan_position_count = 4
 
 var last_collider : ObstacleArea
 var collision_timer = 0

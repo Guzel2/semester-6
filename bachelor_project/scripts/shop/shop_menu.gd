@@ -5,7 +5,7 @@ extends CanvasLayer
 @export var sell_indicator : Node2D
 
 @export var animation_player : AnimationPlayer
-@export var money_display : MoneyDisplay
+@export var money_display : NumberDisplay
 
 var max_money = 5
 var money = max_money:
@@ -13,11 +13,11 @@ var money = max_money:
 		return money
 	set(value):
 		money = value
-		money_display.update_money(money)
+		money_display.update_number(money)
 
 func transition_to_shop(enter : bool):
 	if enter:
-		money = max_money
+		money = max_money + 1
 		animation_player.play("fade_in")
 	else:
 		animation_player.play("fade_out")

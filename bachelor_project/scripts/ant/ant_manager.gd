@@ -7,6 +7,12 @@ extends AntBase
 @export var food_manager : FoodManager
 @export var shadow_manager : ShadowManager
 
+@export var ant_display : NumberDisplay
+@export var food_display : NumberDisplay
+@export var total_food_display : NumberDisplay
+
+@export var shop_ant_display : NumberDisplay
+
 @export var ant_scene : PackedScene
 @export var home_position : Vector2 = Vector2(500, 250)
 @export var home_size : float = 40
@@ -21,19 +27,42 @@ extends AntBase
 		simulation_speed = value
 		update_simulation_speed()
 
-@export var ant_food_requirement = 10
-var food_amount = 60
+@export var ant_food_requirement = 5
+var food_amount = 30:
+	get:
+		return food_amount
+	set(value):
+		var difference = value - food_amount
+		if difference > 0:
+			total_food += difference
+		
+		food_amount = value
+		food_display.update_number(food_amount)
+
+var total_food = 0:
+	get:
+		return total_food
+	set(value):
+		total_food = value
+		total_food_display.update_number(total_food)
+	
 
 var ant_spawn_interval = 4.0
 var ant_spawn_time = .0
 
 var items = []
 
-var ant_count = 0
+var ant_count = 0:
+	get:
+		return ant_count
+	set(value):
+		ant_count = value
+		shop_ant_display.update_number(ant_count)
 
 func _ready():
 	home_visual.position = home_position
 	home_visual.scale *= home_size
+	food_amount = food_amount
 
 func _process(delta):
 	delta *= simulation_speed
@@ -127,3 +156,9 @@ func _on_main_start_off_day():
 
 func _on_main_end_off_day():
 	end_day()
+
+func _on_child_entered_tree(node: Node) -> void:
+	ant_display.update_number(get_child_count() - 1)
+
+func _on_child_exiting_tree(node: Node) -> void:
+	ant_display.update_number(get_child_count() - 2)

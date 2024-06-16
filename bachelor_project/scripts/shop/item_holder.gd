@@ -7,6 +7,9 @@ extends HFlowContainer
 @export var buyable_holder : BuyableHolder
 @export var bought_holder : BoughtHolder
 @export var equipt_holder : EquiptHolder
+@export var ant_manager : AntManager
+
+@export var max_item_count : int = 6
 
 var previous_positions = {}
 
@@ -16,7 +19,7 @@ var can_buy:
 
 var can_equip:
 	get:
-		return get_child_count() < 6
+		return get_child_count() < max_item_count
 
 func _ready() -> void:
 	var pre_sort_callable = Callable(self, '_on_pre_sort_children')

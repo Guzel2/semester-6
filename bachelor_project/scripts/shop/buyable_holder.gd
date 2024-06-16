@@ -25,6 +25,11 @@ func hide_move_indicator():
 	shop_menu.hide_buy_indicator()
 
 func reroll_shop():
+	if !can_buy:
+		return
+	
+	shop_menu.money -= 1
+	
 	clear_shop()
 	
 	call_deferred("refill_shop")
@@ -42,7 +47,7 @@ func refill_shop():
 	set_potential_items()
 	
 	var old_child_count = get_child_count()
-	var new_child_count = 9 - old_child_count
+	var new_child_count = max_item_count - old_child_count
 	
 	var original_move_time = -1
 	
