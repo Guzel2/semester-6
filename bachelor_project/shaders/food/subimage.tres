@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://l3t813f728ft"]
+
+[ext_resource type="Shader" path="res://shaders/food/subimage.gdshader" id="1_hx12u"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_hx12u")
+shader_parameter/cell_size = 1
+shader_parameter/position_x = 0
+shader_parameter/position_y = 0

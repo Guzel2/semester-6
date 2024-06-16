@@ -1,4 +1,4 @@
-class_name FoodVisual
+class_name FoodDebug
 extends Sprite2D
 
 var max_food = 10.0

@@ -29,8 +29,13 @@ func _ready() -> void:
 		for y in range(55, 65):
 			add_new_food(Vector2i(x, y))
 	
-	for x in range(15, 25):
+	for x in range(5, 30):
 		for y in range(10, 15):
+			if x % 2 == 0:
+				continue
+			if y % 2 == 0:
+				continue
+			
 			add_new_food(Vector2i(x, y))
 	
 	for x in range(75, 85):
@@ -94,7 +99,7 @@ func add_new_food(pos: Vector2i):
 		add_visual_food(pos)
 
 func add_visual_food(pos: Vector2i):
-	var scene = food_visual_scene.instantiate() as FoodVisual
+	var scene = food_visual_scene.instantiate() as FoodDebug
 	scene.position = pos * cell_size
 	scene.scale *= cell_size
 	
