@@ -5,7 +5,6 @@ extends Node2D
 @export var food_manager : FoodManager
 
 @export var texture : Texture2D
-@export var mat : Material
 @export var sprite_scene : PackedScene
 
 @export var generate_subimages : bool = false:
@@ -17,9 +16,7 @@ extends Node2D
 @export var cell_size : int = 10
 
 func _ready() -> void:
-	await get_tree().create_timer(.2).timeout
-	
-	spawn_subimages()
+	call_deferred("spawn_subimages")
 
 func spawn_subimages():
 	for child in get_children():
@@ -75,7 +72,6 @@ func spawn_subimages():
 		food_info.scenes = get_children()
 		
 		food_manager.add_food_info(food_info)
-	
-	queue_free()
+		queue_free()
 	
 	print(child_positions)
