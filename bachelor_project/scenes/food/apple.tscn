@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://j1pkrdejktky"]
 
 [ext_resource type="Texture2D" uid="uid://k5y0axg78i1x" path="res://sprites/foods/apple.png" id="1_5fspb"]
-[ext_resource type="Script" path="res://scripts/food/food_visualgd.gd" id="1_yek2f"]
+[ext_resource type="Script" path="res://scripts/food/food_visual.gd" id="1_yek2f"]
 [ext_resource type="Material" uid="uid://l3t813f728ft" path="res://shaders/food/subimage.tres" id="3_37urr"]
 [ext_resource type="PackedScene" uid="uid://wxm5oqwasdeu" path="res://scenes/food/subdivided_image.tscn" id="4_mk85t"]
 

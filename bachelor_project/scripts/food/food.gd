@@ -14,13 +14,3 @@ func consume_food(value: float) -> float:
 		return value + remaining_food
 	
 	return value
-
-func add_food(value: float) -> float:
-	remaining_food += value
-	
-	if remaining_food > max_food:
-		var consumed_food = value - (remaining_food - max_food)
-		remaining_food = max_food
-		return consumed_food
-	
-	return value

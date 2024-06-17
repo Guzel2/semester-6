@@ -1,5 +1,7 @@
-[gd_scene format=3 uid="uid://wxm5oqwasdeu"]
+[gd_scene load_steps=2 format=3 uid="uid://wxm5oqwasdeu"]
+
+[ext_resource type="Texture2D" uid="uid://d3rj707fmcv5s" path="res://sprites/test.jpg" id="1_cb8g6"]
 
 [node name="sprite" type="Sprite2D"]
-scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_cb8g6")
 centered = false

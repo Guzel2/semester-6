@@ -7,8 +7,8 @@ var remaining_food = max_food:
 		return remaining_food
 	set(value):
 		remaining_food = value
+		
+		modulate.a = remaining_food / max_food
+		
 		if remaining_food < 0:
 			queue_free()
-
-func _process(delta):
-	modulate.a = remaining_food / max_food
