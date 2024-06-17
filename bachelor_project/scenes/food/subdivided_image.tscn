@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://wxm5oqwasdeu"]
+[gd_scene load_steps=4 format=3 uid="uid://wxm5oqwasdeu"]
 
 [ext_resource type="Texture2D" uid="uid://d3rj707fmcv5s" path="res://sprites/test.jpg" id="1_cb8g6"]
+[ext_resource type="Shader" path="res://shaders/food/food_eating.gdshader" id="1_hpxr6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqplq"]
+shader = ExtResource("1_hpxr6")
+shader_parameter/consume_percentage = 0.47
+shader_parameter/top = true
+shader_parameter/left = false
+shader_parameter/right = false
+shader_parameter/down = true
 
 [node name="sprite" type="Sprite2D"]
+material = SubResource("ShaderMaterial_lqplq")
 texture = ExtResource("1_cb8g6")
 centered = false

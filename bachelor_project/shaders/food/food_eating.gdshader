@@ -1,10 +1,10 @@
 shader_type canvas_item;
 
-uniform float own: hint_range(.0, 1.0, .01) = 1.0;
-uniform float top: hint_range(.0, 1.0, .01) = 1.0;
-uniform float left: hint_range(.0, 1.0, .01) = 1.0;
-uniform float right: hint_range(.0, 1.0, .01) = 1.0;
-uniform float down: hint_range(.0, 1.0, .01) = 1.0;
+uniform float consume_percentage: hint_range(.0, 1.0, .01) = 1.0;
+uniform bool top = true;
+uniform bool left = true;
+uniform bool right = true;
+uniform bool down = true;
 
 vec2 rotate(vec2 uv, float rot)
 {
@@ -25,34 +25,70 @@ vec2 rotate(vec2 uv, float rot)
 void fragment() {
 	vec2 uv = rotate(UV, -PI / 4.0);
 	
+	vec2 center_uv = uv - vec2(.5);
+	
+	float distance_from_center = 
+	sqrt(center_uv.x * center_uv.x + center_uv.y * center_uv.y);
+	
+	distance_from_center /= 1.0 - consume_percentage;
+	
+	if (distance_from_center < .5)
+	{
+		distance_from_center = 1.0;
+	}
+	else
+	{
+		distance_from_center = 0.0;
+	}
+	
 	if (uv.x < .5)
 	{
 		if (uv.y < .5) //top
 		{
-			vec2 target_pos = vec2(.0, .0);
-			
-			vec2 difference = target_pos - uv;
-			
-			float distance_from_center = 
-			sqrt(difference.x * difference.x + difference.y * difference.y);
-			
-			COLOR.a = 1.0 - distance_from_center;
+			if (top != true)
+			{
+				COLOR.a = .0;
+			}
+			else
+			{
+				COLOR.a = 1.0 - distance_from_center;
+			}
 		}
 		else //left
 		{
-			COLOR.a = left * own;
+			if (left != true)
+			{
+				COLOR.a = .0;
+			}
+			else
+			{
+				COLOR.a = 1.0 - distance_from_center;
+			}
 		}
 	}
 	else
 	{
 		if (uv.y < .5) //right
 		{
-			COLOR.a = right * own;
+			if (right != true)
+			{
+				COLOR.a = .0;
+			}
+			else
+			{
+				COLOR.a = 1.0 - distance_from_center;
+			}
 		}
 		else //down
 		{
-			COLOR.a = down * own;
+			if (down != true)
+			{
+				COLOR.a = .0;
+			}
+			else
+			{
+				COLOR.a = 1.0 - distance_from_center;
+			}
 		}
 	}
-	
 }
