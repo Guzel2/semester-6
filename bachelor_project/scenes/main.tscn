@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=49 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_by8xl"]
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant_stuff/ant.tscn" id="3_o5lse"]
 [ext_resource type="Script" path="res://scripts/food/food_manager.gd" id="3_y4ur8"]
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food/food_debug.tscn" id="4_3pryx"]
+[ext_resource type="PackedScene" uid="uid://j1pkrdejktky" path="res://scenes/food/apple.tscn" id="7_45231"]
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
+[ext_resource type="Shader" path="res://shaders/food/subimage.gdshader" id="8_1fewx"]
 [ext_resource type="Script" path="res://scripts/ui/camera.gd" id="8_w7nha"]
 [ext_resource type="Script" path="res://scripts/ui/UI.gd" id="9_76efp"]
 [ext_resource type="Script" path="res://scripts/environment/atmospheric_light.gd" id="10_m86fv"]
@@ -27,6 +29,13 @@
 [ext_resource type="Shader" path="res://shaders/environment/screen_space_triangle.gdshader" id="23_7dj3i"]
 [ext_resource type="Script" path="res://scripts/shop/equipt_holder.gd" id="28_v574y"]
 [ext_resource type="Shader" path="res://shaders/shop/horizontal_fade.gdshader" id="29_n3mbe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ctnqo"]
+resource_local_to_scene = true
+shader = ExtResource("8_1fewx")
+shader_parameter/cell_size = 1
+shader_parameter/position_x = 0
+shader_parameter/position_y = 0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
 fractal_octaves = 2
@@ -760,6 +769,10 @@ scent_visual_scene = ExtResource("2_jfod4")
 [node name="food_manager" type="Node2D" parent="."]
 script = ExtResource("3_y4ur8")
 food_visual_scene = ExtResource("4_3pryx")
+
+[node name="apple" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_45231")]
+food_manager = NodePath("..")
+mat = SubResource("ShaderMaterial_ctnqo")
 
 [node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "ant_display", "food_display", "total_food_display", "shop_ant_display", "home_visual")]
 script = ExtResource("2_enl3e")

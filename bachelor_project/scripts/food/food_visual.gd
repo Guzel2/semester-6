@@ -17,6 +17,8 @@ extends Node2D
 @export var cell_size : int = 10
 
 func _ready() -> void:
+	await get_tree().create_timer(.2).timeout
+	
 	spawn_subimages()
 
 func spawn_subimages():
@@ -63,13 +65,17 @@ func spawn_subimages():
 			
 			add_child(sprite)
 			
-			child_positions.append(Vector2(x, y))
+			child_positions.append(Vector2(x, y) + position / cell_size)
 	
-	if food_manager:
+	if food_manager and !Engine.is_editor_hint():
 		var food_info = FoodInfo.new()
 		
 		food_info.positions = child_positions
 		
 		food_info.scenes = get_children()
+		
+		food_manager.add_food_info(food_info)
+	
+	queue_free()
 	
 	print(child_positions)

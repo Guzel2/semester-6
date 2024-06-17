@@ -94,3 +94,10 @@ func global_pos_to_local_pos(pos: Vector2) -> Vector2i:
 func remove_food(x: int, y: int, food: Food):
 	food.remove_food()
 	food_list[x][y] = null
+
+func add_food_info(info : FoodInfo):
+	for pos in info.positions:
+		add_food(pos)
+	
+	for food in info.scenes:
+		food.reparent(self)
