@@ -1,10 +1,12 @@
 shader_type canvas_item;
 
 uniform float consume_percentage: hint_range(.0, 1.0, .01) = 1.0;
-uniform bool top = true;
+uniform bool up = true;
 uniform bool left = true;
 uniform bool right = true;
 uniform bool down = true;
+
+uniform sampler2D offset_texture : repeat_enable;
 
 vec2 rotate(vec2 uv, float rot)
 {
@@ -23,7 +25,12 @@ vec2 rotate(vec2 uv, float rot)
 }
 
 void fragment() {
+	if (COLOR.a != .0)
+	{
+	
 	vec2 uv = rotate(UV, -PI / 4.0);
+	
+	uv += (texture(offset_texture, uv).r - .5) * .3;
 	
 	vec2 center_uv = uv - vec2(.5);
 	
@@ -43,9 +50,9 @@ void fragment() {
 	
 	if (uv.x < .5)
 	{
-		if (uv.y < .5) //top
+		if (uv.y < .5) //up
 		{
-			if (top != true)
+			if (up != true)
 			{
 				COLOR.a = .0;
 			}
@@ -90,5 +97,17 @@ void fragment() {
 				COLOR.a = 1.0 - distance_from_center;
 			}
 		}
+	}
+	
+	/*
+	if (COLOR.a < 1.0)
+	{
+		if (texture(offset_texture, uv).r > .8)
+		{
+			COLOR.a = 1.0;
+		}
+		
+	}*/
+
 	}
 }

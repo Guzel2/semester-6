@@ -38,8 +38,6 @@ func spawn_subimages():
 			var sub_image = Image.new()
 			sub_image = sub_image.create(cell_size, cell_size, false, image.get_format())
 			
-			sub_image.fill(Color.PALE_GREEN)
-			
 			var all_pixel_invisible = true
 			
 			for sub_x in cell_size:
@@ -73,5 +71,3 @@ func spawn_subimages():
 		
 		food_manager.add_food_info(food_info)
 		queue_free()
-	
-	print(child_positions)

@@ -760,9 +760,23 @@ scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_manager" type="Node2D" parent="."]
 script = ExtResource("3_y4ur8")
+debug_food = false
 food_visual_scene = ExtResource("4_3pryx")
 
 [node name="apple" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
+position = Vector2(70, 70)
+food_manager = NodePath("..")
+
+[node name="apple2" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
+position = Vector2(320, 20)
+food_manager = NodePath("..")
+
+[node name="apple3" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
+position = Vector2(480, 100)
+food_manager = NodePath("..")
+
+[node name="apple4" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
+position = Vector2(200, 250)
 food_manager = NodePath("..")
 
 [node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "ant_display", "food_display", "total_food_display", "shop_ant_display", "home_visual")]

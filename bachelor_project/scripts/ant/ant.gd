@@ -106,9 +106,9 @@ var potential_scan_positions = [
 	Vector2(10, -10),
 	Vector2(10, 10),
 	
-	Vector2(25, 0),
 	Vector2(20, -10),
 	Vector2(20, 10),
+	Vector2(25, 0),
 	
 	Vector2(5, 20),
 	Vector2(5, -20),
@@ -131,7 +131,7 @@ var potential_scan_positions = [
 	Vector2(35, 20),
 ]
 
-var scan_position_count = 4
+var scan_position_count = 5
 
 var last_collider : ObstacleArea
 var collision_timer = 0
