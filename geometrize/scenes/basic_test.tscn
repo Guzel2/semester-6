@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq2rdpg0mibjl"]
+
+[ext_resource type="Script" path="res://scripts/basic_geometrize.gd" id="1_1ajum"]
+[ext_resource type="Texture2D" uid="uid://0bml7gepw12v" path="res://sprites/mt_fuji.png" id="1_8pewn"]
+
+[node name="basic_test" type="Node2D"]
+script = ExtResource("1_1ajum")
+run = true
+texture = ExtResource("1_8pewn")
+
+[node name="MtFuji" type="Sprite2D" parent="."]
+position = Vector2(-1581, 0)
+texture = ExtResource("1_8pewn")
+centered = false
