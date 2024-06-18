@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/food/food_manager.gd" id="3_y4ur8"]
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food/food_debug.tscn" id="4_3pryx"]
 [ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
-[ext_resource type="PackedScene" uid="uid://j1pkrdejktky" path="res://scenes/food/apple.tscn" id="7_c4h2e"]
+[ext_resource type="PackedScene" uid="uid://j1pkrdejktky" path="res://scenes/food/food_visual.tscn" id="7_kro4i"]
 [ext_resource type="Script" path="res://scripts/ui/camera.gd" id="8_w7nha"]
 [ext_resource type="Script" path="res://scripts/ui/UI.gd" id="9_76efp"]
 [ext_resource type="Script" path="res://scripts/environment/atmospheric_light.gd" id="10_m86fv"]
@@ -760,23 +760,10 @@ scent_visual_scene = ExtResource("2_jfod4")
 
 [node name="food_manager" type="Node2D" parent="."]
 script = ExtResource("3_y4ur8")
-debug_food = false
 food_visual_scene = ExtResource("4_3pryx")
 
-[node name="apple" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
-position = Vector2(70, 70)
-food_manager = NodePath("..")
-
-[node name="apple2" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
-position = Vector2(320, 20)
-food_manager = NodePath("..")
-
-[node name="apple3" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
-position = Vector2(480, 100)
-food_manager = NodePath("..")
-
-[node name="apple4" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_c4h2e")]
-position = Vector2(200, 250)
+[node name="food_visual" parent="food_manager" node_paths=PackedStringArray("food_manager") instance=ExtResource("7_kro4i")]
+animation = &"blueberry"
 food_manager = NodePath("..")
 
 [node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "ant_display", "food_display", "total_food_display", "shop_ant_display", "home_visual")]

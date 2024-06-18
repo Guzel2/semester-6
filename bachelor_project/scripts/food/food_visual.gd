@@ -1,10 +1,8 @@
 @tool
 class_name FoodVisual
-extends Node2D
+extends AnimatedSprite2D
 
 @export var food_manager : FoodManager
-
-@export var texture : Texture2D
 @export var sprite_scene : PackedScene
 
 @export var generate_subimages : bool = false:
@@ -15,12 +13,26 @@ extends Node2D
 
 @export var cell_size : int = 10
 
+enum food_types
+{
+	apple_0,
+	apple_1,
+	strawberry_0,
+	strawberry_1,
+	blueberry_0,
+	blueberry_1,
+}
+
 func _ready() -> void:
+	animation = "blueberry"
+	
 	call_deferred("spawn_subimages")
 
 func spawn_subimages():
 	for child in get_children():
 		child.queue_free()
+	
+	var texture = sprite_frames.get_frame_texture(animation, 0)
 	
 	var image = texture.get_image()
 	
@@ -33,7 +45,7 @@ func spawn_subimages():
 		for y in height:
 			var sprite = sprite_scene.instantiate() as Sprite2D
 			
-			sprite.position = Vector2(x * cell_size, y * cell_size)
+			sprite.position = Vector2(x * cell_size, y * cell_size) * 1.1
 			
 			var sub_image = Image.new()
 			sub_image = sub_image.create(cell_size, cell_size, false, image.get_format())

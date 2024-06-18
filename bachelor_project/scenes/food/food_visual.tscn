@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://j1pkrdejktky"]
+
+[ext_resource type="Script" path="res://scripts/food/food_visual.gd" id="1_l4g2c"]
+[ext_resource type="Texture2D" uid="uid://ct6f0o5f41sti" path="res://sprites/foods/apple_1.png" id="2_6k8n8"]
+[ext_resource type="Texture2D" uid="uid://k5y0axg78i1x" path="res://sprites/foods/apple_0.png" id="2_cir6r"]
+[ext_resource type="Texture2D" uid="uid://5rrllunabpb0" path="res://sprites/foods/blueberry_0.png" id="2_jy076"]
+[ext_resource type="PackedScene" uid="uid://wxm5oqwasdeu" path="res://scenes/food/subdivided_image.tscn" id="3_iuajv"]
+[ext_resource type="Texture2D" uid="uid://de2pt7ctm0f7i" path="res://sprites/foods/strawberry_0.png" id="3_qrwvk"]
+[ext_resource type="Texture2D" uid="uid://df3oppj5ix7sg" path="res://sprites/foods/blueberry_1.png" id="3_y377l"]
+[ext_resource type="Texture2D" uid="uid://dvsjqu3nnx2wx" path="res://sprites/foods/strawberry_1.png" id="6_khmlb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bbeni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cir6r")
+}],
+"loop": true,
+"name": &"apple_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6k8n8")
+}],
+"loop": true,
+"name": &"apple_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jy076")
+}],
+"loop": true,
+"name": &"blueberry_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y377l")
+}],
+"loop": true,
+"name": &"blueberry_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qrwvk")
+}],
+"loop": true,
+"name": &"strawberry_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_khmlb")
+}],
+"loop": true,
+"name": &"strawberry_1",
+"speed": 5.0
+}]
+
+[node name="food_visual" type="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_bbeni")
+animation = &"strawberry_1"
+centered = false
+script = ExtResource("1_l4g2c")
+sprite_scene = ExtResource("3_iuajv")
