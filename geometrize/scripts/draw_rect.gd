@@ -25,7 +25,7 @@ var difference : float = 0
 var overlap : int = 0
 var error_size : float:
 	get:
-		return difference + float(overlap) / 1500 + (6000 / (size.y * size.y))
+		return difference + float(overlap) / 1000# + (3000 / (size.y * size.y))
 
 func set_end():
 	end = position + size

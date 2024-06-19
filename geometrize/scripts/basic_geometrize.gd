@@ -59,7 +59,7 @@ func generate_all_rects():
 	bg_rect.size = Vector2(width, height)
 	bg_rect.color = total_color
 	
-	var rect_count = 100
+	var rect_count = 600
 	
 	for i in rect_count:
 		var rect = generate_rect(image)
@@ -77,14 +77,14 @@ func generate_rect(image : Image) -> DrawRect:
 	var width = image.get_width()
 	var height = image.get_height()
 	
-	for i in 15:
+	for i in 400:
 		var rect = DrawRect.new()
 		
 		var found_fitting_rectangle = false
 		for test in 100:
 			
 			rect.position = Vector2(randi_range(0, width), randi_range(0, height))
-			rect.size = Vector2(randi_range(20, width - rect.position.x), randi_range(30, height - rect.position.y))
+			rect.size = Vector2(randi_range(20, width - rect.position.x), randi_range(20, height - rect.position.y))
 			
 			var end = rect.position + rect.size
 			
@@ -98,28 +98,7 @@ func generate_rect(image : Image) -> DrawRect:
 		#rect.color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
 		rect.color = image.get_pixelv(rect.position + rect.size / 2)
 		
-		var total_difference = 0
-		var total_pixels = rect.size.x * rect.size.y
-		
-		for loc_x in rect.size.x - 1:
-			for loc_y in rect.size.y - 1:
-				var x = loc_x + rect.position.x
-				var y = loc_y + rect.position.y
-				
-				var color = image.get_pixel(x, y)
-				
-				var new_color = (color - rect.color)
-				
-				var difference = abs(new_color.r) + abs(new_color.g) + abs(new_color.b)
-				
-				total_difference += difference
-		
-		total_difference /= total_pixels
-		
-		rect.difference = total_difference
-		
-		for other_rect in rects:
-			rect.overlap += rect.get_overlap(other_rect)
+		rect = compare_rect_to_image(image, rect)
 		
 		new_rects.append(rect)
 	
@@ -144,7 +123,7 @@ func create_variations(image: Image, original_rect: DrawRect):
 	var width = image.get_width()
 	var height = image.get_height()
 	
-	for i in 15:
+	for i in 50:
 		var rect = DrawRect.new()
 		
 		var found_fitting_rectangle = false
@@ -166,30 +145,9 @@ func create_variations(image: Image, original_rect: DrawRect):
 		#rect.color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
 		#rect.color = image.get_pixelv(rect.position + rect.size / 2)
 		
-		rect.color = original_rect.color# * Color(randf_range(.91, 1.1), randf_range(.91, 1.1), randf_range(.91, 1.1))
+		rect.color = original_rect.color * Color(randf_range(.91, 1.1), randf_range(.91, 1.1), randf_range(.91, 1.1))
 		
-		var total_difference = 0
-		var total_pixels = rect.size.x * rect.size.y
-		
-		for loc_x in rect.size.x - 1:
-			for loc_y in rect.size.y - 1:
-				var x = loc_x + rect.position.x
-				var y = loc_y + rect.position.y
-				
-				var color = image.get_pixel(x, y)
-				
-				var new_color = (color - rect.color)
-				
-				var difference = abs(new_color.r) + abs(new_color.g) + abs(new_color.b)
-				
-				total_difference += difference
-		
-		total_difference /= total_pixels
-		
-		rect.difference = total_difference
-		
-		for other_rect in rects:
-			rect.overlap += rect.get_overlap(other_rect)
+		rect = compare_rect_to_image(image, rect)
 		
 		new_rects.append(rect)
 	
@@ -207,3 +165,32 @@ func create_variations(image: Image, original_rect: DrawRect):
 		print("chose original")
 	
 	return return_rect
+
+func compare_rect_to_image(image : Image, rect : DrawRect) -> DrawRect:
+	var total_difference = 0
+	var total_pixels = rect.size.x * rect.size.y
+	
+	for loc_x in rect.size.x - 1:
+		for loc_y in rect.size.y - 1:
+			var x = int(loc_x + rect.position.x)
+			var y = int(loc_y + rect.position.y)
+			
+			if x % 2 == 1 or y % 2 == 1:
+				continue
+			
+			var color = image.get_pixel(x, y)
+			
+			var new_color = (color - rect.color)
+			
+			var difference = abs(new_color.r) + abs(new_color.g) + abs(new_color.b)
+			
+			total_difference += difference
+	
+	total_difference /= total_pixels
+	
+	rect.difference = total_difference
+	
+	for other_rect in rects:
+		rect.overlap += rect.get_overlap(other_rect)
+	
+	return rect
