@@ -63,7 +63,9 @@ animations = [{
 [node name="food_visual" type="AnimatedSprite2D"]
 self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_bbeni")
-animation = &"strawberry_1"
+animation = &"apple_0"
 centered = false
 script = ExtResource("1_l4g2c")
 sprite_scene = ExtResource("3_iuajv")
+metadata/_edit_horizontal_guides_ = [100.0]
+metadata/_edit_vertical_guides_ = [140.0]

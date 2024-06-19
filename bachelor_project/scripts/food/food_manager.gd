@@ -2,15 +2,20 @@ class_name FoodManager
 extends Node2D
 
 @export var cell_size : int = 10
-@export var grid_size : int = 100
+@export var grid_size : int = 300
 
 @export var debug_food : bool = true
 
 @export var food_visual_scene : PackedScene
+@export var food_debug_scene : PackedScene
+@export var ant_home : Sprite2D
 
 var food_list = []
 var food_debug_list = []
 var food_visual_list = []
+
+var min_food_radius = 150
+var max_food_radius = 250
 
 func _ready() -> void:
 	for x in grid_size:
@@ -32,22 +37,7 @@ func _ready() -> void:
 				line.append(null)
 			food_debug_list.append(line)
 	
-	#for x in range(25, 30):
-	#	for y in range(55, 65):
-	#		add_food(Vector2i(x, y))
-	
-	#for x in range(5, 30):
-	#	for y in range(10, 15):
-	#		if x % 2 == 0:
-	#			continue
-	#		if y % 2 == 0:
-	#			continue
-			
-	#		add_food(Vector2i(x, y))
-	
-	#for x in range(75, 85):
-	#	for y in range(40, 50):
-	#		add_food(Vector2i(x, y))
+	add_visual_food()
 
 func get_food(pos: Vector2) -> Food:
 	var local_pos = global_pos_to_local_pos(pos)
@@ -88,14 +78,38 @@ func add_food(pos: Vector2i):
 	if debug_food:
 		add_debug_food(pos)
 
-func add_debug_food(pos: Vector2i):
-	var scene = food_visual_scene.instantiate() as FoodDebug
+func add_debug_food(pos : Vector2i):
+	var scene = food_debug_scene.instantiate() as FoodDebug
 	scene.position = pos * cell_size
 	scene.scale *= cell_size
 	
 	add_child(scene)
 	
 	food_debug_list[pos.x][pos.y] = scene
+
+func add_visual_food(type = null):
+	var dir = Vector2(1, 0).rotated(randf_range(0, 2 * PI))
+	
+	dir *= randf_range(min_food_radius, max_food_radius)
+	
+	dir += ant_home.position
+	dir -= Vector2(70, 50) #subtract food visual sprite center
+	
+	dir = snapped(dir, Vector2(cell_size, cell_size))
+	
+	
+	var scene = food_visual_scene.instantiate() as FoodVisual
+	scene.position = dir
+	
+	if type == null:
+		var names = scene.sprite_frames.get_animation_names() as Array
+		scene.animation = names.pick_random()
+	else:
+		scene.animation = type
+	
+	scene.food_manager = self
+	
+	add_child(scene)
 
 func global_pos_to_local_pos(pos: Vector2) -> Vector2i:
 	pos /= cell_size
@@ -135,3 +149,6 @@ func add_food_info(info : FoodInfo):
 			food.left = true
 		if pos + Vector2(1, 0) in info.positions:
 			food.right = true
+
+func _on_main_start_off_day():
+	add_visual_food()

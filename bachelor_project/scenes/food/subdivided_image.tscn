@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wxm5oqwasdeu"]
+[gd_scene load_steps=10 format=3 uid="uid://wxm5oqwasdeu"]
 
 [ext_resource type="Texture2D" uid="uid://d3rj707fmcv5s" path="res://sprites/test.jpg" id="1_cb8g6"]
 [ext_resource type="Shader" path="res://shaders/food/food_eating.gdshader" id="1_hpxr6"]
@@ -12,7 +12,7 @@ seamless = true
 seamless_blend_skirt = 0.382
 noise = SubResource("FastNoiseLite_c4l2h")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqplq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcllw"]
 resource_local_to_scene = true
 shader = ExtResource("1_hpxr6")
 shader_parameter/consume_percentage = 1.0
@@ -20,10 +20,78 @@ shader_parameter/up = true
 shader_parameter/left = true
 shader_parameter/right = true
 shader_parameter/down = true
+shader_parameter/alpha = 1.0
 shader_parameter/offset_texture = SubResource("NoiseTexture2D_bwqn2")
 
+[sub_resource type="Animation" id="Animation_0d46q"]
+resource_name = "spawn"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/consume_percentage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_mp555"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/consume_percentage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tcus2"]
+_data = {
+"RESET": SubResource("Animation_mp555"),
+"spawn": SubResource("Animation_0d46q")
+}
+
 [node name="sprite" type="Sprite2D"]
-material = SubResource("ShaderMaterial_lqplq")
+material = SubResource("ShaderMaterial_bcllw")
 texture = ExtResource("1_cb8g6")
 centered = false
 script = ExtResource("3_jcr7n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tcus2")
+}
+autoplay = "spawn"

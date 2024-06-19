@@ -14,7 +14,7 @@ extends AntBase
 @export var shop_ant_display : NumberDisplay
 
 @export var ant_scene : PackedScene
-@export var home_position : Vector2 = Vector2(500, 250)
+@export var home_position : Vector2 = Vector2(1500, 1500)
 @export var home_size : float = 40
 
 #temp solution

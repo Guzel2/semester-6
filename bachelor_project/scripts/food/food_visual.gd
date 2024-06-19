@@ -24,8 +24,6 @@ enum food_types
 }
 
 func _ready() -> void:
-	animation = "blueberry"
-	
 	call_deferred("spawn_subimages")
 
 func spawn_subimages():
@@ -45,7 +43,7 @@ func spawn_subimages():
 		for y in height:
 			var sprite = sprite_scene.instantiate() as Sprite2D
 			
-			sprite.position = Vector2(x * cell_size, y * cell_size) * 1.1
+			sprite.position = Vector2(x * cell_size, y * cell_size)
 			
 			var sub_image = Image.new()
 			sub_image = sub_image.create(cell_size, cell_size, false, image.get_format())

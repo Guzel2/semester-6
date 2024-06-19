@@ -8,6 +8,8 @@ uniform bool down = true;
 
 uniform sampler2D offset_texture : repeat_enable;
 
+uniform float alpha : hint_range(.0, 1.0, .001);
+
 vec2 rotate(vec2 uv, float rot)
 {
 	float cos_theta = cos(rot);
@@ -99,15 +101,7 @@ void fragment() {
 		}
 	}
 	
-	/*
-	if (COLOR.a < 1.0)
-	{
-		if (texture(offset_texture, uv).r > .8)
-		{
-			COLOR.a = 1.0;
-		}
-		
-	}*/
+	COLOR.a *= alpha;
 
 	}
 }

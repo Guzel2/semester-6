@@ -1,8 +1,8 @@
 class_name ScentManager
 extends Node2D
 
-var cell_size : int = 15
-var grid_size : int = 200
+var cell_size : int = 10
+var grid_size : int = 300
 
 @export var simulation_speed : float = 1.0
 @export var visualize_scent = true
@@ -27,6 +27,11 @@ func reset_scents():
 	for x in grid_size:
 		for y in grid_size:
 			scent_list[x][y] = null
+	
+	add_scent(Vector2(0, 0), EnumManager.scent_types.home)
+	add_scent(Vector2(grid_size, 0), EnumManager.scent_types.home)
+	add_scent(Vector2(0, grid_size * cell_size - 1), EnumManager.scent_types.home)
+	add_scent(Vector2(grid_size * cell_size - 1, grid_size * cell_size - 1), EnumManager.scent_types.home)
 
 func get_scent(pos: Vector2) -> Scent:
 	var local_pos = global_pos_to_local_pos(pos)

@@ -1,6 +1,7 @@
 class_name Camera
 extends Camera2D
 
+@export var home_scent_manager : ScentManager
 @export var user_interface : UserInterface
 @export var shop_menu : ShopMenu
 
@@ -16,7 +17,11 @@ var last_mouse_pos = Vector2(0, 0)
 
 var lock_scroll = false
 
+var end = 1000
+
 func _ready():
+	end = home_scent_manager.cell_size * home_scent_manager.grid_size
+	position = Vector2(end, end) / 2
 	last_mouse_pos = get_local_mouse_position()
 
 func _input(event):
@@ -60,12 +65,12 @@ func movement(delta):
 	
 	if position.x < 0:
 		temp_dir.x += 1
-	if position.x > 1000:
+	if position.x > end:
 		temp_dir.x -= 1
 	
 	if position.y < 0:
 		temp_dir.y += 1
-	if position.y > 1000:
+	if position.y > end:
 		temp_dir.y -= 1
 	
 	dir += temp_dir.normalized()
