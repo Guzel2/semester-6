@@ -5,8 +5,6 @@
 
 [node name="basic_test" type="Node2D"]
 script = ExtResource("1_1ajum")
-use_evolution = true
-run = true
 texture = ExtResource("2_e0o4i")
 
 [node name="MtFuji" type="Sprite2D" parent="."]
