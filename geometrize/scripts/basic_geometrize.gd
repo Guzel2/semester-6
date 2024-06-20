@@ -36,6 +36,8 @@ func _draw():
 		draw_rect(rect, color)
 
 func generate_all_rects():
+	var start_time = Time.get_unix_time_from_system()
+	
 	rects.clear()
 	
 	image = texture.get_image()
@@ -59,17 +61,21 @@ func generate_all_rects():
 	bg_rect.size = Vector2(width, height)
 	bg_rect.color = total_color
 	
-	var rect_count = 600
+	var rect_count = 300
 	
 	for i in rect_count:
 		var rect = generate_rect(image)
 		rects.append(rect)
 		
-		print("Progress: ", i, "/", rect_count)
+		await get_tree().create_timer(.001).timeout
 		
-		await get_tree().create_timer(.01).timeout
+		print("Progress: ", i, "/", rect_count)
 	
 	print("done")
+	
+	var time = Time.get_unix_time_from_system() - start_time
+	
+	print(time)
 
 func generate_rect(image : Image) -> DrawRect:
 	var new_rects = []
@@ -77,7 +83,7 @@ func generate_rect(image : Image) -> DrawRect:
 	var width = image.get_width()
 	var height = image.get_height()
 	
-	for i in 400:
+	for i in 40:
 		var rect = DrawRect.new()
 		
 		var found_fitting_rectangle = false
@@ -123,13 +129,12 @@ func create_variations(image: Image, original_rect: DrawRect):
 	var width = image.get_width()
 	var height = image.get_height()
 	
-	for i in 50:
+	for i in 20:
 		var rect = DrawRect.new()
 		
 		var found_fitting_rectangle = false
 		
 		for test in 100:
-			
 			rect.position = Vector2(original_rect.position.x * randf_range(.8, 1.25), original_rect.position.y * randf_range(.8, 1.25))
 			rect.size = Vector2(original_rect.size.x * randf_range(.8, 1.25), original_rect.size.y * randf_range(.8, 1.25))
 			
