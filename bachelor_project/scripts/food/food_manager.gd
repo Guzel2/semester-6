@@ -14,8 +14,8 @@ var food_list = []
 var food_debug_list = []
 var food_visual_list = []
 
-var min_food_radius = 200
-var max_food_radius = 350
+var min_food_radius = 150
+var max_food_radius = 300
 
 var daily_increase = 25
 

@@ -24,7 +24,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5crab"]
-bg_color = Color(0, 0, 0, 0.196078)
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15

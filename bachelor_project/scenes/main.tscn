@@ -1066,7 +1066,6 @@ script = ExtResource("22_his4a")
 suffix = "ants"
 
 [node name="buy_indicator" type="Node2D" parent="camera/shop_menu"]
-visible = false
 position = Vector2(204, 0)
 
 [node name="full" type="ColorRect" parent="camera/shop_menu/buy_indicator"]
