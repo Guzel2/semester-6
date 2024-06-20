@@ -61,7 +61,6 @@ var ant_count = 0:
 
 func _ready():
 	home_visual.position = home_position
-	home_visual.scale *= home_size
 	food_amount = food_amount
 
 func _process(delta):

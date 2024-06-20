@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dk16lawoyxbc8" path="res://scenes/ant_stuff/ant.tscn" id="3_o5lse"]
 [ext_resource type="Script" path="res://scripts/food/food_manager.gd" id="3_y4ur8"]
 [ext_resource type="PackedScene" uid="uid://dd54av2e0qe4n" path="res://scenes/food/food_debug.tscn" id="4_3pryx"]
-[ext_resource type="Texture2D" uid="uid://cuo6piwekntce" path="res://sprites/white_pixel.png" id="7_a0hl0"]
 [ext_resource type="PackedScene" uid="uid://j1pkrdejktky" path="res://scenes/food/food_visual.tscn" id="7_kro4i"]
+[ext_resource type="Texture2D" uid="uid://brskjccmbp1ei" path="res://sprites/ant_stuff/home.png" id="7_um71j"]
 [ext_resource type="Script" path="res://scripts/ui/camera.gd" id="8_w7nha"]
 [ext_resource type="Script" path="res://scripts/ui/UI.gd" id="9_76efp"]
 [ext_resource type="Script" path="res://scripts/environment/atmospheric_light.gd" id="10_m86fv"]
@@ -773,8 +773,7 @@ ant_scene = ExtResource("3_o5lse")
 home_visual = NodePath("home")
 
 [node name="home" type="Sprite2D" parent="ant_manager"]
-modulate = Color(0.902, 0.5, 0.75, 1)
-texture = ExtResource("7_a0hl0")
+texture = ExtResource("7_um71j")
 
 [node name="food_manager" type="Node2D" parent="." node_paths=PackedStringArray("ant_home")]
 script = ExtResource("3_y4ur8")
@@ -1762,8 +1761,8 @@ color = Color(1, 0.682353, 0.658824, 1)
 [connection signal="end_off_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_end_off_day"]
-[connection signal="start_off_day" from="." to="food_manager" method="_on_main_start_off_day"]
 [connection signal="start_off_day" from="." to="ant_manager" method="_on_main_start_off_day"]
+[connection signal="start_off_day" from="." to="food_manager" method="_on_main_start_off_day"]
 [connection signal="start_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_off_day"]
 [connection signal="start_off_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_start_off_day"]
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
