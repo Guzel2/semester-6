@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=48 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_by8xl"]
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b2kev6dq3iv2g" path="res://scenes/shop/item.tscn" id="18_31k12"]
 [ext_resource type="Script" path="res://scripts/ui/obstacle_ui_holder.gd" id="18_ub34t"]
 [ext_resource type="Script" path="res://scripts/shop/bought_holder.gd" id="19_87cv6"]
+[ext_resource type="Theme" uid="uid://byood2jvm2a2v" path="res://assets/label.tres" id="19_cq256"]
 [ext_resource type="PackedScene" uid="uid://do4b2ycjlnihh" path="res://scenes/obstacles/ui_button.tscn" id="20_feufy"]
 [ext_resource type="Script" path="res://scripts/ui/number_display.gd" id="22_his4a"]
 [ext_resource type="Shader" path="res://shaders/environment/screen_space_triangle.gdshader" id="23_7dj3i"]
@@ -837,6 +838,7 @@ offset_right = 493.0
 offset_bottom = 296.0
 tooltip_text = "Simulation Speed"
 mouse_default_cursor_shape = 10
+theme = ExtResource("15_3rkr0")
 min_value = 0.5
 max_value = 14.0
 step = 0.5
@@ -844,6 +846,7 @@ value = 1.0
 scrollable = false
 
 [node name="spawn_ant" type="Button" parent="camera/UI"]
+visible = false
 offset_left = 388.0
 offset_top = 232.0
 offset_right = 492.0
@@ -851,6 +854,7 @@ offset_bottom = 263.0
 text = "Spawn Ant"
 
 [node name="show_scent" type="Button" parent="camera/UI"]
+visible = false
 offset_left = 388.0
 offset_top = 198.0
 offset_right = 492.0
@@ -873,27 +877,27 @@ offset_left = 25.0
 offset_top = 11.0
 offset_right = 51.0
 offset_bottom = 31.0
-theme = ExtResource("15_3rkr0")
+theme = ExtResource("19_cq256")
 text = "5 ants"
 script = ExtResource("22_his4a")
 suffix = "ants"
 
 [node name="food_display" type="Label" parent="camera/UI"]
-offset_left = 87.0
+offset_left = 117.0
 offset_top = 11.0
-offset_right = 132.0
+offset_right = 163.0
 offset_bottom = 31.0
-theme = ExtResource("15_3rkr0")
+theme = ExtResource("19_cq256")
 text = "5 food"
 script = ExtResource("22_his4a")
 suffix = "food"
 
 [node name="total_food_display" type="Label" parent="camera/UI"]
-offset_left = 160.0
+offset_left = 219.0
 offset_top = 11.0
-offset_right = 243.0
+offset_right = 302.0
 offset_bottom = 31.0
-theme = ExtResource("15_3rkr0")
+theme = ExtResource("19_cq256")
 text = "5 total food"
 script = ExtResource("22_his4a")
 suffix = "total food"
@@ -912,7 +916,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
-visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -930,7 +933,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 0)
+color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="rectangle_shader" type="ColorRect" parent="camera/shop_menu"]
 material = SubResource("ShaderMaterial_01rhl")
@@ -941,7 +944,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="interactables" type="Control" parent="camera/shop_menu"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -955,7 +957,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 190.0
-offset_top = 213.0
+offset_top = 205.0
 offset_right = 476.0
 offset_bottom = 246.0
 grow_horizontal = 0
@@ -972,7 +974,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -28.0
-offset_top = 213.0
+offset_top = 205.0
 offset_right = 174.0
 offset_bottom = 246.0
 grow_horizontal = 0
@@ -984,9 +986,9 @@ text = "Reroll"
 [node name="buyable_panel" type="PanelContainer" parent="camera/shop_menu/interactables"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 50.0
+offset_top = 82.0
 offset_right = 204.0
-offset_bottom = 232.0
+offset_bottom = 200.0
 theme = ExtResource("15_3rkr0")
 
 [node name="buyable_holder" type="HFlowContainer" parent="camera/shop_menu/interactables/buyable_panel" node_paths=PackedStringArray("shop_menu", "buyable_holder", "bought_holder", "equipt_holder", "ant_manager")]
@@ -1004,9 +1006,9 @@ ant_manager = NodePath("../../../../../ant_manager")
 [node name="bought_panel" type="PanelContainer" parent="camera/shop_menu/interactables"]
 layout_mode = 0
 offset_left = 240.0
-offset_top = 50.0
+offset_top = 82.0
 offset_right = 358.0
-offset_bottom = 232.0
+offset_bottom = 200.0
 theme = ExtResource("15_3rkr0")
 
 [node name="bought_holder" type="HFlowContainer" parent="camera/shop_menu/interactables/bought_panel" node_paths=PackedStringArray("shop_menu", "buyable_holder", "bought_holder", "equipt_holder", "ant_manager")]
@@ -1019,13 +1021,14 @@ buyable_holder = NodePath("../../buyable_panel/buyable_holder")
 bought_holder = NodePath(".")
 equipt_holder = NodePath("../../equipt_panel/equipt_holder")
 ant_manager = NodePath("../../../../../ant_manager")
+max_item_count = 4
 
 [node name="equipt_panel" type="PanelContainer" parent="camera/shop_menu/interactables"]
 layout_mode = 0
 offset_left = 388.0
-offset_top = 50.0
+offset_top = 82.0
 offset_right = 506.0
-offset_bottom = 232.0
+offset_bottom = 200.0
 theme = ExtResource("15_3rkr0")
 
 [node name="equipt_holder" type="HFlowContainer" parent="camera/shop_menu/interactables/equipt_panel" node_paths=PackedStringArray("shop_menu", "buyable_holder", "bought_holder", "equipt_holder", "ant_manager")]
@@ -1038,26 +1041,26 @@ buyable_holder = NodePath("../../buyable_panel/buyable_holder")
 bought_holder = NodePath("../../bought_panel/bought_holder")
 equipt_holder = NodePath(".")
 ant_manager = NodePath("../../../../../ant_manager")
-max_item_count = 3
+max_item_count = 4
 
 [node name="money_display" type="Label" parent="camera/shop_menu/interactables"]
 layout_mode = 0
 offset_left = 25.0
-offset_top = 11.0
+offset_top = 23.0
 offset_right = 51.0
-offset_bottom = 31.0
-theme = ExtResource("15_3rkr0")
+offset_bottom = 43.0
+theme = ExtResource("19_cq256")
 text = "5 $"
 script = ExtResource("22_his4a")
 suffix = "$"
 
 [node name="ant_display" type="Label" parent="camera/shop_menu/interactables"]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 11.0
-offset_right = 102.0
-offset_bottom = 31.0
-theme = ExtResource("15_3rkr0")
+offset_left = 235.0
+offset_top = 23.0
+offset_right = 280.0
+offset_bottom = 43.0
+theme = ExtResource("19_cq256")
 text = "5 ants"
 script = ExtResource("22_his4a")
 suffix = "ants"
