@@ -14,8 +14,10 @@ var food_list = []
 var food_debug_list = []
 var food_visual_list = []
 
-var min_food_radius = 150
-var max_food_radius = 250
+var min_food_radius = 200
+var max_food_radius = 350
+
+var daily_increase = 25
 
 func _ready() -> void:
 	for x in grid_size:
@@ -151,4 +153,7 @@ func add_food_info(info : FoodInfo):
 			food.right = true
 
 func _on_main_start_off_day():
+	min_food_radius += daily_increase
+	max_food_radius += daily_increase
+	
 	add_visual_food()

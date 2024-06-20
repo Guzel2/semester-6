@@ -23,6 +23,7 @@ TestEnumManager="*res://scripts/enum_manager.gd"
 
 window/size/viewport_width=528
 window/size/viewport_height=297
+window/size/mode=3
 window/size/window_width_override=1056
 window/size/window_height_override=594
 window/stretch/mode="canvas_items"
