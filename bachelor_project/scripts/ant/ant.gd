@@ -127,8 +127,18 @@ var potential_scan_positions = [
 	Vector2(25, -20),
 	Vector2(25, 20),
 	
+	Vector2(5, 30),
+	Vector2(5, -30),
+	
 	Vector2(35, -20),
 	Vector2(35, 20),
+	
+	Vector2(55, 0),
+	Vector2(50, -10),
+	Vector2(50, 10),
+	
+	Vector2(15, 30),
+	Vector2(15, -30),
 ]
 
 var scan_position_count = 5

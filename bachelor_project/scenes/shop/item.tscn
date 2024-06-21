@@ -189,7 +189,7 @@ metadata/_edit_horizontal_guides_ = [27.0]
 [node name="icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(27, 27)
 sprite_frames = SubResource("SpriteFrames_rexwn")
-animation = &"rock_2"
+animation = &"stick_0"
 
 [node name="overlap_area" type="Area2D" parent="."]
 collision_layer = 2

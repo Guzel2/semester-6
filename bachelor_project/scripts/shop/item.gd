@@ -52,11 +52,44 @@ var locked = false
 
 signal stopped_moving
 
+var tooltips = {
+	EnumManager.item_list.rock_0 : "An oval shaped rock for blocking paths.",
+	EnumManager.item_list.rock_1 : "A sharp rock for blocking paths.",
+	EnumManager.item_list.rock_2 : "A sharp rock for blocking paths.",
+	EnumManager.item_list.stick_0 : "A small twig for blocking paths.",
+	EnumManager.item_list.stick_1 : "A stick for blocking paths.",
+	
+	EnumManager.item_list.antenna : "Antenna\n
+									Level 1: Increase Scent detection by 2 Positions. (Normal is 5, Maximum is 27)\n
+									Level 2: Increase Scent detection by 4 Positions.\n
+									Level 3: Increase Scent detection by 6 Positions.\n",
+	EnumManager.item_list.eyes : "Eyes\n
+									Level 1: Increase Scent detection by 2 Positions. (Normal is 6, Maximum is 30)\n
+									Level 2: Increase Scent detection by 4 Positions.\n
+									Level 3: Increase Scent detection by 6 Positions.\n",
+	EnumManager.item_list.scent_gland : "Scent Gland\n
+									Level 1: Decrease Scent scan/deploy cooldown by 5%.\n
+									Level 2: Decrease Scent scan/deploy cooldown by 10%.\n
+									Level 3: Decrease Scent scan/deploy cooldown by 15%.\n",
+	EnumManager.item_list.gaster : "Scent Gaster\n
+									Level 1: Increase maximum food storage by 10%.\n
+									Level 2: Increase maximum food storage by 20%.\n
+									Level 3: Increase maximum food storage by 30%.\n",
+	EnumManager.item_list.mandibles : "Mandibles\n
+									Level 1: Increase harvesting speed by 5%.\n
+									Level 2: Increase harvesting speed by 10%.\n
+									Level 3: Increase harvesting speed by 15%.\n",
+	EnumManager.item_list.legs : "Stronger Legs\n
+									Level 1: Increase move speed by 10%.\n
+									Level 2: Increase move speed by 20%.\n
+									Level 3: Increase move speed by 30%.\n",
+}
+
 func _ready():
 	item_string = EnumManager.item_list.keys()[item]
 	sprite.animation = item_string
 	
-	tooltip_text = item_string
+	tooltip_text = tooltips[item]
 
 func _on_button_down() -> void:
 	start_following_mouse()
