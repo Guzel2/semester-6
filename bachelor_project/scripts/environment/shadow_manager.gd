@@ -14,6 +14,7 @@ var day_duration = 75.0
 
 var simulation_speed = 1.0
 
+
 signal end_of_day
 
 func _process(delta: float) -> void:

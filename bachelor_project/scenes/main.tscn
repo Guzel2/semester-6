@@ -725,7 +725,7 @@ shader = ExtResource("29_n3mbe")
 shader_parameter/cut_off = 1.0
 shader_parameter/left_to_right = false
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -734,8 +734,9 @@ danger_scent_manager = NodePath("danger_scent_manager")
 food_manager = NodePath("food_manager")
 ant_manager = NodePath("ant_manager")
 camera = NodePath("camera")
-metadata/_edit_horizontal_guides_ = [50.0]
-metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0]
+day_display = NodePath("camera/UI/day_display")
+metadata/_edit_horizontal_guides_ = [50.0, 12.0]
+metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0]
 
 [node name="shadow_manager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_hgbmg")
@@ -768,7 +769,7 @@ food_manager = NodePath("../food_manager")
 shadow_manager = NodePath("../shadow_manager")
 ant_display = NodePath("../camera/UI/ant_display")
 food_display = NodePath("../camera/UI/food_display")
-total_food_display = NodePath("../camera/UI/total_food_display")
+total_food_display = NodePath("../camera/UI/quest_display")
 shop_ant_display = NodePath("../camera/shop_menu/interactables/ant_display")
 ant_scene = ExtResource("3_o5lse")
 home_visual = NodePath("home")
@@ -872,35 +873,49 @@ obstacle_scene = ExtResource("20_feufy")
 camera = NodePath("../..")
 obstacle_manager = NodePath("../../../obstacle_manager")
 
-[node name="ant_display" type="Label" parent="camera/UI"]
-offset_left = 25.0
-offset_top = 11.0
-offset_right = 51.0
-offset_bottom = 31.0
+[node name="day_display" type="Label" parent="camera/UI"]
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 57.0
+offset_bottom = 35.0
 theme = ExtResource("19_cq256")
-text = "5 ants"
+text = "Day 1"
 script = ExtResource("22_his4a")
-suffix = "ants"
+prefix = "Day "
+suffix = ""
+
+[node name="ant_display" type="Label" parent="camera/UI"]
+offset_left = 97.0
+offset_top = 15.0
+offset_right = 143.0
+offset_bottom = 35.0
+theme = ExtResource("19_cq256")
+text = "5 Ants"
+script = ExtResource("22_his4a")
+suffix = " Ants"
 
 [node name="food_display" type="Label" parent="camera/UI"]
-offset_left = 117.0
-offset_top = 11.0
-offset_right = 163.0
-offset_bottom = 31.0
+offset_left = 193.0
+offset_top = 15.0
+offset_right = 242.0
+offset_bottom = 35.0
 theme = ExtResource("19_cq256")
-text = "5 food"
+text = "5 Food"
 script = ExtResource("22_his4a")
-suffix = "food"
+suffix = " Food"
 
-[node name="total_food_display" type="Label" parent="camera/UI"]
-offset_left = 219.0
-offset_top = 11.0
-offset_right = 302.0
-offset_bottom = 31.0
+[node name="quest_display" type="Label" parent="camera/UI"]
+offset_left = 382.0
+offset_top = 15.0
+offset_right = 511.0
+offset_bottom = 35.0
+tooltip_text = "Collect a total of 30 Food in 5 days."
+mouse_filter = 1
 theme = ExtResource("19_cq256")
-text = "5 total food"
+text = "0/30 due by Day 5"
+horizontal_alignment = 2
 script = ExtResource("22_his4a")
-suffix = "total food"
+suffix = "/30 due by Day 5"
 
 [node name="post_processing" type="Node" parent="camera"]
 
@@ -1045,14 +1060,14 @@ max_item_count = 4
 
 [node name="money_display" type="Label" parent="camera/shop_menu/interactables"]
 layout_mode = 0
-offset_left = 25.0
+offset_left = 17.0
 offset_top = 23.0
-offset_right = 51.0
+offset_right = 40.0
 offset_bottom = 43.0
 theme = ExtResource("19_cq256")
 text = "5 $"
 script = ExtResource("22_his4a")
-suffix = "$"
+suffix = " $"
 
 [node name="ant_display" type="Label" parent="camera/shop_menu/interactables"]
 layout_mode = 0
@@ -1061,11 +1076,12 @@ offset_top = 23.0
 offset_right = 280.0
 offset_bottom = 43.0
 theme = ExtResource("19_cq256")
-text = "5 ants"
+text = "5 Ants"
 script = ExtResource("22_his4a")
-suffix = "ants"
+suffix = " Ants"
 
 [node name="buy_indicator" type="Node2D" parent="camera/shop_menu"]
+visible = false
 position = Vector2(204, 0)
 
 [node name="full" type="ColorRect" parent="camera/shop_menu/buy_indicator"]

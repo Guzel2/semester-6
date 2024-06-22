@@ -16,11 +16,22 @@ extends Node2D
 @export var food_manager : FoodManager
 @export var ant_manager : AntManager
 @export var camera : Camera
+@export var day_display : NumberDisplay
 
 var previous_simulation_speed = 1
 
 signal start_off_day
 signal end_off_day
+
+var day_count = -1:
+	set(value):
+		day_count = value
+		day_display.update_number(day_count + 1)
+		
+		print(day_count)
+		
+		if day_count % 5 == 0:
+			print("quest")
 
 func _ready():
 	end_day()
@@ -39,6 +50,7 @@ func start_day():
 	emit_signal("start_off_day")
 
 func end_day():
+	day_count += 1
 	camera.transition_to_shop(true)
 	simulation_speed = 0
 	
