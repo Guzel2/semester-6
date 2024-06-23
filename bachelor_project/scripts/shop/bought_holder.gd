@@ -32,3 +32,15 @@ func _on_main_end_off_day():
 func _on_obstacle_ui_holder_remaining_obstacles(items):
 	for item in items:
 		add_item(item, Item.item_state.bought)
+
+func _on_sell_all_pressed() -> void:
+	for item in get_children():
+		item = item as Item
+		
+		if !item:
+			continue
+		
+		if item.locked:
+			continue
+		
+		item.sell_item()
