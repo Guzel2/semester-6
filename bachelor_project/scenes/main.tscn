@@ -774,9 +774,34 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("continue:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("win_text:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_vdb6n"]
 resource_name = "fade_out"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -784,7 +809,7 @@ tracks/0/path = NodePath("bg:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
@@ -796,7 +821,7 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -808,7 +833,7 @@ tracks/2/path = NodePath("new_run:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -820,7 +845,7 @@ tracks/3/path = NodePath("main_menu:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -832,7 +857,31 @@ tracks/4/path = NodePath("lose_text:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("continue:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("win_text:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -929,7 +978,7 @@ _data = {
 "fade_out": SubResource("Animation_di3v8")
 }
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -942,6 +991,7 @@ day_display = NodePath("camera/UI/day_display")
 quest_display = NodePath("camera/UI/quest_container/quest_display")
 win_screen = NodePath("camera/win_screen")
 lose_screen = NodePath("camera/lose_screen")
+main_menu = NodePath("camera/main_menu")
 metadata/_edit_horizontal_guides_ = [50.0, 12.0]
 metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0, 264.0]
 
@@ -2070,7 +2120,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 0.588235)
 
 [node name="win_text" type="Label" parent="camera/win_screen"]
 offset_left = 197.0
@@ -2103,7 +2153,6 @@ theme = ExtResource("15_3rkr0")
 text = "Continue"
 
 [node name="main_menu" type="Button" parent="camera/win_screen"]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2196,7 +2245,6 @@ animation_player = NodePath("animation_player")
 libraries = {
 "": SubResource("AnimationLibrary_5diwj")
 }
-autoplay = "fade_in"
 
 [node name="background" type="ColorRect" parent="camera/main_menu"]
 anchors_preset = 15
@@ -2268,18 +2316,6 @@ theme = ExtResource("15_3rkr0")
 text = "Quit
 "
 
-[connection signal="end_off_day" from="." to="home_scent_manager" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="food_scent_manager" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="danger_scent_manager" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="ant_manager" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_end_off_day"]
-[connection signal="end_off_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_end_off_day"]
-[connection signal="start_off_day" from="." to="ant_manager" method="_on_main_start_off_day"]
-[connection signal="start_off_day" from="." to="food_manager" method="_on_main_start_off_day"]
-[connection signal="start_off_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_off_day"]
-[connection signal="start_off_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_start_off_day"]
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
 [connection signal="child_entered_tree" from="ant_manager" to="ant_manager" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="ant_manager" to="ant_manager" method="_on_child_exiting_tree"]
@@ -2296,8 +2332,11 @@ text = "Quit
 [connection signal="pressed" from="camera/shop_menu/interactables/reroll_shop" to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_reroll_shop_pressed"]
 [connection signal="remaining_obstacles" from="camera/shop_menu/interactables/bought_panel/bought_holder" to="camera/UI/obstacle_ui_holder" method="_on_bought_holder_remaining_obstacles"]
 [connection signal="equipt_items" from="camera/shop_menu/interactables/equipt_panel/equipt_holder" to="ant_manager" method="_on_equipt_holder_equipt_items"]
+[connection signal="continue_game" from="camera/win_screen" to="." method="_on_win_screen_continue_game"]
+[connection signal="main_menu" from="camera/win_screen" to="." method="_on_win_screen_main_menu"]
 [connection signal="pressed" from="camera/win_screen/continue" to="camera/win_screen" method="_on_continue_pressed"]
 [connection signal="pressed" from="camera/win_screen/main_menu" to="camera/win_screen" method="_on_main_menu_pressed"]
+[connection signal="main_menu" from="camera/lose_screen" to="." method="_on_lose_screen_main_menu"]
 [connection signal="pressed" from="camera/lose_screen/new_run" to="camera/lose_screen" method="_on_new_run_pressed"]
 [connection signal="pressed" from="camera/lose_screen/main_menu" to="camera/lose_screen" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="camera/main_menu/interactables/new_run" to="camera/main_menu" method="_on_new_run_pressed"]

@@ -20,21 +20,21 @@ extends Node2D
 @export var quest_display : NumberDisplay
 @export var win_screen : WinScreen
 @export var lose_screen : LoseScreen
+@export var main_menu : MainMenu
 
 var previous_simulation_speed = 1
 
-signal start_off_day
-signal end_off_day
+signal start_of_day
+signal end_of_day
 
 var day_count = -1:
 	set(value):
 		day_count = value
 		day_display.update_number(day_count + 1)
-		
-		if day_count % 5 == 0:
-			check_quest()
 
 var fullscreen = false
+
+var go_to_main_menu_next = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released('f11'):
@@ -56,26 +56,35 @@ func update_simulation_speed():
 	ant_manager.simulation_speed = simulation_speed
 
 func new_run():
+	simulation_speed = 1
 	end_day()
 
 func go_to_main_menu():
-	pass
+	main_menu.enter()
 
 func start_day():
 	simulation_speed = previous_simulation_speed
 	shadow_manager.start_day()
 	
-	emit_signal("start_off_day")
+	emit_signal("start_of_day")
 
 func end_day():
-	if day_count >= 0:
-		await lose_game()
-	
 	day_count += 1
+	
+	if day_count > 0:
+		win_game()
+		return
+	
+	if day_count % 5 == 0:
+		check_quest()
+	else:
+		go_to_shop()
+
+func go_to_shop():
 	camera.transition_to_shop(true)
 	simulation_speed = 0
 	
-	emit_signal("end_off_day")
+	emit_signal("end_of_day")
 
 func check_quest():
 	var quest_level = day_count / 5
@@ -86,31 +95,27 @@ func check_quest():
 				print("next quest yay")
 				quest_display.suffix = "/60 due by Day 10"
 			else:
-				await lose_game()
+				lose_game()
 		2:
 			if ant_manager.quest_progress > 60:
 				print("next quest yay")
 				quest_display.suffix = "/100 due by Day 15 to win"
 			else:
-				await lose_game()
+				lose_game()
 		3:
 			if ant_manager.quest_progress > 100:
 				print("you won yay")
-				await win_game()
+				win_game()
 			else:
-				await lose_game()
+				lose_game()
 	
 	ant_manager.quest_progress = 0
 
 func lose_game():
 	lose_screen.animation_player.play("fade_in")
-	
-	await lose_screen.button_pressed
 
 func win_game():
 	win_screen.animation_player.play("fade_in")
-	
-	await win_screen.button_pressed
 
 func _on_shadow_manager_end_of_day():
 	end_day()
@@ -122,3 +127,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_start_next_day_pressed() -> void:
 	shadow_manager.timer = 0
 	shadow_manager._process(.01)
+
+func _on_win_screen_main_menu() -> void:
+	go_to_main_menu()
+
+func _on_lose_screen_main_menu() -> void:
+	go_to_main_menu()
+
+func _on_win_screen_continue_game() -> void:
+	go_to_shop()

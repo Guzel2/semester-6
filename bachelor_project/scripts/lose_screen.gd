@@ -20,5 +20,3 @@ func _on_new_run_pressed() -> void:
 func _on_main_menu_pressed() -> void:
 	emit_signal("button_pressed")
 	emit_signal("main_menu")
-	
-	get_tree().quit()
