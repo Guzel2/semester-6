@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=55 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_by8xl"]
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
@@ -30,6 +30,8 @@
 [ext_resource type="Script" path="res://scripts/shop/equipt_holder.gd" id="28_v574y"]
 [ext_resource type="Shader" path="res://shaders/shop/horizontal_fade.gdshader" id="29_n3mbe"]
 [ext_resource type="Script" path="res://scripts/win_screen.gd" id="30_hifj7"]
+[ext_resource type="Script" path="res://scripts/lose_screen.gd" id="31_kn4qn"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="32_uxepw"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
 fractal_octaves = 2
@@ -94,6 +96,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("interactables:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_6t1i8"]
 resource_name = "fade_in"
@@ -140,7 +154,7 @@ tracks/3/path = NodePath("interactables:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 1),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -151,50 +165,50 @@ resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rectangle_shader:material:shader_parameter/pixel_count")
+tracks/0/path = NodePath("background:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(3.86375, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 256.0]
+"values": [Color(0.8, 0.8, 0.8, 1), Color(0.8, 0.8, 0.8, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("background:color")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8, 0.8, 0.8, 0.705882), Color(0.8, 0.8, 0.8, 0)]
+"update": 1,
+"values": [true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
+tracks/2/path = NodePath("interactables:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("interactables:modulate")
+tracks/3/path = NodePath("rectangle_shader:material:shader_parameter/pixel_count")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(3.86, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [1.0, 256.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uyjrr"]
@@ -726,69 +740,6 @@ shader = ExtResource("29_n3mbe")
 shader_parameter/cut_off = 1.0
 shader_parameter/left_to_right = false
 
-[sub_resource type="Animation" id="Animation_1fmmt"]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bg:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("continue:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("main_menu:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("win_text:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_f6dyx"]
 length = 0.001
 tracks/0/type = "value"
@@ -818,7 +769,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("continue:modulate")
+tracks/2/path = NodePath("new_run:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -842,7 +793,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("win_text:modulate")
+tracks/4/path = NodePath("lose_text:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -850,6 +801,69 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1fmmt"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("new_run:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_menu:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("lose_text:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vdb6n"]
@@ -881,7 +895,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("continue:modulate")
+tracks/2/path = NodePath("new_run:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -905,7 +919,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("win_text:modulate")
+tracks/4/path = NodePath("lose_text:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -922,7 +936,7 @@ _data = {
 "fade_out": SubResource("Animation_vdb6n")
 }
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -934,6 +948,7 @@ camera = NodePath("camera")
 day_display = NodePath("camera/UI/day_display")
 quest_display = NodePath("camera/UI/quest_container/quest_display")
 win_screen = NodePath("camera/win_screen")
+lose_screen = NodePath("camera/lose_screen")
 metadata/_edit_horizontal_guides_ = [50.0, 12.0]
 metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0, 264.0]
 
@@ -1148,6 +1163,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
+visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -1165,7 +1181,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 0.705882)
+color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="rectangle_shader" type="ColorRect" parent="camera/shop_menu"]
 material = SubResource("ShaderMaterial_01rhl")
@@ -2111,6 +2127,157 @@ focus_mode = 0
 theme = ExtResource("15_3rkr0")
 text = "Main Menu"
 
+[node name="lose_screen" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("31_kn4qn")
+animation_player = NodePath("animation_player")
+
+[node name="animation_player" type="AnimationPlayer" parent="camera/lose_screen"]
+libraries = {
+"": SubResource("AnimationLibrary_4wv6r")
+}
+
+[node name="bg" type="ColorRect" parent="camera/lose_screen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="lose_text" type="Label" parent="camera/lose_screen"]
+offset_left = 97.0
+offset_top = 57.0
+offset_right = 431.0
+offset_bottom = 128.0
+pivot_offset = Vector2(67, 17)
+tooltip_text = "The amount of Ants currently 
+in your colony.
+Selling an Item spawns an Ant."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "You lost!
+Your colony starved"
+horizontal_alignment = 1
+
+[node name="new_run" type="Button" parent="camera/lose_screen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 0.5
+offset_right = 72.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Spend 1 money to refresh the shop.
+Right click on Items to lock them."
+focus_mode = 0
+theme = ExtResource("15_3rkr0")
+text = "New Run"
+
+[node name="main_menu" type="Button" parent="camera/lose_screen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 51.5
+offset_right = 72.0
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Spend 1 money to refresh the shop.
+Right click on Items to lock them."
+focus_mode = 0
+theme = ExtResource("15_3rkr0")
+text = "Main Menu"
+
+[node name="main_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("main")]
+visible = false
+script = ExtResource("32_uxepw")
+main = NodePath("../..")
+
+[node name="background" type="ColorRect" parent="camera/main_menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="rectangle_shader" type="ColorRect" parent="camera/main_menu"]
+visible = false
+material = SubResource("ShaderMaterial_01rhl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="interactables" type="Control" parent="camera/main_menu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="title" type="Label" parent="camera/main_menu/interactables"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 57.0
+offset_right = 431.0
+offset_bottom = 91.0
+pivot_offset = Vector2(67, 17)
+tooltip_text = "The amount of Ants currently 
+in your colony.
+Selling an Item spawns an Ant."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "Ant Game"
+horizontal_alignment = 1
+
+[node name="new_run" type="Button" parent="camera/main_menu/interactables"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 172.0
+offset_top = 129.0
+offset_right = 316.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Spend 1 money to refresh the shop.
+Right click on Items to lock them."
+focus_mode = 0
+theme = ExtResource("15_3rkr0")
+text = "New Run"
+
+[node name="quit" type="Button" parent="camera/main_menu/interactables"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 172.0
+offset_top = 180.0
+offset_right = 316.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Spend 1 money to refresh the shop.
+Right click on Items to lock them."
+focus_mode = 0
+theme = ExtResource("15_3rkr0")
+text = "Quit
+"
+
 [connection signal="end_off_day" from="." to="home_scent_manager" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="food_scent_manager" method="_on_main_end_off_day"]
 [connection signal="end_off_day" from="." to="danger_scent_manager" method="_on_main_end_off_day"]
@@ -2139,5 +2306,9 @@ text = "Main Menu"
 [connection signal="pressed" from="camera/shop_menu/interactables/reroll_shop" to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_reroll_shop_pressed"]
 [connection signal="remaining_obstacles" from="camera/shop_menu/interactables/bought_panel/bought_holder" to="camera/UI/obstacle_ui_holder" method="_on_bought_holder_remaining_obstacles"]
 [connection signal="equipt_items" from="camera/shop_menu/interactables/equipt_panel/equipt_holder" to="ant_manager" method="_on_equipt_holder_equipt_items"]
-[connection signal="visibility_changed" from="camera/win_screen" to="camera/win_screen" method="_on_visibility_changed"]
 [connection signal="pressed" from="camera/win_screen/continue" to="camera/win_screen" method="_on_continue_pressed"]
+[connection signal="pressed" from="camera/win_screen/main_menu" to="camera/win_screen" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="camera/lose_screen/new_run" to="camera/lose_screen" method="_on_new_run_pressed"]
+[connection signal="pressed" from="camera/lose_screen/main_menu" to="camera/lose_screen" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="camera/main_menu/interactables/new_run" to="camera/main_menu" method="_on_new_run_pressed"]
+[connection signal="pressed" from="camera/main_menu/interactables/quit" to="camera/main_menu" method="_on_quit_pressed"]

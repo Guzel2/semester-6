@@ -1,19 +1,19 @@
-class_name WinScreen
+class_name LoseScreen
 extends CanvasLayer
 
 @export var animation_player : AnimationPlayer
 
 signal button_pressed
-signal continue_game
+signal new_run
 signal main_menu
 
 func _ready() -> void:
 	visible = false
 
-func _on_continue_pressed() -> void:
+func _on_new_run_pressed() -> void:
 	emit_signal("button_pressed")
 	
-	emit_signal("continue_game")
+	emit_signal("new_run")
 	animation_player.play("fade_out")
 
 

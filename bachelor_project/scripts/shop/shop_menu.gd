@@ -21,6 +21,7 @@ func transition_to_shop(enter : bool):
 		animation_player.play("fade_in")
 	else:
 		animation_player.play("fade_out")
+		print("test")
 
 func show_buy_indicator():
 	buy_indicator.visible = true

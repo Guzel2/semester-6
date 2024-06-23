@@ -19,6 +19,7 @@ extends Node2D
 @export var day_display : NumberDisplay
 @export var quest_display : NumberDisplay
 @export var win_screen : WinScreen
+@export var lose_screen : LoseScreen
 
 
 var previous_simulation_speed = 1
@@ -55,6 +56,9 @@ func update_simulation_speed():
 	danger_scent_manager.simulation_speed = simulation_speed
 	ant_manager.simulation_speed = simulation_speed
 
+func new_run():
+	end_day()
+
 func start_day():
 	simulation_speed = previous_simulation_speed
 	shadow_manager.start_day()
@@ -63,7 +67,7 @@ func start_day():
 
 func end_day():
 	if day_count >= 0:
-		win_game()
+		await lose_game()
 	
 	day_count += 1
 	camera.transition_to_shop(true)
@@ -80,31 +84,31 @@ func check_quest():
 				print("next quest yay")
 				quest_display.suffix = "/60 due by Day 10"
 			else:
-				lose_game()
+				await lose_game()
 		2:
 			if ant_manager.quest_progress > 60:
 				print("next quest yay")
 				quest_display.suffix = "/100 due by Day 15 to win"
 			else:
-				lose_game()
+				await lose_game()
 		3:
 			if ant_manager.quest_progress > 100:
 				print("you won yay")
-				win_game()
+				await win_game()
 			else:
-				lose_game()
+				await lose_game()
 	
 	ant_manager.quest_progress = 0
 
 func lose_game():
-	print("you lose")
+	lose_screen.animation_player.play("fade_in")
+	
+	await lose_screen.button_pressed
 
 func win_game():
-	print("win game")
-	
 	win_screen.animation_player.play("fade_in")
 	
-	await win_screen.continue_game
+	await win_screen.button_pressed
 
 func _on_shadow_manager_end_of_day():
 	end_day()
