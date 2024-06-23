@@ -71,8 +71,6 @@ func check_quest():
 	
 	var quest_level = day_count / 5
 	
-	ant_manager.quest_progress = 1000
-	
 	match quest_level:
 		1:
 			if ant_manager.quest_progress > 30:
@@ -90,6 +88,7 @@ func check_quest():
 		3:
 			if ant_manager.quest_progress > 100:
 				print("you won yay")
+				win_game()
 			else:
 				lose_game()
 	
@@ -97,6 +96,9 @@ func check_quest():
 
 func lose_game():
 	print("you lose")
+	
+func win_game():
+	print("you win")
 
 func _on_shadow_manager_end_of_day():
 	end_day()

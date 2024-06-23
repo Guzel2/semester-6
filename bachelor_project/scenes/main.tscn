@@ -879,6 +879,9 @@ offset_left = 17.0
 offset_top = 15.0
 offset_right = 57.0
 offset_bottom = 35.0
+tooltip_text = "The total amount of Days
+ you've played this run."
+mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "Day 1"
 script = ExtResource("22_his4a")
@@ -890,6 +893,9 @@ offset_left = 97.0
 offset_top = 15.0
 offset_right = 143.0
 offset_bottom = 35.0
+tooltip_text = "The amount of Ants 
+currently in your colony."
+mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "5 Ants"
 script = ExtResource("22_his4a")
@@ -900,6 +906,11 @@ offset_left = 193.0
 offset_top = 15.0
 offset_right = 242.0
 offset_bottom = 35.0
+tooltip_text = "Your currently available Food. 
+Spawning an Ant costs 5 Food. 
+This does not decrease your 
+total Food amount."
+mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "5 Food"
 script = ExtResource("22_his4a")
@@ -915,7 +926,8 @@ alignment = 2
 [node name="quest_display" type="Label" parent="camera/UI/quest_container"]
 layout_mode = 2
 size_flags_horizontal = 8
-tooltip_text = "Collect a total of 30 Food in 5 days."
+tooltip_text = "The total amount of Food
+you need to collect in 5 days."
 mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "0/30 due by Day 5"
@@ -937,7 +949,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
-visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -955,7 +966,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 0)
+color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="rectangle_shader" type="ColorRect" parent="camera/shop_menu"]
 material = SubResource("ShaderMaterial_01rhl")
@@ -966,7 +977,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="interactables" type="Control" parent="camera/shop_menu"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1072,6 +1082,12 @@ offset_left = 17.0
 offset_top = 23.0
 offset_right = 40.0
 offset_bottom = 43.0
+tooltip_text = "Your available Money. 
+Purchasing an Item
+costs 1 Money.
+Your Money resets to
+5 at the end of a day."
+mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "5 $"
 script = ExtResource("22_his4a")
@@ -1083,6 +1099,10 @@ offset_left = 235.0
 offset_top = 23.0
 offset_right = 280.0
 offset_bottom = 43.0
+tooltip_text = "The amount of Ants currently 
+in your colony.
+Selling an Item spawns an Ant."
+mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "5 Ants"
 script = ExtResource("22_his4a")
