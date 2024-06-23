@@ -21,7 +21,6 @@ extends Node2D
 @export var win_screen : WinScreen
 @export var lose_screen : LoseScreen
 
-
 var previous_simulation_speed = 1
 
 signal start_off_day
@@ -47,7 +46,7 @@ func _input(event: InputEvent) -> void:
 			DisplayServer.window_set_mode(0, 0)
 
 func _ready():
-	end_day()
+	simulation_speed = 0
 
 func update_simulation_speed():
 	shadow_manager.simulation_speed = simulation_speed
@@ -58,6 +57,9 @@ func update_simulation_speed():
 
 func new_run():
 	end_day()
+
+func go_to_main_menu():
+	pass
 
 func start_day():
 	simulation_speed = previous_simulation_speed
