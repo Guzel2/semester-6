@@ -9,7 +9,7 @@ extends AntBase
 
 @export var ant_display : NumberDisplay
 @export var food_display : NumberDisplay
-@export var total_food_display : NumberDisplay
+@export var quest_display : NumberDisplay
 
 @export var shop_ant_display : NumberDisplay
 
@@ -43,9 +43,15 @@ var total_food = 0:
 	get:
 		return total_food
 	set(value):
+		var difference = value - total_food
 		total_food = value
-		total_food_display.update_number(total_food)
-	
+		
+		quest_progress += difference
+
+var quest_progress = 0:
+	set(value):
+		quest_progress = value
+		quest_display.update_number(quest_progress)
 
 var ant_spawn_interval = 4.0
 var ant_spawn_time = .0
@@ -61,6 +67,7 @@ var ant_count = 0:
 
 func _ready():
 	home_visual.position = home_position
+	home_visual.rotation = randf_range(0, 2 * PI)
 	food_amount = food_amount
 
 func _process(delta):

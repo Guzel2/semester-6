@@ -17,6 +17,7 @@ extends Node2D
 @export var ant_manager : AntManager
 @export var camera : Camera
 @export var day_display : NumberDisplay
+@export var quest_display : NumberDisplay
 
 var previous_simulation_speed = 1
 
@@ -28,10 +29,19 @@ var day_count = -1:
 		day_count = value
 		day_display.update_number(day_count + 1)
 		
-		print(day_count)
-		
 		if day_count % 5 == 0:
-			print("quest")
+			check_quest()
+
+var fullscreen = true
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released('f11'):
+		fullscreen = !fullscreen
+		
+		if fullscreen:
+			DisplayServer.window_set_mode(3, 0)
+		else:
+			DisplayServer.window_set_mode(0, 0)
 
 func _ready():
 	end_day()
@@ -55,6 +65,38 @@ func end_day():
 	simulation_speed = 0
 	
 	emit_signal("end_off_day")
+
+func check_quest():
+	print(ant_manager.quest_progress)
+	
+	var quest_level = day_count / 5
+	
+	ant_manager.quest_progress = 1000
+	
+	match quest_level:
+		1:
+			if ant_manager.quest_progress > 30:
+				print("next quest yay")
+				
+				quest_display.suffix = "/60 due by Day 10"
+			else:
+				lose_game()
+		2:
+			if ant_manager.quest_progress > 60:
+				print("next quest yay")
+				quest_display.suffix = "/100 due by Day 15 to win"
+			else:
+				lose_game()
+		3:
+			if ant_manager.quest_progress > 100:
+				print("you won yay")
+			else:
+				lose_game()
+	
+	ant_manager.quest_progress = 0
+
+func lose_game():
+	print("you lose")
 
 func _on_shadow_manager_end_of_day():
 	end_day()

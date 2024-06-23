@@ -725,7 +725,7 @@ shader = ExtResource("29_n3mbe")
 shader_parameter/cut_off = 1.0
 shader_parameter/left_to_right = false
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -735,6 +735,7 @@ food_manager = NodePath("food_manager")
 ant_manager = NodePath("ant_manager")
 camera = NodePath("camera")
 day_display = NodePath("camera/UI/day_display")
+quest_display = NodePath("camera/UI/quest_container/quest_display")
 metadata/_edit_horizontal_guides_ = [50.0, 12.0]
 metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0]
 
@@ -760,7 +761,7 @@ simulation_speed = 2.0
 visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
 
-[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "ant_display", "food_display", "total_food_display", "shop_ant_display", "home_visual")]
+[node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "ant_display", "food_display", "quest_display", "shop_ant_display", "home_visual")]
 script = ExtResource("2_enl3e")
 home_scent_manager = NodePath("../home_scent_manager")
 food_scent_manager = NodePath("../food_scent_manager")
@@ -769,7 +770,7 @@ food_manager = NodePath("../food_manager")
 shadow_manager = NodePath("../shadow_manager")
 ant_display = NodePath("../camera/UI/ant_display")
 food_display = NodePath("../camera/UI/food_display")
-total_food_display = NodePath("../camera/UI/quest_display")
+quest_display = NodePath("../camera/UI/quest_container/quest_display")
 shop_ant_display = NodePath("../camera/shop_menu/interactables/ant_display")
 ant_scene = ExtResource("3_o5lse")
 home_visual = NodePath("home")
@@ -904,11 +905,16 @@ text = "5 Food"
 script = ExtResource("22_his4a")
 suffix = " Food"
 
-[node name="quest_display" type="Label" parent="camera/UI"]
-offset_left = 382.0
-offset_top = 15.0
+[node name="quest_container" type="HBoxContainer" parent="camera/UI"]
+offset_left = 283.0
+offset_top = 12.0
 offset_right = 511.0
-offset_bottom = 35.0
+offset_bottom = 37.0
+alignment = 2
+
+[node name="quest_display" type="Label" parent="camera/UI/quest_container"]
+layout_mode = 2
+size_flags_horizontal = 8
 tooltip_text = "Collect a total of 30 Food in 5 days."
 mouse_filter = 1
 theme = ExtResource("19_cq256")
@@ -931,6 +937,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
+visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -948,7 +955,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 1)
+color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="rectangle_shader" type="ColorRect" parent="camera/shop_menu"]
 material = SubResource("ShaderMaterial_01rhl")
@@ -959,6 +966,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="interactables" type="Control" parent="camera/shop_menu"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
