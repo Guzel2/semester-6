@@ -157,10 +157,10 @@ func end_day():
 		ant_count += 1
 		ant.queue_free()
 
-func _on_main_start_off_day():
+func _on_main_start_of_day():
 	start_day()
 
-func _on_main_end_off_day():
+func _on_main_end_of_day():
 	end_day()
 
 func _on_child_entered_tree(node: Node) -> void:

@@ -2316,6 +2316,18 @@ theme = ExtResource("15_3rkr0")
 text = "Quit
 "
 
+[connection signal="end_of_day" from="." to="home_scent_manager" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="food_scent_manager" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="danger_scent_manager" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="ant_manager" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_end_of_day"]
+[connection signal="start_of_day" from="." to="ant_manager" method="_on_main_start_of_day"]
+[connection signal="start_of_day" from="." to="food_manager" method="_on_main_start_of_day"]
+[connection signal="start_of_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_of_day"]
+[connection signal="start_of_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_start_of_day"]
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
 [connection signal="child_entered_tree" from="ant_manager" to="ant_manager" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="ant_manager" to="ant_manager" method="_on_child_exiting_tree"]

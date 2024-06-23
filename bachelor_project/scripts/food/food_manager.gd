@@ -152,7 +152,7 @@ func add_food_info(info : FoodInfo):
 		if pos + Vector2(1, 0) in info.positions:
 			food.right = true
 
-func _on_main_start_off_day():
+func _on_main_start_of_day():
 	min_food_radius += daily_increase
 	max_food_radius += daily_increase
 	

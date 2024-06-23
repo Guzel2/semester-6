@@ -80,7 +80,7 @@ func refill_shop():
 	
 	#call_deferred("late_sort")
 
-func _on_main_end_off_day():
+func _on_main_end_of_day():
 	reroll_shop()
 
 func _on_reroll_shop_pressed() -> void:

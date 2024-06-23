@@ -37,7 +37,7 @@ func _on_bought_holder_remaining_obstacles(items : Array):
 	for item in items:
 		add_obstacle(item)
 
-func _on_main_end_off_day():
+func _on_main_end_of_day():
 	var obstacles = []
 	
 	for obstacle in get_children():
@@ -48,4 +48,3 @@ func _on_main_end_off_day():
 			obstacle.queue_free()
 	
 	emit_signal("remaining_obstacles", obstacles)
-	

@@ -15,9 +15,9 @@ func start_day():
 func end_day():
 	pass
 
-func _on_main_start_off_day():
+func _on_main_start_of_day():
 	start_day()
 
-func _on_main_end_off_day():
+func _on_main_end_of_day():
 	end_day()
 

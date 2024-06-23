@@ -151,5 +151,5 @@ func show_scent():
 			
 			spawn_temp_scent_visual(Vector2(x, y), scent.type)
 
-func _on_main_end_off_day() -> void:
+func _on_main_end_of_day() -> void:
 	reset_scents()
