@@ -194,7 +194,7 @@ _data = {
 shader = ExtResource("23_7dj3i")
 shader_parameter/color_sample_points = 11
 shader_parameter/color_compare_points = 10
-shader_parameter/pixel_count = 256.0
+shader_parameter/pixel_count = 1.0
 
 [sub_resource type="Animation" id="Animation_hyg6q"]
 length = 0.001
@@ -978,7 +978,7 @@ _data = {
 "fade_out": SubResource("Animation_di3v8")
 }
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu", "bought_holder", "equipt_holder")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -992,6 +992,8 @@ quest_display = NodePath("camera/UI/quest_container/quest_display")
 win_screen = NodePath("camera/win_screen")
 lose_screen = NodePath("camera/lose_screen")
 main_menu = NodePath("camera/main_menu")
+bought_holder = NodePath("camera/shop_menu/interactables/bought_panel/bought_holder")
+equipt_holder = NodePath("camera/shop_menu/interactables/equipt_panel/equipt_holder")
 metadata/_edit_horizontal_guides_ = [50.0, 12.0]
 metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0, 264.0]
 
@@ -1017,6 +1019,13 @@ simulation_speed = 2.0
 visualize_scent = false
 scent_visual_scene = ExtResource("2_jfod4")
 
+[node name="food_manager" type="Node2D" parent="." node_paths=PackedStringArray("ant_home")]
+script = ExtResource("3_y4ur8")
+debug_food = false
+food_visual_scene = ExtResource("7_kro4i")
+food_debug_scene = ExtResource("4_3pryx")
+ant_home = NodePath("../ant_manager/home")
+
 [node name="ant_manager" type="Node2D" parent="." node_paths=PackedStringArray("home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "shadow_manager", "ant_display", "food_display", "quest_display", "shop_ant_display", "home_visual")]
 script = ExtResource("2_enl3e")
 home_scent_manager = NodePath("../home_scent_manager")
@@ -1027,19 +1036,12 @@ shadow_manager = NodePath("../shadow_manager")
 ant_display = NodePath("../camera/UI/ant_display")
 food_display = NodePath("../camera/UI/food_display")
 quest_display = NodePath("../camera/UI/quest_container/quest_display")
-shop_ant_display = NodePath("../camera/shop_menu/interactables/ant_display")
+shop_ant_display = NodePath("../camera/shop_menu/interactables/HFlowContainer/ant_display")
 ant_scene = ExtResource("3_o5lse")
 home_visual = NodePath("home")
 
 [node name="home" type="Sprite2D" parent="ant_manager"]
 texture = ExtResource("7_um71j")
-
-[node name="food_manager" type="Node2D" parent="." node_paths=PackedStringArray("ant_home")]
-script = ExtResource("3_y4ur8")
-debug_food = false
-food_visual_scene = ExtResource("7_kro4i")
-food_debug_scene = ExtResource("4_3pryx")
-ant_home = NodePath("../ant_manager/home")
 
 [node name="obstacle_manager" type="Node2D" parent="."]
 z_index = -1
@@ -1171,6 +1173,7 @@ theme = ExtResource("19_cq256")
 text = "5 Food"
 script = ExtResource("22_his4a")
 suffix = " Food"
+metadata/_edit_use_anchors_ = true
 
 [node name="quest_container" type="HBoxContainer" parent="camera/UI"]
 offset_left = 283.0
@@ -1186,7 +1189,7 @@ tooltip_text = "The total amount of Food
 you need to collect in 5 days."
 mouse_filter = 1
 theme = ExtResource("19_cq256")
-text = "0/30 due by Day 5"
+text = "0/50 due by Day 5"
 horizontal_alignment = 2
 script = ExtResource("22_his4a")
 suffix = "/30 due by Day 5"
@@ -1206,7 +1209,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
-visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -1224,7 +1226,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 0)
+color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="rectangle_shader" type="ColorRect" parent="camera/shop_menu"]
 material = SubResource("ShaderMaterial_01rhl")
@@ -1235,7 +1237,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="interactables" type="Control" parent="camera/shop_menu"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1378,13 +1379,18 @@ theme = ExtResource("19_cq256")
 text = "5 $"
 script = ExtResource("22_his4a")
 suffix = " $"
+metadata/_edit_use_anchors_ = true
 
-[node name="ant_display" type="Label" parent="camera/shop_menu/interactables"]
+[node name="HFlowContainer" type="HFlowContainer" parent="camera/shop_menu/interactables"]
 layout_mode = 0
-offset_left = 235.0
+offset_left = 12.0
 offset_top = 23.0
-offset_right = 280.0
-offset_bottom = 43.0
+offset_right = 209.0
+offset_bottom = 42.0
+alignment = 2
+
+[node name="ant_display" type="Label" parent="camera/shop_menu/interactables/HFlowContainer"]
+layout_mode = 2
 tooltip_text = "The amount of Ants currently 
 in your colony.
 Selling an Item spawns an Ant."
@@ -1409,9 +1415,8 @@ in your colony.
 Selling an Item spawns an Ant."
 mouse_filter = 1
 theme = ExtResource("19_cq256")
-text = "0/30 due by Day 5"
+text = "0/50 due by Day 5"
 script = ExtResource("22_his4a")
-suffix = " Ants"
 
 [node name="buy_indicator" type="Node2D" parent="camera/shop_menu"]
 visible = false
@@ -2322,8 +2327,6 @@ text = "Quit
 [connection signal="end_of_day" from="." to="ant_manager" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_of_day"]
-[connection signal="end_of_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_end_of_day"]
-[connection signal="end_of_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_end_of_day"]
 [connection signal="start_of_day" from="." to="ant_manager" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="food_manager" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_of_day"]

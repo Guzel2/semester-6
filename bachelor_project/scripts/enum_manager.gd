@@ -25,4 +25,4 @@ enum item_list
 }
 
 static var obstacle_count = 5
-static var max_item_level = 3
+static var max_item_level = 4

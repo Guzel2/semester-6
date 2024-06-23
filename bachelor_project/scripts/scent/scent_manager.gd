@@ -13,10 +13,11 @@ var scent_list = []
 
 var scents_to_process = []
 
-func _ready() -> void:
+func new_run() -> void:
 	if name == "danger_scent_manager":
 		set_process(false)
 	
+	scent_list.clear()
 	for x in grid_size:
 		var line = []
 		for y in grid_size:
@@ -27,11 +28,6 @@ func reset_scents():
 	for x in grid_size:
 		for y in grid_size:
 			scent_list[x][y] = null
-	
-	add_scent(Vector2(0, 0), EnumManager.scent_types.home)
-	add_scent(Vector2(grid_size, 0), EnumManager.scent_types.home)
-	add_scent(Vector2(0, grid_size * cell_size - 1), EnumManager.scent_types.home)
-	add_scent(Vector2(grid_size * cell_size - 1, grid_size * cell_size - 1), EnumManager.scent_types.home)
 
 func get_scent(pos: Vector2) -> Scent:
 	var local_pos = global_pos_to_local_pos(pos)

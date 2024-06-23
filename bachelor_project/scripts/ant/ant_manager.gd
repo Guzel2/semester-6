@@ -65,10 +65,12 @@ var ant_count = 0:
 		ant_count = value
 		shop_ant_display.update_number(ant_count)
 
-func _ready():
+func new_run():
 	home_visual.position = home_position
 	home_visual.rotation = randf_range(0, 2 * PI)
-	food_amount = food_amount
+	food_amount = 30
+	total_food = 0
+	quest_progress = 0
 
 func _process(delta):
 	delta *= simulation_speed

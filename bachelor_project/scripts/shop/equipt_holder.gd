@@ -9,15 +9,13 @@ func show_move_indicator():
 func hide_move_indicator():
 	shop_menu.hide_sell_indicator()
 
+func new_run():
+	for child in get_children():
+		queue_free()
+
 func start_day():
 	emit_signal("equipt_items", get_children())
 
-func end_day():
-	pass
-
 func _on_main_start_of_day():
 	start_day()
-
-func _on_main_end_of_day():
-	end_day()
 

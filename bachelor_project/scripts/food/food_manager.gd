@@ -15,17 +15,19 @@ var food_debug_list = []
 var food_visual_list = []
 
 var min_food_radius = 150
-var max_food_radius = 300
+var max_food_radius = 250
 
-var daily_increase = 25
+var daily_increase = 30
 
-func _ready() -> void:
+func new_run() -> void:
+	food_list.clear()
 	for x in grid_size:
 		var line = []
 		for y in grid_size:
 			line.append(null)
 		food_list.append(line)
 	
+	food_visual_list.clear()
 	for x in grid_size:
 		var line = []
 		for y in grid_size:
@@ -33,13 +35,19 @@ func _ready() -> void:
 		food_visual_list.append(line)
 	
 	if debug_food:
+		food_debug_list.clear()
 		for x in grid_size:
 			var line = []
 			for y in grid_size:
 				line.append(null)
 			food_debug_list.append(line)
 	
-	add_visual_food()
+	for child in get_children():
+		child.queue_free()
+	
+	spawn_new_food()
+	spawn_new_food()
+	spawn_new_food()
 
 func get_food(pos: Vector2) -> Food:
 	var local_pos = global_pos_to_local_pos(pos)
@@ -153,6 +161,9 @@ func add_food_info(info : FoodInfo):
 			food.right = true
 
 func _on_main_start_of_day():
+	spawn_new_food()
+
+func spawn_new_food():
 	min_food_radius += daily_increase
 	max_food_radius += daily_increase
 	

@@ -39,10 +39,14 @@ enum item_state
 
 var state : item_state = item_state.buyable
 
+@export var level_display : NumberDisplay
 var item : EnumManager.item_list = EnumManager.item_list.rock_0
 var item_string : String
-var level : int = 0
-@export var max_level : int = EnumManager.max_item_level
+var level : int = 0:
+	set(value):
+		level = value
+		level_display.update_number(level + 1)
+var max_level : int = EnumManager.max_item_level
 
 var can_level_up:
 	get:
@@ -60,29 +64,41 @@ var tooltips = {
 	EnumManager.item_list.stick_1 : "A stick for blocking paths.",
 	
 	EnumManager.item_list.antenna : "Antenna\n
-									Level 1: Increase Scent detection by 2 Positions. (Normal is 5, Maximum is 27)\n
+									Level 1: Increase Scent detection by 2 Positions.\n(Normal is 5, Maximum is 27)\n
 									Level 2: Increase Scent detection by 4 Positions.\n
-									Level 3: Increase Scent detection by 6 Positions.\n",
+									Level 3: Increase Scent detection by 6 Positions.\n
+									Level 4: Increase Scent detection by 8 Positions.\n
+									Level 5: Increase Scent detection by 10 Positions.\n",
 	EnumManager.item_list.eyes : "Eyes\n
-									Level 1: Increase Scent detection by 2 Positions. (Normal is 6, Maximum is 30)\n
+									Level 1: Increase Scent detection by 2 Positions.\n(Normal is 6, Maximum is 30)\n
 									Level 2: Increase Scent detection by 4 Positions.\n
-									Level 3: Increase Scent detection by 6 Positions.\n",
+									Level 3: Increase Scent detection by 6 Positions.\n
+									Level 4: Increase Scent detection by 8 Positions.\n
+									Level 5: Increase Scent detection by 10 Positions.\n",
 	EnumManager.item_list.scent_gland : "Scent Gland\n
 									Level 1: Decrease Scent scan/deploy cooldown by 5%.\n
 									Level 2: Decrease Scent scan/deploy cooldown by 10%.\n
-									Level 3: Decrease Scent scan/deploy cooldown by 15%.\n",
+									Level 3: Decrease Scent scan/deploy cooldown by 15%.\n
+									Level 4: Decrease Scent scan/deploy cooldown by 20%.\n
+									Level 5: Decrease Scent scan/deploy cooldown by 25%.\n",
 	EnumManager.item_list.gaster : "Scent Gaster\n
 									Level 1: Increase maximum food storage by 10%.\n
 									Level 2: Increase maximum food storage by 20%.\n
-									Level 3: Increase maximum food storage by 30%.\n",
+									Level 3: Increase maximum food storage by 30%.\n
+									Level 4: Increase maximum food storage by 40%.\n
+									Level 5: Increase maximum food storage by 50%.\n",
 	EnumManager.item_list.mandibles : "Mandibles\n
 									Level 1: Increase harvesting speed by 5%.\n
 									Level 2: Increase harvesting speed by 10%.\n
-									Level 3: Increase harvesting speed by 15%.\n",
+									Level 3: Increase harvesting speed by 15%.\n
+									Level 4: Increase harvesting speed by 20%.\n
+									Level 5: Increase harvesting speed by 25%.\n",
 	EnumManager.item_list.legs : "Stronger Legs\n
 									Level 1: Increase move speed by 10%.\n
 									Level 2: Increase move speed by 20%.\n
-									Level 3: Increase move speed by 30%.\n",
+									Level 3: Increase move speed by 30%.\n
+									Level 4: Increase move speed by 40%.\n
+									Level 5: Increase move speed by 50%.\n",
 }
 
 func _ready():
@@ -273,6 +289,7 @@ func _on_gui_input(event):
 			lock_item(!locked)
 
 func lock_item(lock : bool):
+	print(level)
 	locked = lock
 	
 	lock_sprite.visible = locked

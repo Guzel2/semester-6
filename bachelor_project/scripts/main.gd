@@ -21,6 +21,8 @@ extends Node2D
 @export var win_screen : WinScreen
 @export var lose_screen : LoseScreen
 @export var main_menu : MainMenu
+@export var bought_holder : BoughtHolder
+@export var equipt_holder : EquiptHolder
 
 var previous_simulation_speed = 1
 
@@ -56,6 +58,16 @@ func update_simulation_speed():
 	ant_manager.simulation_speed = simulation_speed
 
 func new_run():
+	day_count = -1
+	food_manager.new_run()
+	home_scent_manager.new_run()
+	food_scent_manager.new_run()
+	danger_scent_manager.new_run()
+	ant_manager.new_run()
+	bought_holder.new_run()
+	equipt_holder.new_run()
+	quest_display.suffix = "/50 due by Day 5"
+	
 	simulation_speed = 1
 	end_day()
 
@@ -85,27 +97,32 @@ func go_to_shop():
 func check_quest():
 	var quest_level = day_count / 5
 	
+	var continue_game = false
+	
 	match quest_level:
 		1:
-			if ant_manager.quest_progress > 30:
-				print("next quest yay")
-				quest_display.suffix = "/60 due by Day 10"
+			if ant_manager.quest_progress > 50:
+				continue_game = true
+				quest_display.suffix = "/100 due by Day 10"
 			else:
 				lose_game()
 		2:
-			if ant_manager.quest_progress > 60:
-				print("next quest yay")
-				quest_display.suffix = "/100 due by Day 15 to win"
+			if ant_manager.quest_progress > 100:
+				continue_game = true
+				quest_display.suffix = "/250 due by Day 15 to win"
 			else:
 				lose_game()
 		3:
-			if ant_manager.quest_progress > 100:
+			if ant_manager.quest_progress > 250:
 				print("you won yay")
 				win_game()
 			else:
 				lose_game()
 	
 	ant_manager.quest_progress = 0
+	
+	if continue_game:
+		go_to_shop()
 
 func lose_game():
 	lose_screen.animation_player.play("fade_in")
