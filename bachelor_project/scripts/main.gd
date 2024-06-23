@@ -71,11 +71,7 @@ func start_day():
 func end_day():
 	day_count += 1
 	
-	if day_count > 0:
-		win_game()
-		return
-	
-	if day_count % 5 == 0:
+	if day_count % 5 == 0 and day_count > 0:
 		check_quest()
 	else:
 		go_to_shop()
@@ -136,3 +132,6 @@ func _on_lose_screen_main_menu() -> void:
 
 func _on_win_screen_continue_game() -> void:
 	go_to_shop()
+
+func _on_lose_screen_new_run() -> void:
+	new_run()

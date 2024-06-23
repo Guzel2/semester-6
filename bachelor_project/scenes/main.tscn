@@ -2337,6 +2337,7 @@ text = "Quit
 [connection signal="pressed" from="camera/win_screen/continue" to="camera/win_screen" method="_on_continue_pressed"]
 [connection signal="pressed" from="camera/win_screen/main_menu" to="camera/win_screen" method="_on_main_menu_pressed"]
 [connection signal="main_menu" from="camera/lose_screen" to="." method="_on_lose_screen_main_menu"]
+[connection signal="new_run" from="camera/lose_screen" to="." method="_on_lose_screen_new_run"]
 [connection signal="pressed" from="camera/lose_screen/new_run" to="camera/lose_screen" method="_on_new_run_pressed"]
 [connection signal="pressed" from="camera/lose_screen/main_menu" to="camera/lose_screen" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="camera/main_menu/interactables/new_run" to="camera/main_menu" method="_on_new_run_pressed"]
