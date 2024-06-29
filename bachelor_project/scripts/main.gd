@@ -21,8 +21,12 @@ extends Node2D
 @export var win_screen : WinScreen
 @export var lose_screen : LoseScreen
 @export var main_menu : MainMenu
+@export var buyable_holder : BuyableHolder
 @export var bought_holder : BoughtHolder
 @export var equipt_holder : EquiptHolder
+@export var options : Options
+@export var reroll_button : Button
+@export var spawn_ant_button : Button
 
 var previous_simulation_speed = 1
 
@@ -42,10 +46,12 @@ var go_to_main_menu_next = false
 var use_obstacles = true
 var obstacle_buyable = true
 
-var automatic_ant_spawning = true
+var manual_ant_spawning = true
+#ant manager tiny change
 
 var reroll_option = true
-var automatic_evolution = true
+#reroll button invis
+var manual_evolution = true
 
 #bonus:
 var custom_food_placing = false
@@ -71,6 +77,9 @@ func update_simulation_speed():
 	ant_manager.simulation_speed = simulation_speed
 
 func new_run():
+	options.set_options()
+	set_options()
+	
 	day_count = -1
 	food_manager.new_run()
 	home_scent_manager.new_run()
@@ -84,7 +93,22 @@ func new_run():
 	simulation_speed = 1
 	end_day()
 
+func set_options():
+	buyable_holder.use_obstacles = use_obstacles
+	buyable_holder.obstacle_buyable = obstacle_buyable
+	
+	bought_holder.obstacle_buyable = obstacle_buyable
+	
+	
+	ant_manager.set_process(!manual_ant_spawning)
+	spawn_ant_button.visible = manual_ant_spawning
+	
+	reroll_button.visible = reroll_option
+	
+	var manual_evolution = true
+
 func go_to_main_menu():
+	options.load_options()
 	main_menu.enter()
 
 func start_day():
@@ -127,7 +151,6 @@ func check_quest():
 				lose_game()
 		3:
 			if ant_manager.quest_progress > 250:
-				print("you won yay")
 				win_game()
 			else:
 				lose_game()

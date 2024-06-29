@@ -11,7 +11,7 @@ func _on_show_scent_pressed():
 	ant_manager.show_scent()
 
 func _on_spawn_ant_pressed() -> void:
-	if ant_manager.food_amount > ant_manager.ant_food_requirement:
+	if ant_manager.food_amount >= ant_manager.ant_food_requirement:
 		ant_manager.spawn_ant()
 		
 		ant_manager.food_amount -= ant_manager.ant_food_requirement

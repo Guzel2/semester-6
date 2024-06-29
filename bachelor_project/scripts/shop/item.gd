@@ -292,7 +292,6 @@ func _on_gui_input(event):
 			lock_item(!locked)
 
 func lock_item(lock : bool):
-	print(level)
 	locked = lock
 	
 	lock_sprite.visible = locked

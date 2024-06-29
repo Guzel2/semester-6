@@ -65,6 +65,8 @@ var ant_count = 0:
 		ant_count = value
 		shop_ant_display.update_number(ant_count)
 
+var manual_spawning = false
+
 func new_run():
 	home_visual.position = home_position
 	home_visual.rotation = randf_range(0, 2 * PI)
@@ -75,7 +77,7 @@ func new_run():
 func _process(delta):
 	delta *= simulation_speed
 	
-	if food_amount > ant_food_requirement:
+	if food_amount >= ant_food_requirement:
 		ant_spawn_time += delta
 		if ant_spawn_time > ant_spawn_interval:
 			ant_spawn_time -= ant_spawn_interval

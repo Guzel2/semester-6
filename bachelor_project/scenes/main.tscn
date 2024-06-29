@@ -1022,10 +1022,10 @@ border_width_top = 2
 border_width_bottom = 2
 border_color = Color(0.388235, 0.388235, 0.388235, 1)
 border_blend = true
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 expand_margin_right = 7.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hmy6"]
@@ -1035,13 +1035,13 @@ border_width_top = 2
 border_width_bottom = 2
 border_color = Color(0.388235, 0.388235, 0.388235, 1)
 border_blend = true
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 expand_margin_right = 7.0
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu", "bought_holder", "equipt_holder")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu", "buyable_holder", "bought_holder", "equipt_holder", "options", "reroll_button", "spawn_ant_button")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -1055,8 +1055,12 @@ quest_display = NodePath("camera/UI/quest_container/quest_display")
 win_screen = NodePath("camera/win_screen")
 lose_screen = NodePath("camera/lose_screen")
 main_menu = NodePath("camera/main_menu")
+buyable_holder = NodePath("camera/shop_menu/interactables/buyable_panel/buyable_holder")
 bought_holder = NodePath("camera/shop_menu/interactables/bought_panel/bought_holder")
 equipt_holder = NodePath("camera/shop_menu/interactables/equipt_panel/equipt_holder")
+options = NodePath("camera/main_menu/options")
+reroll_button = NodePath("camera/shop_menu/interactables/reroll_shop")
+spawn_ant_button = NodePath("camera/UI/spawn_ant")
 metadata/_edit_horizontal_guides_ = [50.0, 12.0]
 metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0, 264.0]
 
@@ -1174,6 +1178,9 @@ offset_left = 339.0
 offset_top = 232.0
 offset_right = 493.0
 offset_bottom = 263.0
+tooltip_text = "Spawning an Ant costs 5 Food.
+This does not decrease your 
+total Food amount."
 theme = ExtResource("18_oc0wi")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -2393,18 +2400,19 @@ theme = ExtResource("15_3rkr0")
 text = "Quit
 "
 
-[node name="options" type="VBoxContainer" parent="camera/main_menu" node_paths=PackedStringArray("obstacles", "obstacles_buyable", "manual_ant_spawning", "reroll_option", "automatic_evolution")]
+[node name="options" type="VBoxContainer" parent="camera/main_menu" node_paths=PackedStringArray("main", "obstacles", "obstacles_buyable", "manual_ant_spawning", "reroll_option", "manual_evolution")]
 offset_left = 368.0
 offset_top = 124.0
 offset_right = 506.0
 offset_bottom = 275.0
 theme_override_constants/separation = 8
 script = ExtResource("34_ascnc")
+main = NodePath("../../..")
 obstacles = NodePath("obstacles")
 obstacles_buyable = NodePath("obstacles_buyable")
 manual_ant_spawning = NodePath("manual_ant_spawning")
 reroll_option = NodePath("reroll_option")
-automatic_evolution = NodePath("manual_evolution")
+manual_evolution = NodePath("manual_evolution")
 
 [node name="obstacles" type="CheckBox" parent="camera/main_menu/options"]
 layout_mode = 2
@@ -2477,7 +2485,3 @@ text = "Manual Evolution"
 [connection signal="pressed" from="camera/main_menu/interactables/new_run" to="camera/main_menu" method="_on_new_run_pressed"]
 [connection signal="pressed" from="camera/main_menu/interactables/quit" to="camera/main_menu" method="_on_quit_pressed"]
 [connection signal="toggled" from="camera/main_menu/options/obstacles" to="camera/main_menu/options" method="_on_obstacles_toggled"]
-[connection signal="toggled" from="camera/main_menu/options/obstacles_buyable" to="camera/main_menu/options" method="_on_obstacles_buyable_toggled"]
-[connection signal="toggled" from="camera/main_menu/options/manual_ant_spawning" to="camera/main_menu/options" method="_on_manual_ant_spawning_toggled"]
-[connection signal="toggled" from="camera/main_menu/options/reroll_option" to="camera/main_menu/options" method="_on_reroll_option_toggled"]
-[connection signal="toggled" from="camera/main_menu/options/manual_evolution" to="camera/main_menu/options" method="_on_manual_evolution_toggled"]

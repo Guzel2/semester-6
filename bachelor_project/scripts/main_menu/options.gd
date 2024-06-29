@@ -7,21 +7,22 @@ extends VBoxContainer
 @export var obstacles_buyable : CheckBox
 @export var manual_ant_spawning : CheckBox
 @export var reroll_option : CheckBox
-@export var automatic_evolution : CheckBox
+@export var manual_evolution : CheckBox
 
+func load_options():
+	obstacles.button_pressed = main.use_obstacles
+	obstacles_buyable.button_pressed = main.obstacle_buyable
+	manual_ant_spawning.button_pressed = main.manual_ant_spawning
+	reroll_option.button_pressed = main.reroll_option
+	manual_evolution.button_pressed = main.manual_evolution
+
+func set_options():
+	main.use_obstacles = obstacles.button_pressed
+	main.obstacle_buyable = obstacles_buyable.button_pressed
+	main.manual_ant_spawning = manual_ant_spawning.button_pressed
+	main.reroll_option = reroll_option.button_pressed
+	main.manual_evolution = manual_evolution.button_pressed
 
 func _on_obstacles_toggled(toggled_on : bool) -> void:
 	obstacles_buyable.visible = toggled_on
 	obstacles_buyable.button_pressed = false
-
-func _on_obstacles_buyable_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
-
-func _on_manual_ant_spawning_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
-
-func _on_reroll_option_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
-
-func _on_manual_evolution_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.

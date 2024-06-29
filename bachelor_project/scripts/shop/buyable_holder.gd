@@ -4,8 +4,12 @@ extends ItemHolder
 @export var reroll_move_time = .3
 
 var potential_items = []
+var potential_obstacles = []
 
 signal no_children_left
+
+var use_obstacles = true
+var obstacle_buyable = true
 
 func _ready():
 	set_potential_items()
@@ -14,9 +18,13 @@ func _ready():
 
 func set_potential_items():
 	potential_items.clear()
+	potential_obstacles.clear()
 	
-	for item in EnumManager.item_list:
-		potential_items.append(item)
+	for x in EnumManager.item_list.size():
+		if x < EnumManager.obstacle_count and !obstacle_buyable:
+			continue
+		
+		potential_items.append(EnumManager.item_list.keys()[x])
 
 func show_move_indicator():
 	shop_menu.show_buy_indicator()
@@ -47,6 +55,7 @@ func refill_shop():
 	set_potential_items()
 	
 	var old_child_count = get_child_count()
+	
 	var new_child_count = max_item_count - old_child_count
 	
 	var original_move_time = -1
