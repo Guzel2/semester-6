@@ -10,6 +10,7 @@ signal no_children_left
 
 var use_obstacles = true
 var obstacle_buyable = true
+var manual_evolution = true
 
 func _ready():
 	set_potential_items()
@@ -21,8 +22,12 @@ func set_potential_items():
 	potential_obstacles.clear()
 	
 	for x in EnumManager.item_list.size():
-		if x < EnumManager.obstacle_count and !obstacle_buyable:
-			continue
+		if x < EnumManager.obstacle_count:
+			if !obstacle_buyable:
+				continue
+		else:
+			if !manual_evolution:
+				continue
 		
 		potential_items.append(EnumManager.item_list.keys()[x])
 
@@ -52,6 +57,11 @@ func clear_shop():
 			remove_child(item)
 
 func refill_shop():
+	if !manual_evolution and !obstacle_buyable:
+		ant_manager.ant_count += 2
+		shop_menu.money = 0
+		return
+	
 	set_potential_items()
 	
 	var old_child_count = get_child_count()

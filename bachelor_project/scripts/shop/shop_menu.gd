@@ -7,7 +7,9 @@ extends CanvasLayer
 @export var animation_player : AnimationPlayer
 @export var money_display : NumberDisplay
 
-var max_money = 5
+var obstacle_buyable = true
+
+var max_money = 6
 var money = max_money:
 	get:
 		return money
@@ -18,6 +20,10 @@ var money = max_money:
 func transition_to_shop(enter : bool):
 	if enter:
 		money = max_money + 1
+		
+		if !obstacle_buyable:
+			money -= 2
+		
 		animation_player.play("fade_in")
 	else:
 		animation_player.play("fade_out")

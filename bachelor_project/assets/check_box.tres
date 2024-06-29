@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://tk8lu7ewqctx"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://tk8lu7ewqctx"]
 
 [ext_resource type="FontFile" uid="uid://bcgwxt8cr5lv" path="res://assets/Roboto-Medium.ttf" id="1_lvpq7"]
 
@@ -51,12 +51,24 @@ corner_radius_bottom_left = 15
 expand_margin_left = 7.0
 expand_margin_right = 7.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo4xv"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [resource]
-CheckBox/colors/font_color = Color(1, 1, 1, 1)
-CheckBox/colors/font_focus_color = Color(1, 1, 1, 1)
-CheckBox/colors/font_hover_color = Color(1, 1, 1, 1)
-CheckBox/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_color = Color(0.85098, 0.85098, 0.85098, 1)
+CheckBox/colors/font_focus_color = Color(0.85098, 0.85098, 0.85098, 1)
+CheckBox/colors/font_hover_color = Color(0.85098, 0.85098, 0.85098, 1)
+CheckBox/colors/font_hover_pressed_color = Color(0.85098, 0.85098, 0.85098, 1)
+CheckBox/colors/font_pressed_color = Color(0.85098, 0.85098, 0.85098, 1)
 CheckBox/constants/check_v_offset = 0
 CheckBox/font_sizes/font_size = 12
 CheckBox/fonts/font = ExtResource("1_lvpq7")
@@ -65,3 +77,6 @@ CheckBox/styles/hover = SubResource("StyleBoxFlat_bms2b")
 CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_qxagc")
 CheckBox/styles/normal = SubResource("StyleBoxFlat_4sphr")
 CheckBox/styles/pressed = SubResource("StyleBoxFlat_jpi1w")
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/fonts/font = ExtResource("1_lvpq7")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_uo4xv")

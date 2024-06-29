@@ -160,6 +160,9 @@ func end_day():
 		
 		ant_count += 1
 		ant.queue_free()
+	
+	if ant_count == 0:
+		ant_count = 1
 
 func _on_main_start_of_day():
 	start_day()

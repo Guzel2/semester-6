@@ -19,6 +19,8 @@ var max_food_radius = 250
 
 var daily_increase = 30
 
+var last_dir = Vector2(1, 0)
+
 func new_run() -> void:
 	food_list.clear()
 	for x in grid_size:
@@ -44,10 +46,6 @@ func new_run() -> void:
 	
 	for child in get_children():
 		child.queue_free()
-	
-	spawn_new_food()
-	spawn_new_food()
-	spawn_new_food()
 
 func get_food(pos: Vector2) -> Food:
 	var local_pos = global_pos_to_local_pos(pos)
@@ -98,7 +96,7 @@ func add_debug_food(pos : Vector2i):
 	food_debug_list[pos.x][pos.y] = scene
 
 func add_visual_food(type = null):
-	var dir = Vector2(1, 0).rotated(randf_range(0, 2 * PI))
+	var dir = last_dir
 	
 	dir *= randf_range(min_food_radius, max_food_radius)
 	
@@ -161,10 +159,16 @@ func add_food_info(info : FoodInfo):
 			food.right = true
 
 func _on_main_start_of_day():
+	if get_child_count() == 0:
+		spawn_new_food()
+		spawn_new_food()
+	
 	spawn_new_food()
 
 func spawn_new_food():
 	min_food_radius += daily_increase
 	max_food_radius += daily_increase
+	
+	last_dir = last_dir.rotated(2 * PI * .618 * randf_range(.9, 1.1)).normalized()
 	
 	add_visual_food()

@@ -21,6 +21,7 @@ extends Node2D
 @export var win_screen : WinScreen
 @export var lose_screen : LoseScreen
 @export var main_menu : MainMenu
+@export var shop_menu : ShopMenu
 @export var buyable_holder : BuyableHolder
 @export var bought_holder : BoughtHolder
 @export var equipt_holder : EquiptHolder
@@ -52,10 +53,6 @@ var manual_ant_spawning = true
 var reroll_option = true
 #reroll button invis
 var manual_evolution = true
-
-#bonus:
-var custom_food_placing = false
-
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released('f11'):
@@ -96,9 +93,11 @@ func new_run():
 func set_options():
 	buyable_holder.use_obstacles = use_obstacles
 	buyable_holder.obstacle_buyable = obstacle_buyable
+	buyable_holder.manual_evolution = manual_evolution
 	
 	bought_holder.obstacle_buyable = obstacle_buyable
-	
+	shop_menu.obstacle_buyable = obstacle_buyable
+	equipt_holder.manual_evolution = manual_evolution
 	
 	ant_manager.set_process(!manual_ant_spawning)
 	spawn_ant_button.visible = manual_ant_spawning

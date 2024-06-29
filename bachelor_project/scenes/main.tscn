@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=66 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_by8xl"]
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="32_uxepw"]
 [ext_resource type="Script" path="res://scripts/main_menu/options.gd" id="34_ascnc"]
 [ext_resource type="Theme" uid="uid://tk8lu7ewqctx" path="res://assets/check_box.tres" id="34_pj118"]
+[ext_resource type="FontFile" uid="uid://bcgwxt8cr5lv" path="res://assets/Roboto-Medium.ttf" id="34_roohe"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
 fractal_octaves = 2
@@ -1041,7 +1042,7 @@ corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 expand_margin_right = 7.0
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu", "buyable_holder", "bought_holder", "equipt_holder", "options", "reroll_button", "spawn_ant_button")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu", "shop_menu", "buyable_holder", "bought_holder", "equipt_holder", "options", "reroll_button", "spawn_ant_button")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
 home_scent_manager = NodePath("home_scent_manager")
@@ -1055,6 +1056,7 @@ quest_display = NodePath("camera/UI/quest_container/quest_display")
 win_screen = NodePath("camera/win_screen")
 lose_screen = NodePath("camera/lose_screen")
 main_menu = NodePath("camera/main_menu")
+shop_menu = NodePath("camera/shop_menu")
 buyable_holder = NodePath("camera/shop_menu/interactables/buyable_panel/buyable_holder")
 bought_holder = NodePath("camera/shop_menu/interactables/bought_panel/bought_holder")
 equipt_holder = NodePath("camera/shop_menu/interactables/equipt_panel/equipt_holder")
@@ -1062,7 +1064,7 @@ options = NodePath("camera/main_menu/options")
 reroll_button = NodePath("camera/shop_menu/interactables/reroll_shop")
 spawn_ant_button = NodePath("camera/UI/spawn_ant")
 metadata/_edit_horizontal_guides_ = [50.0, 12.0]
-metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0, 264.0]
+metadata/_edit_vertical_guides_ = [214.0, 12.0, 516.0, 230.0, 368.0, 378.0, 222.0, 373.0, 92.0, 188.0, 150.0]
 
 [node name="shadow_manager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_hgbmg")
@@ -1165,7 +1167,7 @@ offset_right = 493.0
 offset_bottom = 296.0
 tooltip_text = "Simulation Speed"
 mouse_default_cursor_shape = 10
-theme = ExtResource("15_3rkr0")
+theme = ExtResource("19_cq256")
 min_value = 0.5
 max_value = 14.0
 step = 0.5
@@ -1472,7 +1474,9 @@ alignment = 2
 layout_mode = 2
 tooltip_text = "The amount of Ants currently 
 in your colony.
-Selling an Item spawns an Ant."
+Selling an Item spawns an Ant.
+If you have no Ants gain an 
+Ant at the end of a day"
 mouse_filter = 1
 theme = ExtResource("19_cq256")
 text = "5 Ants"
@@ -2355,14 +2359,28 @@ offset_bottom = 40.0
 
 [node name="title" type="Label" parent="camera/main_menu/interactables"]
 layout_mode = 0
-offset_left = 97.0
+offset_left = 82.0
 offset_top = 57.0
-offset_right = 431.0
+offset_right = 302.0
 offset_bottom = 91.0
 pivot_offset = Vector2(67, 17)
 mouse_filter = 1
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("34_roohe")
+theme_override_font_sizes/font_size = 28
 text = "Ant Game"
+horizontal_alignment = 1
+
+[node name="options" type="Label" parent="camera/main_menu/interactables"]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 78.0
+offset_right = 487.0
+offset_bottom = 102.0
+pivot_offset = Vector2(67, 17)
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("34_roohe")
+theme_override_font_sizes/font_size = 20
+text = "Options"
 horizontal_alignment = 1
 
 [node name="new_run" type="Button" parent="camera/main_menu/interactables"]
@@ -2372,9 +2390,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 172.0
+offset_left = 100.0
 offset_top = 129.0
-offset_right = 316.0
+offset_right = 244.0
 offset_bottom = 163.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -2389,9 +2407,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 172.0
+offset_left = 100.0
 offset_top = 180.0
-offset_right = 316.0
+offset_right = 244.0
 offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -2401,10 +2419,10 @@ text = "Quit
 "
 
 [node name="options" type="VBoxContainer" parent="camera/main_menu" node_paths=PackedStringArray("main", "obstacles", "obstacles_buyable", "manual_ant_spawning", "reroll_option", "manual_evolution")]
-offset_left = 368.0
-offset_top = 124.0
-offset_right = 506.0
-offset_bottom = 275.0
+offset_left = 349.0
+offset_top = 111.0
+offset_right = 487.0
+offset_bottom = 262.0
 theme_override_constants/separation = 8
 script = ExtResource("34_ascnc")
 main = NodePath("../../..")
@@ -2416,12 +2434,18 @@ manual_evolution = NodePath("manual_evolution")
 
 [node name="obstacles" type="CheckBox" parent="camera/main_menu/options"]
 layout_mode = 2
+tooltip_text = "Obstacles are used to guide Ants."
 theme = ExtResource("34_pj118")
 button_pressed = true
 text = "Obstacles"
 
 [node name="obstacles_buyable" type="CheckBox" parent="camera/main_menu/options"]
 layout_mode = 2
+tooltip_text = "Obstacles will be purchasable
+in the shop.
+If deactivated automatically
+buy a random obstacle at the 
+end of a day."
 theme = ExtResource("34_pj118")
 theme_override_styles/normal = SubResource("StyleBoxFlat_cy1ey")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cy1ey")
@@ -2433,17 +2457,26 @@ text = "Buy Obstacles"
 
 [node name="manual_ant_spawning" type="CheckBox" parent="camera/main_menu/options"]
 layout_mode = 2
+tooltip_text = "Spawning an Ants cost 5 Food.
+If deactivated automatically 
+spawn an Ant periodically
+if enough Food is available."
 theme = ExtResource("34_pj118")
 text = "Spawn Ants Manually"
 
 [node name="reroll_option" type="CheckBox" parent="camera/main_menu/options"]
 layout_mode = 2
+tooltip_text = "Show the Reroll-Button in the shop menu."
 theme = ExtResource("34_pj118")
 button_pressed = true
 text = "Reroll in Shop"
 
 [node name="manual_evolution" type="CheckBox" parent="camera/main_menu/options"]
 layout_mode = 2
+tooltip_text = "Add purchasable and
+upgradable genes to the shop.
+If deactivated automatically
+evolve and upgrade genes."
 theme = ExtResource("34_pj118")
 button_pressed = true
 text = "Manual Evolution"
@@ -2454,6 +2487,7 @@ text = "Manual Evolution"
 [connection signal="end_of_day" from="." to="ant_manager" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_of_day"]
+[connection signal="end_of_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_end_of_day"]
 [connection signal="start_of_day" from="." to="food_manager" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="ant_manager" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_of_day"]
