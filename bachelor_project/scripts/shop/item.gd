@@ -192,6 +192,9 @@ func check_overlapping_areas() -> bool:
 		if !other_item.can_level_up:
 			return false
 		
+		if item < EnumManager.obstacle_count or other_item.item < EnumManager.obstacle_count:
+			return false
+		
 		other_item.increase_level()
 		
 		queue_free()

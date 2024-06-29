@@ -38,6 +38,19 @@ var fullscreen = false
 
 var go_to_main_menu_next = false
 
+#options
+var use_obstacles = true
+var obstacle_buyable = true
+
+var automatic_ant_spawning = true
+
+var reroll_option = true
+var automatic_evolution = true
+
+#bonus:
+var custom_food_placing = false
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_released('f11'):
 		fullscreen = !fullscreen

@@ -1,5 +1,5 @@
 class_name ObstacleUIHolder
-extends VBoxContainer
+extends HBoxContainer
 
 @export var obstacle_scene : PackedScene
 

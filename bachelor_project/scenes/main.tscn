@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://puvpfcxmikuf"]
+[gd_scene load_steps=65 format=3 uid="uid://puvpfcxmikuf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_by8xl"]
 [ext_resource type="Script" path="res://scripts/environment/shadow_manager.gd" id="1_hgbmg"]
@@ -21,6 +21,7 @@
 [ext_resource type="Shader" path="res://shaders/environment/background.gdshader" id="17_fdmoj"]
 [ext_resource type="Script" path="res://scripts/shop/buyable_holder.gd" id="17_hcexv"]
 [ext_resource type="PackedScene" uid="uid://b2kev6dq3iv2g" path="res://scenes/shop/item.tscn" id="18_31k12"]
+[ext_resource type="Theme" uid="uid://xsa27kd56ymp" path="res://assets/obstacles.tres" id="18_oc0wi"]
 [ext_resource type="Script" path="res://scripts/ui/obstacle_ui_holder.gd" id="18_ub34t"]
 [ext_resource type="Script" path="res://scripts/shop/bought_holder.gd" id="19_87cv6"]
 [ext_resource type="Theme" uid="uid://byood2jvm2a2v" path="res://assets/label.tres" id="19_cq256"]
@@ -31,7 +32,9 @@
 [ext_resource type="Shader" path="res://shaders/shop/horizontal_fade.gdshader" id="29_n3mbe"]
 [ext_resource type="Script" path="res://scripts/win_screen.gd" id="30_hifj7"]
 [ext_resource type="Script" path="res://scripts/lose_screen.gd" id="31_kn4qn"]
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="32_uxepw"]
+[ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="32_uxepw"]
+[ext_resource type="Script" path="res://scripts/main_menu/options.gd" id="34_ascnc"]
+[ext_resource type="Theme" uid="uid://tk8lu7ewqctx" path="res://assets/check_box.tres" id="34_pj118"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q4iky"]
 fractal_octaves = 2
@@ -66,6 +69,27 @@ shader_parameter/offset = Vector2(0.68, 1.485)
 shader_parameter/zoom = 1.0
 shader_parameter/visual_texture = SubResource("NoiseTexture2D_et3a2")
 shader_parameter/normal_map = SubResource("NoiseTexture2D_xsr5w")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljw8k"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40wm4"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcu60"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7acsm"]
 shader = ExtResource("13_d3k8a")
@@ -978,6 +1002,45 @@ _data = {
 "fade_out": SubResource("Animation_di3v8")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy1ey"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_width_left = 7
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q506"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_width_left = 7
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_blend = true
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hmy6"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_width_left = 7
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_blend = true
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+expand_margin_right = 7.0
+
 [node name="main" type="Node2D" node_paths=PackedStringArray("shadow_manager", "home_scent_manager", "food_scent_manager", "danger_scent_manager", "food_manager", "ant_manager", "camera", "day_display", "quest_display", "win_screen", "lose_screen", "main_menu", "bought_holder", "equipt_holder")]
 script = ExtResource("1_by8xl")
 shadow_manager = NodePath("shadow_manager")
@@ -1107,10 +1170,18 @@ scrollable = false
 
 [node name="spawn_ant" type="Button" parent="camera/UI"]
 visible = false
-offset_left = 388.0
+offset_left = 339.0
 offset_top = 232.0
-offset_right = 492.0
+offset_right = 493.0
 offset_bottom = 263.0
+theme = ExtResource("18_oc0wi")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ljw8k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_40wm4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mcu60")
 text = "Spawn Ant"
 
 [node name="show_scent" type="Button" parent="camera/UI"]
@@ -1121,11 +1192,11 @@ offset_right = 492.0
 offset_bottom = 229.0
 text = "Show Scent"
 
-[node name="obstacle_ui_holder" type="VBoxContainer" parent="camera/UI" node_paths=PackedStringArray("camera", "obstacle_manager")]
-offset_left = 477.0
-offset_top = -386.0
-offset_right = 513.0
-offset_bottom = 157.0
+[node name="obstacle_ui_holder" type="HBoxContainer" parent="camera/UI" node_paths=PackedStringArray("camera", "obstacle_manager")]
+offset_left = 230.0
+offset_top = 42.0
+offset_right = 516.0
+offset_bottom = 78.0
 alignment = 2
 script = ExtResource("18_ub34t")
 obstacle_scene = ExtResource("20_feufy")
@@ -1209,6 +1280,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shop_menu" type="CanvasLayer" parent="camera" node_paths=PackedStringArray("buy_indicator", "sell_indicator", "animation_player", "money_display")]
+visible = false
 script = ExtResource("15_nfa05")
 buy_indicator = NodePath("buy_indicator")
 sell_indicator = NodePath("sell_indicator")
@@ -2321,14 +2393,61 @@ theme = ExtResource("15_3rkr0")
 text = "Quit
 "
 
+[node name="options" type="VBoxContainer" parent="camera/main_menu" node_paths=PackedStringArray("obstacles", "obstacles_buyable", "manual_ant_spawning", "reroll_option", "automatic_evolution")]
+offset_left = 368.0
+offset_top = 124.0
+offset_right = 506.0
+offset_bottom = 275.0
+theme_override_constants/separation = 8
+script = ExtResource("34_ascnc")
+obstacles = NodePath("obstacles")
+obstacles_buyable = NodePath("obstacles_buyable")
+manual_ant_spawning = NodePath("manual_ant_spawning")
+reroll_option = NodePath("reroll_option")
+automatic_evolution = NodePath("manual_evolution")
+
+[node name="obstacles" type="CheckBox" parent="camera/main_menu/options"]
+layout_mode = 2
+theme = ExtResource("34_pj118")
+button_pressed = true
+text = "Obstacles"
+
+[node name="obstacles_buyable" type="CheckBox" parent="camera/main_menu/options"]
+layout_mode = 2
+theme = ExtResource("34_pj118")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cy1ey")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cy1ey")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7q506")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_0hmy6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cy1ey")
+button_pressed = true
+text = "Buy Obstacles"
+
+[node name="manual_ant_spawning" type="CheckBox" parent="camera/main_menu/options"]
+layout_mode = 2
+theme = ExtResource("34_pj118")
+text = "Spawn Ants Manually"
+
+[node name="reroll_option" type="CheckBox" parent="camera/main_menu/options"]
+layout_mode = 2
+theme = ExtResource("34_pj118")
+button_pressed = true
+text = "Reroll in Shop"
+
+[node name="manual_evolution" type="CheckBox" parent="camera/main_menu/options"]
+layout_mode = 2
+theme = ExtResource("34_pj118")
+button_pressed = true
+text = "Manual Evolution"
+
 [connection signal="end_of_day" from="." to="home_scent_manager" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="food_scent_manager" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="danger_scent_manager" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="ant_manager" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="camera/UI/obstacle_ui_holder" method="_on_main_end_of_day"]
 [connection signal="end_of_day" from="." to="camera/shop_menu/interactables/buyable_panel/buyable_holder" method="_on_main_end_of_day"]
-[connection signal="start_of_day" from="." to="ant_manager" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="food_manager" method="_on_main_start_of_day"]
+[connection signal="start_of_day" from="." to="ant_manager" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="camera/shop_menu/interactables/bought_panel/bought_holder" method="_on_main_start_of_day"]
 [connection signal="start_of_day" from="." to="camera/shop_menu/interactables/equipt_panel/equipt_holder" method="_on_main_start_of_day"]
 [connection signal="end_of_day" from="shadow_manager" to="." method="_on_shadow_manager_end_of_day"]
@@ -2357,3 +2476,8 @@ text = "Quit
 [connection signal="pressed" from="camera/lose_screen/main_menu" to="camera/lose_screen" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="camera/main_menu/interactables/new_run" to="camera/main_menu" method="_on_new_run_pressed"]
 [connection signal="pressed" from="camera/main_menu/interactables/quit" to="camera/main_menu" method="_on_quit_pressed"]
+[connection signal="toggled" from="camera/main_menu/options/obstacles" to="camera/main_menu/options" method="_on_obstacles_toggled"]
+[connection signal="toggled" from="camera/main_menu/options/obstacles_buyable" to="camera/main_menu/options" method="_on_obstacles_buyable_toggled"]
+[connection signal="toggled" from="camera/main_menu/options/manual_ant_spawning" to="camera/main_menu/options" method="_on_manual_ant_spawning_toggled"]
+[connection signal="toggled" from="camera/main_menu/options/reroll_option" to="camera/main_menu/options" method="_on_reroll_option_toggled"]
+[connection signal="toggled" from="camera/main_menu/options/manual_evolution" to="camera/main_menu/options" method="_on_manual_evolution_toggled"]

@@ -1,0 +1,67 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://tk8lu7ewqctx"]
+
+[ext_resource type="FontFile" uid="uid://bcgwxt8cr5lv" path="res://assets/Roboto-Medium.ttf" id="1_lvpq7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyvs3"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bms2b"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn7fo"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sphr"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.388235, 0.388235, 0.388235, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpi1w"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[resource]
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_focus_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_hover_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_pressed_color = Color(1, 1, 1, 1)
+CheckBox/constants/check_v_offset = 0
+CheckBox/font_sizes/font_size = 12
+CheckBox/fonts/font = ExtResource("1_lvpq7")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_vyvs3")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_bms2b")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_dn7fo")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_4sphr")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_jpi1w")
