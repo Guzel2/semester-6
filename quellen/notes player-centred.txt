@@ -1,0 +1,49 @@
+Notes:Player-Centred Game Design
+
+https://www.researchgate.net/profile/Frans-Maeyrae/publication/220200719_Player-Centred_Game_Design_Experiences_in_Using_Scenario_Study_to_Inform_Mobile_Game_Design/links/09e4150c5499d39f10000000/Player-Centred-Game-Design-Experiences-in-Using-Scenario-Study-to-Inform-Mobile-Game-Design.pdf
+
+One of the crucial critiques of the current state of game development is the
+apparent lack of originality in design solutions: games are designed to appeal to a rather narrow,
+already existing player demographic. As long as the design of new games is based on the
+traditional model of individual game author or small team designing games based on their
+personal likings and vision, rather than on understanding derived from their potential new
+audiences, this is unlikely to change. However, the situation is continually developing, and
+particularly on large productions the practise of play-testing with the focus group at different
+stages of the game development is becoming more common.
+
+
+-> need for innovation, not just target exisitng players, especially for mobile
+
+
+
+Of course it should also be noted that users and players are not
+designers, so the input they offer the design process should not be regarded as definitive,
+unquestionable truths. Data collected from player studies needs to be analyzed and interpreted
+by the researchers. Not even participatory design means that the users or players do the work
+for the designers.
+
+-> players can point out problems, but designers should solve them. Collected data always needs to be reviewed
+
+
+
+Contemporary mobile devices did not appear as very promising gameplay devices from the point
+of view of the player study informants. They felt mobile games often required too much
+concentration on the small device when trying to control the game using cramped buttons, and
+thus might take the attention away from the actual playing. Therefore we are emphasising the
+role of the auditory world of the game (see Ekman et al. 2005) and trying to keep the interface
+as simple as possible.
+
+many buttons and high concentration needs are difficult on mobile. Reduce gameplay to it's core
+
+
+
+It also became clear during the player study, that players’ feelings of control need to be
+supported both in the actual gameplay situation and, especially, regarding lottery gaming. In a
+persistent game world this means that there is a need to support different kinds of player types
+and playing modes, so that players themselves are able, to some degree, to control for example
+when to play and how to separate the playing from their real life. From a game design angle,
+strong holding power of the game can be seen as a desirable quality to produce. But while being
+captivating, the game should also support the feeling of control and let players make decisions
+about their own playing style.
+
+

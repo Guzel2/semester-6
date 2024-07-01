@@ -1,0 +1,35 @@
+mobile game design:
+
+
+Experience is different on bus than home - book
+
+Computing capabilities - book
+
+screen size - book
+
+many buttons are difficult - player centred
+
+too much concentration to focus on a small device - player centred
+
+market is saturated - book
+
+need for innovation, target new players - player centred
+
+high control from the game makes players feel less overtasked - player centred
+
+
+
+1. Rechenleistung ist geringer - book
+
+2. Bildschirme sind kleiner als am PC/Console (UI, Detailsize) - book
+2.1. Touch buttons
+2.1.2. Zu viele knöpfe ist kompliziert und unpräzise - player centred
+2.2. Grundlegende Erfahrung ist anders - book
+2.3. Lange Zeit Fokus auf kleines gerät ist anstrengend - player centred
+
+3. Sehr leicht ein Spiel veröffentlichen - book
+3.1. Markt ist sehr voll - book
+3.2. Bedarf an Innovation und neue Spieler rekrutieren - player centred
+
+4. Hohe Kontrolle vom Spiel schafft es Lasst von Spielern abzunehemn - player centred
+
