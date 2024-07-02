@@ -137,19 +137,19 @@ func check_quest():
 	
 	match quest_level:
 		1:
-			if ant_manager.quest_progress > 50:
+			if ant_manager.quest_progress > 100:
 				continue_game = true
-				quest_display.suffix = "/100 due by Day 10"
+				quest_display.suffix = "/200 due by Day 10"
 			else:
 				lose_game()
 		2:
-			if ant_manager.quest_progress > 100:
+			if ant_manager.quest_progress > 200:
 				continue_game = true
-				quest_display.suffix = "/250 due by Day 15 to win"
+				quest_display.suffix = "/500 due by Day 15 to win"
 			else:
 				lose_game()
 		3:
-			if ant_manager.quest_progress > 250:
+			if ant_manager.quest_progress > 500:
 				win_game()
 			else:
 				lose_game()

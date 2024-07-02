@@ -9,7 +9,7 @@ extends CanvasLayer
 
 var obstacle_buyable = true
 
-var max_money = 6
+var max_money = 5
 var money = max_money:
 	get:
 		return money

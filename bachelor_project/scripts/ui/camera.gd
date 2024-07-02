@@ -29,7 +29,7 @@ func _input(event):
 		return
 	
 	if event.is_action_pressed("scroll_down"):
-		if zoom.x > .35:
+		if zoom.x > .25:
 			change_zoom(1.0 / scroll_multiplier)
 	
 	if event.is_action_pressed("scroll_up"):

@@ -22,7 +22,7 @@ func end_day():
 	if manual_evolution:
 		return
 	
-	var money = 5
+	var money = 4
 	
 	for x in 100:
 		if money <= 0:
@@ -59,7 +59,7 @@ func end_day():
 			if !item.can_level_up:
 				continue
 			
-			if item.level < money:
+			if item.level <= money:
 				money -= item.level
 				money -= 1
 				item.level += 1

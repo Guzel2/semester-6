@@ -1498,7 +1498,7 @@ in your colony.
 Selling an Item spawns an Ant."
 mouse_filter = 1
 theme = ExtResource("19_cq256")
-text = "0/50 due by Day 5"
+text = "0/100 due by Day 5"
 script = ExtResource("22_his4a")
 
 [node name="buy_indicator" type="Node2D" parent="camera/shop_menu"]
