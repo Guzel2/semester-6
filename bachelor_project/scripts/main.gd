@@ -39,7 +39,7 @@ var day_count = -1:
 		day_count = value
 		day_display.update_number(day_count + 1)
 
-var fullscreen = false
+var fullscreen = true
 
 var go_to_main_menu_next = false
 
