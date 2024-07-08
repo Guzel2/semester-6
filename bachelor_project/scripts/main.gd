@@ -74,6 +74,8 @@ func update_simulation_speed():
 	ant_manager.simulation_speed = simulation_speed
 
 func new_run():
+	quest_display.suffix = "/100 due by Day 5"
+	
 	options.set_options()
 	set_options()
 	

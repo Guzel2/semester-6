@@ -1269,10 +1269,10 @@ tooltip_text = "The total amount of Food
 you need to collect in 5 days."
 mouse_filter = 1
 theme = ExtResource("19_cq256")
-text = "0/50 due by Day 5"
+text = "0/100 due by Day 5"
 horizontal_alignment = 2
 script = ExtResource("22_his4a")
-suffix = "/30 due by Day 5"
+suffix = "/100 due by Day 5"
 copy_display = NodePath("../../../shop_menu/interactables/HBoxContainer/quest_display")
 
 [node name="post_processing" type="Node" parent="camera"]
