@@ -97,6 +97,7 @@ func set_options():
 	buyable_holder.obstacle_buyable = obstacle_buyable
 	buyable_holder.manual_evolution = manual_evolution
 	
+	bought_holder.use_obstacles = use_obstacles
 	bought_holder.obstacle_buyable = obstacle_buyable
 	shop_menu.obstacle_buyable = obstacle_buyable
 	equipt_holder.manual_evolution = manual_evolution

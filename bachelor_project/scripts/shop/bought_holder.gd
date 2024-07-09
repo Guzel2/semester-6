@@ -3,6 +3,7 @@ extends ItemHolder
 
 signal remaining_obstacles(items : Array)
 
+var use_obstacles = true
 var obstacle_buyable = true
 
 func show_move_indicator():
@@ -27,6 +28,9 @@ func start_day():
 	emit_signal("remaining_obstacles", obstacles)
 
 func end_day():
+	if !use_obstacles:
+		return
+	
 	if obstacle_buyable:
 		return
 	
