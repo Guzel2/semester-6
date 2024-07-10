@@ -46,6 +46,8 @@
 - Sowas wie lfg (looking for group) für spiele
   -> wir sind lokal und nicht anonym
 
+- Statista Markt ausgeschöft recherche
+
 6. Marketing und Vertrieb
 - Vertrieb: Als App (iOS Store und Play Store)
 - Kommunikation (social media, website, email-verteiler, linkedIn)
@@ -70,7 +72,7 @@
   -> Gewerbe anmelden? (Recherche)
 - Erwartetes Einkommen durch Werbung/Subscriptions
 - Werbekosten (Also wenn wir Werbung verbreiten)
-- Steuern (Steuerberater)
+- Steuerhinterziehung (Steuerberater)
 - Investitionen einberechnen (Am Anfang haben wir Geld)
 - Sponsoren / Collaborations
 - Sketchy Pyramiden System
