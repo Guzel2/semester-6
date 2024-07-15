@@ -1,0 +1,54 @@
+
+
+1. Spiele weniger Interaktion
+2. Frage wie viel Gameplay brauch man?
+3. Was ist Spiel? Junges Medium, erst etwas über 50 Jahre
+-> Unterschied zu anderen: Interkation
+
+4. Entscheidungen bewerten:
+gdc 2012
+"Reihe an interessanten entscheidungen"
+	verschiedene Art:
+	Risk vs Reward, Playstyle, Langfristig vs Kurzfristig
+	
+4.2. Interessant Entscheidungen:
+	mehrere Entscheidungen zusammen führen
+	Menge an Informationen anpassen
+	-> Reduktion auf den Kern eines Spiels ist möglich
+
+5. Warum weniger Entscheidung?
+	-> Mobile Spiele -> über 35% der weltbevölkerung spielt
+	Thailand: 90% Spielen am Handy, nur 36% am Pc
+
+Buch Dr. Claudio Scolastici und David Nolte - Mobile Game Design Essentials
+5. Länge fast 50% der Mobile Game Sessions weniger als 30 min
+6. Hardware limitationen
+7. Control-Layout
+8. Gefüllter Markt, also bedarf nach innovation:
+	-> Surivor-Like und Autobattler
+	   Innovation durch weniger Interaktion
+
+9. Survivor-like Entstanden aus Arcade Spielen wegen control layout
+10. Autobattler aus MOBA Mehrspieler spiel zu einzelspieler
+11. Fokus auf core elemente, gut für zwischen durch
+12. Tortzdem Wiederspielwert durch tiefe und langfristige Entscheidungen
+
+
+2.! Praktische Umsetzung
+1. Übergang zwischen Simulation und Spiel identifizieren
+2. Ameisen an sich autonom
+3. Durch Autobattle Mechaniken interaktion
+4. Extra interaktion durch Hindernisse und "Spawn Ant" knopf
+
+5. Fazit:
+Spieler waren kurzfristig nur an Ameisen interessiert, aber langfristig benötigt man mehr
+
+
+Mega fazit:
+"Wie viel Gameplay braucht ein Spiel?"
+-> sehr wenig, hängt von Zielgruppe und Medium ab
+
+Mehr reduktion bei anderen genre: Neue genre entstehen
+Spiele für alle, Einsteigerfreundlich
+Aber auch entwicklung in andere ricthung -> komplexer und spezifischer
+Diveresere Spiele-Landschaft

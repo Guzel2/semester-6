@@ -1,0 +1,75 @@
+
+1. Titel Folie
+"Wie viel Gameplay braucht ein Spiel?"
+
+2. Vergleich mit anderen Medien
+- Junges Medium (erst seit etwas über 50 Jahren)
+- Alleinstellung: Interaktion
+
+3. Entscheidungen Bewerten
+- Sid Meier: GDC 2012 "Interesting Decisions"
+- Arten von Entscheidungen
+	- Risiko gegen Belohnung
+	- Playstyle und Persönlichkeit
+	- Langfristig vs Kurzfristig
+	- etc.
+
+4. Entscheidungen Bewerten
+- Mehrere Entscheidungen zusammen führen
+- Menge an Information anpassen
+- Hauptelemente Identifizieren
+
+5. Warum weniger Entscheidungen?
+
+6. Mobile Spiele
+- 2020 haben über 35% gespielt
+- Thailand: 90% am Handy, 36% am PC
+
+7. Mobile Game Design
+- Dr. Claudio Scolastici: Mobile Game Design Essentials
+- Hardware Limitationen
+- Control-Layout
+- Gesättigter Markt
+	-> Bedarf nach Innovation
+
+8. Survivor-Like
+- Entwickelten sich aus Arcade Spielen
+- Von Twinstick zu Touchscreen
+*Bild von brotato?*
+
+9. Autobattler
+- Entwickelten sich aus MOBA
+- Mehrspieler zu Einzelspieler
+*Bild von TFT?*
+
+10. Reduktion der Entscheidung
+- Fokus auf Kernelemente
+- Kurze Spielzeit (10-30 min)
+- Hoher Wiederspielwert durch Mechaniken
+
+11. Praktische Umsetzung
+*titel Folie, genre mit screenshot hinten*
+
+12. Ameisen Simulation
+- Ameisen sind autonom
+- Autobattler Mechaniken
+- Hindernisse
+- "Spawn Ant" Knopf
+
+13. Ameisen Simulation
+- Ameisen an sich sind spannend
+- Langfristig mehr Mechaniken
+
+14. Fazit
+"Wie viel Gameplay braucht ein Spiel?"
+- Zielgruppe
+- Medium
+- Spielerlebnis
+
+15. Ausblick
+- Reduktion bei anderen Genre
+	-> neue Genre
+- Einsteigerfreundlich
+- ABER auch: komplexere und spezifischere Spiele
+- Diversere Spiele-Landschaft
+
