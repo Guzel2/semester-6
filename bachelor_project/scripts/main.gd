@@ -87,7 +87,6 @@ func new_run():
 	ant_manager.new_run()
 	bought_holder.new_run()
 	equipt_holder.new_run()
-	quest_display.suffix = "/50 due by Day 5"
 	
 	simulation_speed = 1
 	end_day()
@@ -168,12 +167,22 @@ func lose_game():
 func win_game():
 	win_screen.animation_player.play("fade_in")
 
+func force_start_next_day():
+	_on_start_next_day_pressed()
+	camera._on_start_next_day_pressed()
+
 func _on_shadow_manager_end_of_day():
 	end_day()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_out":
 		start_day()
+	
+	if anim_name == "fade_in":
+		if use_obstacles or manual_ant_spawning or reroll_option or manual_evolution:
+			return
+		
+		force_start_next_day()
 
 func _on_start_next_day_pressed() -> void:
 	shadow_manager.timer = 0
